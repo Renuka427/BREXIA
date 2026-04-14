@@ -361,18 +361,8 @@ function GlobalStyles() {
           transform: translate(-50%, -50%) scale(0.6) !important;
         }
         .hero-title {
-          font-size: clamp(2.2rem, 12vw, 3rem) !important;
-          letter-spacing: 0.05em !important;
-        }
-        @media (max-width: 480px) {
-          .hero-title {
-            font-size: 1.8rem !important;
-            letter-spacing: 0 !important;
-          }
-           .hero-tagline {
-            font-size: 9px !important;
-            letter-spacing: 0.05em !important;
-          }
+          font-size: clamp(2rem, 10vw, 3rem) !important;
+          letter-spacing: 0.02em !important;
         }
         .hero-tagline {
           font-size: 10px !important;
@@ -390,6 +380,8 @@ function GlobalStyles() {
         .main-container {
           padding-top: 70px !important;
           padding-bottom: 20px !important;
+          padding-left: 20px !important;
+          padding-right: 20px !important;
         }
         .top-nav {
           padding: 10px 15px !important;
@@ -406,6 +398,21 @@ function GlobalStyles() {
         .mobile-scroll-tabs button {
           white-space: nowrap !important;
           flex-shrink: 0 !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 1.6rem !important;
+          letter-spacing: -0.01em !important;
+        }
+        .hero-tagline {
+          font-size: 9px !important;
+          letter-spacing: 0.05em !important;
+        }
+        .brand-text {
+          font-size: 18px !important;
+          letter-spacing: 0 !important;
         }
       }
 
