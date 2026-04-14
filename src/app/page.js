@@ -352,8 +352,21 @@ function GlobalStyles() {
           transform: translate(-50%, -50%) scale(0.6) !important;
         }
         .hero-title {
-          font-size: clamp(2rem, 10vw, 3.2rem) !important;
-          letter-spacing: 0.05em !important;
+          font-size: clamp(1.8rem, 10vw, 3rem) !important;
+          letter-spacing: 0.02em !important;
+        }
+        .hero-tagline {
+          font-size: 10px !important;
+          letter-spacing: 0.1em !important;
+          margin-bottom: 40px !important;
+        }
+        .hero-input-field input {
+          padding: 16px 20px !important;
+          font-size: 14px !important;
+          letter-spacing: 1px !important;
+        }
+        .hero-input-field input::placeholder {
+          font-size: 11px !important;
         }
         .main-container {
           padding-top: 70px !important;
@@ -556,7 +569,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
             }}>
               BREXIA
             </h1>
-            <p style={{ 
+            <p className="hero-tagline" style={{ 
               margin: "12px 0 64px", 
               fontSize: "clamp(1rem, 2vw, 1.2rem)", 
               color: "#fff", 
