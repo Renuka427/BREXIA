@@ -345,13 +345,15 @@ function GlobalStyles() {
         .dashboard-grid {
           grid-template-columns: 1fr !important;
           gap: 24px !important;
+          height: auto !important;
+          min-height: auto !important;
         }
         .hero-rings {
           transform: translate(-50%, -50%) scale(0.6) !important;
         }
         .hero-title {
-          font-size: clamp(2.2rem, 12vw, 4rem) !important;
-          letter-spacing: 0.1em !important;
+          font-size: clamp(2rem, 10vw, 3.2rem) !important;
+          letter-spacing: 0.05em !important;
         }
         .main-container {
           padding-top: 70px !important;
@@ -1397,7 +1399,7 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
   };
 
   return (
-    <div className="dashboard-grid" style={{ minHeight: "calc(100vh - 350px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 32, overflow: "hidden" }}>
+    <div className="dashboard-grid" style={{ minHeight: "600px", display: "grid", gap: 32, overflow: "hidden" }}>
       {/* LEFT: AI BREACH INTELLIGENCE CORE */}
       <div style={{ display: "flex", flexDirection: "column", gap: 24, overflow: "hidden" }}>
         {/* Breach Header */}
@@ -1651,7 +1653,7 @@ function RecentScans({ history }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8, duration: 0.8 }}
-      style={{ marginTop: 64, width: "100%", maxWidth: 800, margin: "64px auto 0 auto" }}
+      style={{ marginTop: 64, width: "100%", maxWidth: 1100, margin: "64px auto 0 auto" }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24, justifyContent: "center" }}>
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#F43F5E", animation: "pulse 1.5s infinite" }} />
@@ -1659,7 +1661,7 @@ function RecentScans({ history }) {
           LIVE_GLOBAL_TELEMETRY_FEED
         </h3>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
         {history.map((scan, i) => (
           <motion.div
             key={scan.time + i}
@@ -2055,6 +2057,9 @@ export default function BrexiaDashboard() {
         @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
         @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
         @keyframes springIn{0%{opacity:0;transform:scale(0.95)}100%{opacity:1;transform:scale(1)}}
+        .dashboard-grid {
+           grid-template-columns: 1.1fr 0.9fr;
+        }
         .nav-item:hover { background: rgba(162, 89, 255,0.08) !important; }
         .breach-row:hover { background: rgba(162, 89, 255,0.05) !important; }
         .scan-btn:hover { box-shadow: 0 0 24px rgba(162, 89, 255,0.4) !important; transform: translateY(-1px) !important; }
@@ -2154,7 +2159,7 @@ export default function BrexiaDashboard() {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="dashboard-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: 32, marginBottom: 24 }}>
+                      <div className="dashboard-grid" style={{ display: "grid", gap: 32, marginBottom: 24 }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                            {/* AI Summary Hero */}
@@ -2233,7 +2238,7 @@ export default function BrexiaDashboard() {
                         </div>
                       )}
 
-                      <div className="dashboard-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: 32, overflow: "hidden", flex: 1 }}>
+                      <div className="dashboard-grid" style={{ display: "grid", gap: 32, overflow: "hidden", flex: 1 }}>
                         {mainBreach ? (
                           <>
                              {/* LEFT: MAIN STORY */}
