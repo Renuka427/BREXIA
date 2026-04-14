@@ -135,6 +135,13 @@ function GlobalStyles() {
         font-weight: 900;
         margin: 0;
         text-shadow: 0 0 20px rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+      }
+      @media (max-width: 640px) {
+        .brand-text {
+          font-size: 24px !important;
+          letter-spacing: 2px !important;
+        }
       }
       .risk-score {
         font-size: 64px;
@@ -343,14 +350,15 @@ function GlobalStyles() {
           transform: translate(-50%, -50%) scale(0.6) !important;
         }
         .hero-title {
-          font-size: clamp(2.5rem, 15vw, 5rem) !important;
+          font-size: clamp(2.2rem, 12vw, 4rem) !important;
+          letter-spacing: 0.1em !important;
         }
         .main-container {
-          padding-top: 80px !important;
-          padding-bottom: 40px !important;
+          padding-top: 70px !important;
+          padding-bottom: 20px !important;
         }
         .top-nav {
-          padding: 12px 20px !important;
+          padding: 10px 15px !important;
         }
         .system-status-desktop {
           display: none !important;
@@ -409,7 +417,7 @@ function GlobalStyles() {
 // ── Shared UI Components ─────────────────────────────────────────────────────
 function TopNav() {
   return (
-    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "16px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "rgba(5, 7, 10, 0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "16px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "rgba(5, 7, 10, 0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.08)", transition: "all 0.3s" }}>
       <button 
         onClick={() => { window.location.reload(); }}
         style={{ display: "flex", alignItems: "center", gap: 12, background: "none", border: "none", cursor: "pointer", padding: 0 }}
@@ -1389,7 +1397,7 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
   };
 
   return (
-    <div className="dashboard-grid" style={{ height: "calc(100vh - 350px)", display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 32, overflow: "hidden" }}>
+    <div className="dashboard-grid" style={{ minHeight: "calc(100vh - 350px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 32, overflow: "hidden" }}>
       {/* LEFT: AI BREACH INTELLIGENCE CORE */}
       <div style={{ display: "flex", flexDirection: "column", gap: 24, overflow: "hidden" }}>
         {/* Breach Header */}
@@ -2011,11 +2019,12 @@ export default function BrexiaDashboard() {
       </motion.div>
       <div style={{ textAlign: "center", zIndex: 1 }}>
         <h1 className="brand-text logo-glow" style={{ 
-          fontSize: 64, 
+          fontSize: "clamp(2.5rem, 10vw, 4rem)", 
           marginBottom: 12, 
           background: "linear-gradient(to bottom, #fff, #7C3AED)",
           WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent"
+          WebkitTextFillColor: "transparent",
+          letterSpacing: "0.1em"
         }}>
           BREXIA
         </h1>
@@ -2145,7 +2154,7 @@ export default function BrexiaDashboard() {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="dashboard-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 32, marginBottom: 24 }}>
+                      <div className="dashboard-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: 32, marginBottom: 24 }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                            {/* AI Summary Hero */}
@@ -2224,7 +2233,7 @@ export default function BrexiaDashboard() {
                         </div>
                       )}
 
-                      <div className="dashboard-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, overflow: "hidden", flex: 1 }}>
+                      <div className="dashboard-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: 32, overflow: "hidden", flex: 1 }}>
                         {mainBreach ? (
                           <>
                              {/* LEFT: MAIN STORY */}

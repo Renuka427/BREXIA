@@ -77,7 +77,7 @@ export default function ActionModal({ isOpen, onClose, type, data }) {
           style={{ 
             width: '100%', maxWidth: 540, background: 'rgba(15, 23, 42, 0.8)', 
             borderRadius: 32, border: '1px solid rgba(255,255,255,0.08)',
-            padding: 48, boxShadow: '0 50px 120px rgba(0,0,0,0.9), inset 0 0 20px rgba(124, 58, 237, 0.1)',
+            padding: 'clamp(24px, 6vw, 48px)', boxShadow: '0 50px 120px rgba(0,0,0,0.9), inset 0 0 20px rgba(124, 58, 237, 0.1)',
             position: 'relative', overflow: 'hidden',
             perspective: 1000
           }}
