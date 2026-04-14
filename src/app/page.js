@@ -129,18 +129,27 @@ function GlobalStyles() {
         box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
       }
       .brand-text {
-        font-size: 32px;
-        letter-spacing: 6px;
-        color: white;
+        font-family: 'Syne', sans-serif;
         font-weight: 900;
         margin: 0;
         text-shadow: 0 0 20px rgba(255,255,255,0.2);
         transition: all 0.3s ease;
+        font-size: 32px;
+        letter-spacing: 0.1em;
+        background: linear-gradient(to bottom, #fff, #7C3AED);
+        WebkitBackgroundClip: text;
+        WebkitTextFillColor: transparent;
       }
       @media (max-width: 640px) {
         .brand-text {
           font-size: 24px !important;
-          letter-spacing: 2px !important;
+          letter-spacing: 0.05em !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .brand-text {
+          font-size: 20px !important;
+          letter-spacing: 0 !important;
         }
       }
       .risk-score {
@@ -352,8 +361,18 @@ function GlobalStyles() {
           transform: translate(-50%, -50%) scale(0.6) !important;
         }
         .hero-title {
-          font-size: clamp(1.8rem, 10vw, 3rem) !important;
-          letter-spacing: 0.02em !important;
+          font-size: clamp(2.2rem, 12vw, 3rem) !important;
+          letter-spacing: 0.05em !important;
+        }
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 1.8rem !important;
+            letter-spacing: 0 !important;
+          }
+           .hero-tagline {
+            font-size: 9px !important;
+            letter-spacing: 0.05em !important;
+          }
         }
         .hero-tagline {
           font-size: 10px !important;
@@ -556,11 +575,9 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
           >
             <h1 className="hero-title logo-glow" style={{ 
               margin: "0 0 12px", 
-              fontSize: "clamp(3rem, 10vw, 8rem)", 
               fontWeight: 900, 
               color: "#fff", 
               fontFamily: "'Syne', sans-serif", 
-              letterSpacing: "0.2em", 
               lineHeight: 1, 
               background: "linear-gradient(to bottom, #fff 60%, rgba(255,255,255,0.3))",
               WebkitBackgroundClip: "text",
@@ -2033,17 +2050,10 @@ export default function BrexiaDashboard() {
         <img src="/bx-logo-light.png" alt="BX" style={{ width: 120, height: 120, borderRadius: 24 }} />
       </motion.div>
       <div style={{ textAlign: "center", zIndex: 1 }}>
-        <h1 className="brand-text logo-glow" style={{ 
-          fontSize: "clamp(2.5rem, 10vw, 4rem)", 
-          marginBottom: 12, 
-          background: "linear-gradient(to bottom, #fff, #7C3AED)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          letterSpacing: "0.1em"
-        }}>
+        <h1 className="brand-text logo-glow">
           BREXIA
         </h1>
-        <p className="tagline" style={{ fontSize: 14, opacity: 0.9, letterSpacing: 4, color: "#fff", textShadow: "0 0 10px rgba(124, 58, 237, 0.5)" }}>
+        <p className="tagline" style={{ fontSize: 13, opacity: 0.9, letterSpacing: 2, color: "#fff", textShadow: "0 0 10px rgba(124, 58, 237, 0.5)" }}>
           Breach Risk & Exposure Intelligence Analyzer
         </p>
       </div>
