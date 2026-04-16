@@ -466,8 +466,14 @@ function GlobalStyles() {
           opacity: 0.4 !important;
         }
         .hero-title {
-          font-size: clamp(2.2rem, 12vw, 3.5rem) !important;
-          padding: 0 10px !important;
+          font-size: clamp(1.8rem, 9vw, 3.2rem) !important;
+          padding: 0 16px !important;
+          width: 100% !important;
+          text-align: center !important;
+        }
+        .hero-rings {
+          transform: translate(-50%, -50%) scale(0.3) !important;
+          opacity: 0.3 !important;
         }
       }
     `}</style>
@@ -2449,65 +2455,29 @@ export default function BrexiaDashboard() {
           data={threatAiStory}
         />
         
-        {/* Floating Red New Scan Button */}
+        {/* Floating Red New Scan Button (Icon Only) */}
         <AnimatePresence>
           {scanDone && (
             <motion.button
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              whileHover={{ 
-                scale: 1.05, 
-                boxShadow: "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(239, 68, 68, 0.3)",
-                borderColor: "rgba(239, 68, 68, 0.6)"
-              }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(239, 68, 68, 0.4)" }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => {
-                setApiData(null);
-                setScanDone(false);
-                setScanning(false);
-                setEmail("");
-                setActiveTab("overview");
+                setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
               style={{
-                position: "fixed",
-                bottom: "40px",
-                right: "40px",
-                background: "rgba(15, 23, 42, 0.8)",
-                backdropFilter: "blur(20px)",
-                color: "#FFF",
-                padding: "12px 24px",
-                borderRadius: "16px",
-                border: "1px solid rgba(255,255,255,0.08)",
-                borderTop: "1px solid rgba(239, 68, 68, 0.4)",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-                cursor: "pointer",
-                fontFamily: "'Space Mono', monospace",
-                zIndex: 1000,
-                display: "flex",
-                alignItems: "center",
-                gap: "15px",
-                transition: "all 0.3s ease"
+                position: "fixed", bottom: "32px", right: "32px",
+                width: 56, height: 56, borderRadius: "50%",
+                background: "rgba(239, 68, 68, 0.9)", backdropFilter: "blur(10px)",
+                color: "#FFF", border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.5)", cursor: "pointer",
+                zIndex: 2000, display: "flex", alignItems: "center", justifyContent: "center"
               }}
             >
-              <div style={{
-                width: 38,
-                height: 38,
-                borderRadius: "10px",
-                background: "rgba(239, 68, 68, 0.15)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#EF4444",
-                border: "1px solid rgba(239, 68, 68, 0.2)"
-              }}>
-                <RefreshCcw size={18} />
-              </div>
-              <div style={{ textAlign: "left" }}>
-                <div style={{ fontSize: 9, fontWeight: 900, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>SYSTEM RESET</div>
-                <div style={{ fontSize: 13, fontWeight: 900, color: "#fff", letterSpacing: 0.5 }}>NEW SCAN</div>
-              </div>
+              <RefreshCcw size={24} />
             </motion.button>
           )}
         </AnimatePresence>
