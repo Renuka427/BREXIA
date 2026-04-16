@@ -456,9 +456,18 @@ function GlobalStyles() {
           grid-template-columns: 1fr !important;
           gap: 20px !important;
         }
+        .cyber-flex-stack {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          gap: 20px !important;
+        }
         .hero-rings {
           transform: translate(-50%, -50%) scale(0.35) !important;
           opacity: 0.4 !important;
+        }
+        .hero-title {
+          font-size: clamp(2.2rem, 12vw, 3.5rem) !important;
+          padding: 0 10px !important;
         }
       }
     `}</style>
@@ -1404,8 +1413,8 @@ function RiskWhyCard({ score, bullets }) {
   const color = getRiskColor(score);
 
   return (
-    <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 24, padding: 32 }}>
-       <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+    <div style={{ background: "rgba(15, 23, 42, 0.4)", border: "1px solid rgba(255, 255, 255, 0.05)", borderRadius: 24, padding: "clamp(20px, 4vw, 32px)" }}>
+       <div className="cyber-flex-stack" style={{ display: "flex", alignItems: "center", gap: 24 }}>
           <div style={{ position: "relative", width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg viewBox="0 0 36 36" style={{ width: "100%", height: "100%", transform: "rotate(-90deg)" }}>
               <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
@@ -1451,7 +1460,7 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
       <div style={{ display: "flex", flexDirection: "column", gap: 24, overflow: "hidden" }}>
         {/* Breach Header */}
         <div style={{ ...styles.glassCard, padding: "24px 32px", borderLeft: "4px solid #F43F5E", background: "rgba(244, 63, 94, 0.03)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div className="cyber-flex-stack" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
             <div>
               <div style={{ fontSize: 11, color: "#F43F5E", fontWeight: 900, letterSpacing: 2, marginBottom: 4 }}>🚨 BREACH DETECTED</div>
               <h2 style={{ fontSize: 32, fontWeight: 950, color: "#fff", margin: 0, letterSpacing: -1 }}>{breach.name.toUpperCase()} ({breach.date})</h2>
