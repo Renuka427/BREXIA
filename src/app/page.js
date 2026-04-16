@@ -436,8 +436,9 @@ function GlobalStyles() {
         }
         .hero-scan-btn {
           width: 100% !important;
-          padding: 20px !important;
+          padding: 18px !important;
           border-radius: 16px !important;
+          font-size: 14px !important;
         }
         .tactical-hud-mobile {
           font-size: 8px !important;
@@ -445,10 +446,19 @@ function GlobalStyles() {
         }
         .cyber-card {
           padding: 20px !important;
+          border-radius: 16px !important;
         }
         .terminal-window {
           padding: 20px !important;
-          min-height: 300px !important;
+          min-height: auto !important;
+        }
+        .dashboard-grid {
+          grid-template-columns: 1fr !important;
+          gap: 20px !important;
+        }
+        .hero-rings {
+          transform: translate(-50%, -50%) scale(0.35) !important;
+          opacity: 0.4 !important;
         }
       }
     `}</style>
@@ -469,10 +479,10 @@ function TopNav() {
           <div className="tagline" style={{ fontSize: 7, marginTop: 0 }}>Breach Risk & Exposure Intelligence Analyzer</div>
         </div>
       </button>
-      <div className="system-status-desktop" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "4px 12px", fontSize: 10, color: "rgba(255,255,255,0.5)", fontFamily: "'Space Mono', monospace" }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10B981", boxShadow: "0 0 8px #10B981" }} />
-          SYSTEM: OPTIMAL
+      <div className="system-status-desktop" style={{ display: "flex", gap: 24, alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "6px 16px", fontSize: 10, color: "rgba(16, 185, 129, 0.8)", fontFamily: "'Space Mono', monospace", fontWeight: 700 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10B981", boxShadow: "0 0 10px #10B981" }} />
+          SYSTEM: ONLINE
         </div>
       </div>
     </nav>
@@ -1095,19 +1105,19 @@ function TacticalHUD({ stats }) {
   }, []);
 
   return (
-    <div className="tactical-hud-mobile" style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1100, color: "rgba(124, 58, 237, 0.4)", fontFamily: "'Space Mono', monospace", fontSize: 9 }}>
+    <div className="tactical-hud-mobile" style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1100, color: "rgba(124, 58, 237, 0.3)", fontFamily: "'Space Mono', monospace", fontSize: 9 }}>
       {/* Corner Brackets */}
-      <div style={{ position: "absolute", top: 40, left: 40, width: 40, height: 40, borderTop: "2px solid", borderLeft: "2px solid" }} />
-      <div style={{ position: "absolute", top: 40, right: 40, width: 40, height: 40, borderTop: "2px solid", borderRight: "2px solid" }} />
-      <div style={{ position: "absolute", bottom: 40, left: 40, width: 40, height: 40, borderBottom: "2px solid", borderLeft: "2px solid" }} />
-      <div style={{ position: "absolute", bottom: 40, right: 40, width: 40, height: 40, borderBottom: "2px solid", borderRight: "2px solid" }} />
+      <div style={{ position: "absolute", top: 20, left: 20, width: 30, height: 30, borderTop: "1px solid", borderLeft: "1px solid" }} />
+      <div style={{ position: "absolute", top: 20, right: 20, width: 30, height: 30, borderTop: "1px solid", borderRight: "1px solid" }} />
+      <div style={{ position: "absolute", bottom: 20, left: 20, width: 30, height: 30, borderBottom: "1px solid", borderLeft: "1px solid" }} />
+      <div style={{ position: "absolute", bottom: 20, right: 20, width: 30, height: 30, borderBottom: "1px solid", borderRight: "1px solid" }} />
       
       {/* HUD Data Readouts */}
-      <div style={{ position: "absolute", top: 100, left: 45, display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ position: "absolute", top: 120, left: 25, display: "flex", flexDirection: "column", gap: 10 }} className="system-status-desktop">
         <div style={{ animation: "flicker 2s infinite" }}>CORE_INIT: {stats.coreInit}</div>
         <div style={{ animation: "flicker 3.5s infinite" }}>SEC_BUFFER: {stats.secBuffer}</div>
       </div>
-      <div style={{ position: "absolute", bottom: 100, right: 45, textAlign: "right", display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ position: "absolute", bottom: 120, right: 25, textAlign: "right", display: "flex", flexDirection: "column", gap: 10 }} className="system-status-desktop">
         <div>LNG_COORD: {stats.lngCoord || coords.x}</div>
         <div>LAT_STATE: {stats.latState}</div>
         <div style={{ color: "#00f0ff" }}>NEURAL_MAP: {stats.neuralMap}</div>
@@ -1436,7 +1446,7 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
   };
 
   return (
-    <div className="dashboard-grid" style={{ minHeight: "600px", display: "grid", gap: 32, overflow: "hidden" }}>
+    <div className="dashboard-grid" style={{ display: "grid", gap: 32, overflow: "visible" }}>
       {/* LEFT: AI BREACH INTELLIGENCE CORE */}
       <div style={{ display: "flex", flexDirection: "column", gap: 24, overflow: "hidden" }}>
         {/* Breach Header */}
@@ -2189,7 +2199,7 @@ export default function BrexiaDashboard() {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="dashboard-grid" style={{ display: "grid", gap: 32, marginBottom: 24 }}>
+                      <div className="dashboard-grid" style={{ display: "grid", gap: 32, marginBottom: 24, overflow: "visible" }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                            {/* AI Summary Hero */}
@@ -2268,7 +2278,7 @@ export default function BrexiaDashboard() {
                         </div>
                       )}
 
-                      <div className="dashboard-grid" style={{ display: "grid", gap: 32, overflow: "hidden", flex: 1 }}>
+                      <div className="dashboard-grid" style={{ display: "grid", gap: 32, overflow: "visible", flex: 1 }}>
                         {mainBreach ? (
                           <>
                              {/* LEFT: MAIN STORY */}
@@ -2503,13 +2513,16 @@ const styles = {
     backgroundColor: "#05070A",
     color: "#fff",
     position: "relative",
+    overflowY: "auto",
     overflowX: "hidden"
   },
   main: {
     paddingTop: 120,
     paddingBottom: 80,
+    minHeight: "100vh",
     position: "relative",
-    zIndex: 1
+    zIndex: 1,
+    overflow: "visible"
   },
   glassCard: {
     background: "rgba(15, 23, 42, 0.4)",
