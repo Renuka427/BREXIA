@@ -349,132 +349,10 @@ function GlobalStyles() {
         animation: cursor-blink 1s step-end infinite;
       }
 
-      /* ── RESPONSIVE OVERRIDES ── */
-      @media (max-width: 1024px) {
-        .dashboard-grid {
-          grid-template-columns: 1fr !important;
-          gap: 24px !important;
-          height: auto !important;
-          min-height: auto !important;
-        }
-        .hero-rings {
-          transform: translate(-50%, -50%) scale(0.6) !important;
-        }
-        .hero-title {
-          font-size: clamp(2rem, 10vw, 3rem) !important;
-          letter-spacing: 0.02em !important;
-        }
-        .hero-tagline {
-          font-size: 10px !important;
-          letter-spacing: 0.1em !important;
-          margin-bottom: 40px !important;
-        }
-        .hero-input-field input {
-          padding: 16px 20px !important;
-          font-size: 14px !important;
-          letter-spacing: 1px !important;
-        }
-        .hero-input-field input::placeholder {
-          font-size: 11px !important;
-        }
-        .main-container {
-          padding-top: 70px !important;
-          padding-bottom: 20px !important;
-          padding-left: 20px !important;
-          padding-right: 20px !important;
-        }
-        .top-nav {
-          padding: 10px 15px !important;
-        }
-        .system-status-desktop {
-          display: none !important;
-        }
-        .mobile-scroll-tabs {
-          overflow-x: auto !important;
-          width: 100% !important;
-          padding-bottom: 12px !important;
-          justify-content: flex-start !important;
-        }
-        .mobile-scroll-tabs button {
-          white-space: nowrap !important;
-          flex-shrink: 0 !important;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .hero-title {
-          font-size: 1.6rem !important;
-          letter-spacing: -0.01em !important;
-        }
-        .hero-tagline {
-          font-size: 9px !important;
-          letter-spacing: 0.05em !important;
-        }
-        .brand-text {
-          font-size: 18px !important;
-          letter-spacing: 0 !important;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .hero-rings {
-          transform: translate(-50%, -50%) scale(0.4) !important;
-        }
-        .hero-input-container {
-          flex-direction: column !important;
-          background: transparent !important;
-          border: none !important;
-          box-shadow: none !important;
-          padding: 0 !important;
-        }
-        .hero-input-field {
-          background: rgba(15, 23, 42, 0.6) !important;
-          border: 1px solid rgba(255,255,255,0.1) !important;
-          border-radius: 16px !important;
-          margin-bottom: 12px !important;
-          text-align: center !important;
-        }
-        .hero-scan-btn {
-          width: 100% !important;
-          padding: 18px !important;
-          border-radius: 16px !important;
-          font-size: 14px !important;
-        }
-        .tactical-hud-mobile {
-          font-size: 8px !important;
-          opacity: 0.5 !important;
-        }
-        .cyber-card {
-          padding: 20px !important;
-          border-radius: 16px !important;
-        }
-        .terminal-window {
-          padding: 20px !important;
-          min-height: auto !important;
-        }
-        .dashboard-grid {
-          grid-template-columns: 1fr !important;
-          gap: 20px !important;
-        }
-        .cyber-flex-stack {
-          flex-direction: column !important;
-          align-items: flex-start !important;
-          gap: 20px !important;
-        }
-        .hero-rings {
-          transform: translate(-50%, -50%) scale(0.35) !important;
-          opacity: 0.4 !important;
-        }
-        .hero-title {
-          font-size: clamp(1.8rem, 9vw, 3.2rem) !important;
-          padding: 0 16px !important;
-          width: 100% !important;
-          text-align: center !important;
-        }
-        .hero-rings {
-          transform: translate(-50%, -50%) scale(0.3) !important;
-          opacity: 0.3 !important;
-        }
+      /* ── RESPONSIVE ANIMATIONS ── */
+      @keyframes scanMove {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(800PX); }
       }
     `}</style>
   );
@@ -605,16 +483,17 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ textAlign: "center", zIndex: 1, position: "relative", width: "100%" }}
           >
-            <h1 className="hero-title logo-glow" style={{ 
+            <h1 className="fluid-hero-title logo-glow" style={{ 
               margin: "0 0 12px", 
-              fontWeight: 900, 
+              fontWeight: 950, 
               color: "#fff", 
               fontFamily: "'Syne', sans-serif", 
               lineHeight: 1, 
-              background: "linear-gradient(to bottom, #fff 60%, rgba(255,255,255,0.3))",
+              background: "linear-gradient(to bottom, #fff 100%, rgba(255,255,255,0.3))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              filter: "drop-shadow(0 0 40px rgba(124, 58, 237, 0.2))"
+              filter: "drop-shadow(0 0 50px rgba(124, 58, 237, 0.4))",
+              textTransform: "uppercase"
             }}>
               BREXIA
             </h1>
@@ -1128,11 +1007,11 @@ function TacticalHUD({ stats }) {
       <div style={{ position: "absolute", bottom: 20, right: 20, width: 30, height: 30, borderBottom: "1px solid", borderRight: "1px solid" }} />
       
       {/* HUD Data Readouts */}
-      <div style={{ position: "absolute", top: 120, left: 25, display: "flex", flexDirection: "column", gap: 10 }} className="system-status-desktop">
+      <div style={{ position: "absolute", top: 120, left: 25, display: "flex", flexDirection: "column", gap: 10 }} className="hud-telemetry-desktop">
         <div style={{ animation: "flicker 2s infinite" }}>CORE_INIT: {stats.coreInit}</div>
         <div style={{ animation: "flicker 3.5s infinite" }}>SEC_BUFFER: {stats.secBuffer}</div>
       </div>
-      <div style={{ position: "absolute", bottom: 120, right: 25, textAlign: "right", display: "flex", flexDirection: "column", gap: 10 }} className="system-status-desktop">
+      <div style={{ position: "absolute", bottom: 120, right: 25, textAlign: "right", display: "flex", flexDirection: "column", gap: 10 }} className="hud-telemetry-desktop">
         <div>LNG_COORD: {stats.lngCoord || coords.x}</div>
         <div>LAT_STATE: {stats.latState}</div>
         <div style={{ color: "#00f0ff" }}>NEURAL_MAP: {stats.neuralMap}</div>
@@ -1420,7 +1299,7 @@ function RiskWhyCard({ score, bullets }) {
 
   return (
     <div style={{ background: "rgba(15, 23, 42, 0.4)", border: "1px solid rgba(255, 255, 255, 0.05)", borderRadius: 24, padding: "clamp(20px, 4vw, 32px)" }}>
-       <div className="cyber-flex-stack" style={{ display: "flex", alignItems: "center", gap: 24 }}>
+       <div className="cyber-stack" style={{ display: "flex", alignItems: "center", gap: 24 }}>
           <div style={{ position: "relative", width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg viewBox="0 0 36 36" style={{ width: "100%", height: "100%", transform: "rotate(-90deg)" }}>
               <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
@@ -1466,7 +1345,7 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
       <div style={{ display: "flex", flexDirection: "column", gap: 24, overflow: "hidden" }}>
         {/* Breach Header */}
         <div style={{ ...styles.glassCard, padding: "24px 32px", borderLeft: "4px solid #F43F5E", background: "rgba(244, 63, 94, 0.03)" }}>
-          <div className="cyber-flex-stack" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
+          <div className="cyber-stack" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
             <div>
               <div style={{ fontSize: 11, color: "#F43F5E", fontWeight: 900, letterSpacing: 2, marginBottom: 4 }}>🚨 BREACH DETECTED</div>
               <h2 style={{ fontSize: 32, fontWeight: 950, color: "#fff", margin: 0, letterSpacing: -1 }}>{breach.name.toUpperCase()} ({breach.date})</h2>
@@ -2132,7 +2011,6 @@ export default function BrexiaDashboard() {
 
       <main className="main-container" style={{ ...styles.main, paddingTop: "120px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
-          <GlobalStyles />
           <AnimatePresence mode="wait">
             {!apiData || Object.keys(apiData).length === 0 ? (
               <motion.div
