@@ -163,6 +163,10 @@ html, body {
     white-space: nowrap !important;
     flex-shrink: 0 !important;
   }
+  .hero-rings {
+    transform: translate(-50%, -50%) scale(0.35) !important;
+    opacity: 0.4 !important;
+  }
 }
 
 /* ── Animated Mesh Gradient Background ── */
