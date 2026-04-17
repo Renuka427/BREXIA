@@ -187,6 +187,39 @@ html, body {
   }
 }
 
+/* ── Ultra-Small Phone (max-width: 480px) Alignment Overrides ── */
+@media (max-width: 480px) {
+  .fluid-hero-title {
+    font-size: 2.2rem !important;
+    letter-spacing: -0.05em !important;
+    text-align: center !important;
+  }
+  .hero-tagline {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.25em !important;
+    text-align: center !important;
+    margin-bottom: 32px !important;
+    white-space: normal !important;
+  }
+  .hero-input-field input {
+    font-size: 10px !important;
+    padding: 14px 10px !important;
+  }
+  .hero-input-field input::placeholder {
+    font-size: 9px !important;
+  }
+  .hero-scan-btn {
+    font-size: 12px !important;
+    padding: 16px !important;
+  }
+  .top-nav {
+    padding: 10px 12px !important;
+  }
+  .mobile-email-pills {
+    justify-content: center !important;
+  }
+}
+
 /* ── Animated Mesh Gradient Background ── */
 .mesh-gradient {
   position: fixed;
