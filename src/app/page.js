@@ -368,11 +368,11 @@ function TopNav() {
       >
         <img src="/bx-logo-light.png" alt="BX" style={{ width: 32, height: 32, borderRadius: 8, boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)" }} />
         <div style={{ textAlign: "left" }}>
-          <h1 className="brand-text" style={{ fontSize: 18, letterSpacing: 3 }}>BREXIA</h1>
+          <h1 className="brand-text" style={{ fontSize: 18, letterSpacing: 3, display: "flex", gap: "8px", alignItems: "center" }}>BREXIA <span style={{ color: "#7C3AED" }}>// INTEL</span></h1>
           <div className="tagline" style={{ fontSize: 7, marginTop: 0 }}>Breach Risk & Exposure Intelligence Analyzer</div>
         </div>
       </button>
-      <div className="system-status-desktop" style={{ display: "flex", gap: 24, alignItems: "center" }}>
+      <div className="hud-telemetry-desktop" style={{ display: "flex", gap: 24, alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "6px 16px", fontSize: 10, color: "rgba(16, 185, 129, 0.8)", fontFamily: "'Space Mono', monospace", fontWeight: 700 }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10B981", boxShadow: "0 0 10px #10B981" }} />
           SYSTEM: ONLINE
@@ -1299,7 +1299,7 @@ function RiskWhyCard({ score, bullets }) {
 
   return (
     <div style={{ background: "rgba(15, 23, 42, 0.4)", border: "1px solid rgba(255, 255, 255, 0.05)", borderRadius: 24, padding: "clamp(20px, 4vw, 32px)" }}>
-       <div className="cyber-stack" style={{ display: "flex", alignItems: "center", gap: 24 }}>
+       <div className="cyber-stack">
           <div style={{ position: "relative", width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg viewBox="0 0 36 36" style={{ width: "100%", height: "100%", transform: "rotate(-90deg)" }}>
               <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
@@ -1340,12 +1340,12 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
   };
 
   return (
-    <div className="dashboard-grid" style={{ display: "grid", gap: 32, overflow: "visible" }}>
+    <div className="cyber-grid" style={{ overflow: "visible" }}>
       {/* LEFT: AI BREACH INTELLIGENCE CORE */}
       <div style={{ display: "flex", flexDirection: "column", gap: 24, overflow: "hidden" }}>
         {/* Breach Header */}
         <div style={{ ...styles.glassCard, padding: "24px 32px", borderLeft: "4px solid #F43F5E", background: "rgba(244, 63, 94, 0.03)" }}>
-          <div className="cyber-stack" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
+          <div className="cyber-stack" style={{ justifyContent: "space-between", width: "100%" }}>
             <div>
               <div style={{ fontSize: 11, color: "#F43F5E", fontWeight: 900, letterSpacing: 2, marginBottom: 4 }}>🚨 BREACH DETECTED</div>
               <h2 style={{ fontSize: 32, fontWeight: 950, color: "#fff", margin: 0, letterSpacing: -1 }}>{breach.name.toUpperCase()} ({breach.date})</h2>
@@ -2092,7 +2092,7 @@ export default function BrexiaDashboard() {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="dashboard-grid" style={{ display: "grid", gap: 32, marginBottom: 24, overflow: "visible" }}>
+                      <div className="cyber-grid" style={{ marginBottom: 24, overflow: "visible" }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                            {/* AI Summary Hero */}
