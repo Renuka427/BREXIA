@@ -2050,38 +2050,41 @@ export default function BrexiaDashboard() {
                   </div>
                 </div>
 
-                <div className="mobile-scroll-tabs" style={{ display: "flex", gap: 12, background: "rgba(15, 23, 42, 0.3)", borderRadius: 16, padding: "8px", marginBottom: 32, border: "1px solid rgba(255,255,255,0.05)", width: "100%", overflowX: "auto" }}>
-                  {[
-                    { id: "overview", label: "OVERVIEW" },
-                    { id: "threats", label: "THREATS" },
-                    { id: "exposure", label: "EXPOSURE" },
-                    { id: "ai", label: "REAL-TIME BREACH INSIGHT" }
-                  ].map(tab => {
-                    const active = activeTab === tab.id;
-                    return (
-                      <button 
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                        style={{
-                          padding: "12px 28px",
-                          borderRadius: 12,
-                          background: active ? "rgba(124, 58, 237, 0.15)" : "transparent",
-                          color: active ? "#FFF" : "rgba(148, 163, 184, 0.5)",
-                          border: active ? "1px solid rgba(124, 58, 237, 0.3)" : "1px solid transparent",
-                          fontSize: 12,
-                          fontWeight: 900,
-                          letterSpacing: 1.5,
-                          cursor: "pointer",
-                          fontFamily: "'Space Mono', monospace",
-                          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                          boxShadow: active ? "0 0 20px rgba(124, 58, 237, 0.2)" : "none"
-                        }}
-                      >
-                        {tab.label}
-                      </button>
-                    );
-                  })}
+                <div className="tabs-wrapper" style={{ position: "relative", width: "100%", marginBottom: 32 }}>
+                  <div className="mobile-scroll-tabs" style={{ display: "flex", gap: 12, background: "rgba(15, 23, 42, 0.3)", borderRadius: 16, padding: "8px", border: "1px solid rgba(255,255,255,0.05)", width: "100%", overflowX: "auto" }}>
+                    {[
+                      { id: "overview", label: "OVERVIEW" },
+                      { id: "threats", label: "THREATS" },
+                      { id: "exposure", label: "EXPOSURE" },
+                      { id: "ai", label: "REAL-TIME BREACH INSIGHT" }
+                    ].map(tab => {
+                      const active = activeTab === tab.id;
+                      return (
+                        <button 
+                          key={tab.id}
+                          onClick={() => setActiveTab(tab.id)}
+                          style={{
+                            padding: "12px 28px",
+                            borderRadius: 12,
+                            background: active ? "rgba(124, 58, 237, 0.15)" : "transparent",
+                            color: active ? "#FFF" : "rgba(148, 163, 184, 0.5)",
+                            border: active ? "1px solid rgba(124, 58, 237, 0.3)" : "1px solid transparent",
+                            fontSize: 12,
+                            fontWeight: 900,
+                            letterSpacing: 1.5,
+                            cursor: "pointer",
+                            fontFamily: "'Space Mono', monospace",
+                            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                            boxShadow: active ? "0 0 20px rgba(124, 58, 237, 0.2)" : "none"
+                          }}
+                        >
+                          {tab.label}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
+
 
                 <AnimatePresence mode="wait">
                   {activeTab === "overview" && (
