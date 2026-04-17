@@ -531,12 +531,11 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
                     onChange={e => setEmail(e.target.value)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
-                    placeholder="EMAIL, USERNAME, OR PASSWORD"
+                    placeholder="EMAIL, USERNAME, OR PASSWORD..."
                     style={{ 
                       width: "100%", background: "transparent", border: "none", 
-                      padding: "clamp(12px, 3vw, 24px) clamp(16px, 4vw, 32px)", color: "#fff", 
-                      fontSize: "clamp(12px, 3.5vw, 18px)", outline: "none", 
-                      fontFamily: "'Space Mono', monospace", letterSpacing: "clamp(0.5px, 0.5vw, 2px)",
+                      padding: "24px 32px", color: "#fff", fontSize: 18, outline: "none", 
+                    fontFamily: "'Space Mono', monospace", letterSpacing: 2,
                       fontWeight: 600
                     }}
                     onKeyDown={e => e.key === "Enter" && handleScan()}
@@ -561,7 +560,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
                 </button>
               </div>
 
-              <div style={{ display: "flex", gap: "clamp(8px, 2vw, 16px)", marginTop: 40, justifyContent: "center", flexWrap: "wrap", padding: "0 10px" }}>
+              <div className="mobile-email-pills" style={{ display: "flex", gap: 16, marginTop: 40, justifyContent: "center" }}>
                 {["john@example.com", "hunter_42", "SecurePass12!@"].map((ex, i) => (
                   <button key={i} onClick={() => setEmail(ex)} style={{ 
                     background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", 
@@ -2003,8 +2002,6 @@ export default function BrexiaDashboard() {
         .dashboard-font { font-family: 'Plus Jakarta Sans', sans-serif !important; }
         .dashboard-heading { font-family: 'Outfit', sans-serif !important; }
       `}</style>
-      
-      <TopNav />
 
       <div className="hud-grid" />
       <div className="scanning-beam" />
