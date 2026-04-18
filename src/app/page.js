@@ -2392,11 +2392,11 @@ const styles = {
     overflow: "visible"
   },
   glassCard: {
-    background: "rgba(15, 23, 42, 0.4)",
-    backdropFilter: "blur(20px)",
-    border: "1px solid rgba(255, 255, 255, 0.05)",
-    borderRadius: 8,
-    boxShadow: "0 20px 50px rgba(0, 0, 0, 0.3)"
+    background: "linear-gradient(135deg, rgba(162, 89, 255, 0.08), rgba(15, 23, 42, 0.5))",
+    backdropFilter: "blur(40px) saturate(1.4)",
+    border: "1px solid rgba(162, 89, 255, 0.15)",
+    borderRadius: 16,
+    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.03)"
   },
   cardLabel: {
     fontSize: 10,
