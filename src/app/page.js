@@ -2053,10 +2053,10 @@ export default function BrexiaDashboard() {
                 <div className="tabs-wrapper" style={{ position: "relative", width: "100%", marginBottom: 32 }}>
                   <div className="mobile-scroll-tabs" style={{ display: "flex", gap: 12, background: "rgba(15, 23, 42, 0.3)", borderRadius: 16, padding: "8px", border: "1px solid rgba(255,255,255,0.05)", width: "100%", overflowX: "auto" }}>
                     {[
-                      { id: "overview", label: "OVERVIEW" },
-                      { id: "threats", label: "THREATS" },
-                      { id: "exposure", label: "EXPOSURE" },
-                      { id: "ai", label: "REAL-TIME BREACH INSIGHT" }
+                      { id: "overview", label: "OVERVIEW", icon: <Activity size={20} strokeWidth={1.5} /> },
+                      { id: "threats", label: "THREATS", icon: <AlertTriangle size={20} strokeWidth={1.5} /> },
+                      { id: "exposure", label: "EXPOSURE", icon: <Fingerprint size={20} strokeWidth={1.5} /> },
+                      { id: "ai", label: "AI INSIGHT", icon: <Brain size={20} strokeWidth={1.5} /> }
                     ].map(tab => {
                       const active = activeTab === tab.id;
                       return (
@@ -2075,10 +2075,15 @@ export default function BrexiaDashboard() {
                             cursor: "pointer",
                             fontFamily: "'Space Mono', monospace",
                             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                            boxShadow: active ? "0 0 20px rgba(124, 58, 237, 0.2)" : "none"
+                            boxShadow: active ? "0 0 20px rgba(124, 58, 237, 0.2)" : "none",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "8px"
                           }}
                         >
-                          {tab.label}
+                          <span className="tab-icon">{tab.icon}</span>
+                          <span className="tab-label">{tab.label}</span>
                         </button>
                       );
                     })}

@@ -40,6 +40,14 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ── Desktop Default Nav Icon Hiding ── */
+.tab-icon {
+  display: none;
+}
+.tab-label {
+  display: block;
+}
+
 /* ── Extreme Visibility Scrollbar ── */
 ::-webkit-scrollbar {
   width: 8px;
@@ -144,38 +152,49 @@ html, body {
     overflow-wrap: break-word;
   }
   .tabs-wrapper {
-    position: relative;
-    width: 100%;
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    z-index: 100 !important;
+    margin-bottom: 0 !important;
   }
   .tabs-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(5,7,10,0.95));
-    pointer-events: none;
-    border-radius: 0 16px 16px 0;
+    display: none !important;
   }
   .mobile-scroll-tabs {
-    padding-right: 48px !important; 
-    scroll-snap-type: x proximity;
-    background: rgba(10, 15, 30, 0.6) !important;
+    background: rgba(10, 15, 30, 0.8) !important;
     backdrop-filter: blur(20px) !important;
     border-radius: 24px !important;
     padding: 8px !important;
-    border: 1px solid rgba(124, 58, 237, 0.2) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(124, 58, 237, 0.3) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    overflow: hidden !important;
   }
   .mobile-scroll-tabs button {
-    scroll-snap-align: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    gap: 4px !important;
+    flex: 1 !important;
+  }
+  .tab-icon {
+    display: flex !important;
+    color: currentColor;
+  }
+  .tab-label {
+    font-size: 8px !important;
+    letter-spacing: 0.5px !important;
     white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    font-size: 11px !important;
-    padding: 10px 18px !important;
-    border-radius: 16px !important;
-    letter-spacing: 1px !important;
   }
   .dashboard-heading {
     word-break: break-all !important;
