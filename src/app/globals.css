@@ -156,7 +156,7 @@ html, body {
     animation: none !important;
     display: flex !important;
     flex-direction: column !important;
-    padding-bottom: 160px !important;
+    padding-bottom: 220px !important;
   }
   .target-card-mobile {
     flex-direction: column !important;
@@ -185,8 +185,8 @@ html, body {
     z-index: 2000 !important;
     margin: 0 !important;
     order: 100 !important;
-    background: linear-gradient(to top, rgba(5, 7, 10, 0.95), transparent) !important;
-    padding: 10px 0 20px 0 !important;
+    background: linear-gradient(to top, rgba(5, 7, 10, 0.98) 40%, rgba(5, 7, 10, 0.8) 70%, transparent) !important;
+    padding: 10px 0 24px 0 !important;
   }
   .mobile-scroll-tabs {
     background: rgba(15, 23, 42, 0.6) !important;

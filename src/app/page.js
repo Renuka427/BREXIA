@@ -2061,7 +2061,10 @@ export default function BrexiaDashboard() {
                       return (
                         <button 
                           key={tab.id}
-                          onClick={() => setActiveTab(tab.id)}
+                          onClick={() => {
+                            setActiveTab(tab.id);
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                          }}
                           style={{
                             padding: "12px 28px",
                             borderRadius: 12,
