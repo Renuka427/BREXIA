@@ -707,7 +707,7 @@ function AIPanel({ data, openai }) {
           <div style={{ fontSize: 10, color: "#7C3AED", letterSpacing: 2, marginBottom: 12, fontWeight: 800, fontFamily: "'Space Mono', monospace" }}>AI STRATEGIC ADVISORY</div>
           <h3 className="dashboard-heading" style={{ margin: "0 0 12px", fontSize: 18, color: "#F1F5F9" }}>{openai.summary}</h3>
           <p style={{ fontSize: 14, color: "#AFC2D5", lineHeight: 1.7, margin: "0 0 20px" }}>
-             <TypingText text={openai.advisory} />
+             {openai.advisory}
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
             <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(124, 58, 237, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🧠</div>
@@ -1361,21 +1361,21 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <section>
                 <div style={{ fontSize: 11, color: "#7C3AED", fontWeight: 900, marginBottom: 8 }}>🧠 About this website</div>
-                <TypingText text={story.about_site} delay={20} style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }} />
+                <div style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>{story.about_site}</div>
               </section>
 
               <div style={{ height: 1, background: "rgba(255,255,255,0.05)" }} />
 
               <section>
                 <div style={{ fontSize: 11, color: "#00f0ff", fontWeight: 900, marginBottom: 8 }}>🛠 How the breach happened</div>
-                <TypingText text={story.breach_mechanics} delay={20} pause={1000} style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }} />
+                <div style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>{story.breach_mechanics}</div>
               </section>
 
               <div style={{ height: 1, background: "rgba(255,255,255,0.05)" }} />
 
               <section>
                 <div style={{ fontSize: 11, color: "#F43F5E", fontWeight: 900, marginBottom: 8 }}>⚠️ Why this is dangerous</div>
-                <TypingText text={story.user_danger} delay={20} pause={2000} style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }} />
+                <div style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>{story.user_danger || story.why_it_matters}</div>
               </section>
            </div>
 
