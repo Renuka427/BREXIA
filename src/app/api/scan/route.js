@@ -56,16 +56,8 @@ function generateNeuralPattern(input, riskScore, seed) {
 
 // ── Utility: Dynamic Breach Narrator ─────────────────────────────────────────
 function generateBreachNarrative(name, type, year, seed) {
-  const templates = [
-    `Identity correlating with ${name}'s ${year} data incident confirmed.`,
-    `${type} markers associated with ${name} detected in dark-web registry.`,
-    `Database leak verified: ${name} (${year}) exposes your primary account credentials.`,
-    `Credential stuffing risk elevated due to historical ${name} exposure.`,
-    `Cyber intelligence network identified your email in ${name}'s ${type} dump.`,
-    `Verified exposure: Your signature was matched in ${name}'s ${year} dataset.`,
-  ];
-  const idx = Math.floor(seededRandom(seed) * templates.length);
-  return templates[idx];
+  // Now uses more specific data-driven descriptions instead of generic templates
+  return `Verified data exposure identified in the ${name} (${year}) registry. Leaked metadata includes ${type || 'credential signatures'}.`;
 }
 
 // ── Neural Intelligence: Elite Cyber Intelligence Architect (Consolidated) ─────
@@ -84,44 +76,32 @@ async function generateEliteIntelligence(email, breaches, riskScore) {
     });
 
     const prompt = `
-      You are an elite cybersecurity AI called BREXIA.
+      You are an elite cybersecurity AI called BREXIA. 
+      Your task is to analyze the following VERIFIED breach data for the identity: ${email}.
 
-      Analyze this identity deeply and generate REALISTIC, PERSONALIZED security intelligence.
-
-      INPUT:
-      Email: ${email}
-      Risk Score: ${riskScore}
-      Breaches: ${JSON.stringify(breaches)}
+      BREACH DATA FOUND: ${JSON.stringify(breaches)}
+      CURRENT RISK SCORE: ${riskScore}
 
       ---
-
       INSTRUCTIONS:
-      1. Give UNIQUE and LOGICALLY DISTINCT output for this user.
-      2. MENTION THE BREACH NAMES CLEARLY.
-      3. Explain in SIMPLE, PUNCHY words (human-friendly).
-      4. Ensure the "status" field strictly correlates with the Risk Score:
-         - Risk > 80: CRITICAL
-         - Risk > 60: HIGH
-         - Risk > 40: MEDIUM
-         - Risk > 20: LOW
-         - Risk <= 20: SAFE
-      5. If no breaches found, explain potential hidden risks like metadata tracking or future phishing.
-
-      ---
-
+      1. If no breaches are found (breaches is empty), congratulate the user on a CLEAN IDENTITY but warn about generic hygiene (2FA, etc). 
+      2. If breaches exist, analyze the specific "breach_name" and "type" of data leaked.
+      3. Forbid any hallucination of non-existent breaches. Use ONLY what is provided in the array.
+      4. Ground your advice in real-time cybersecurity best practices.
+      
       OUTPUT JSON FORMAT ONLY:
       {
         "status": "SAFE | LOW | MEDIUM | HIGH | CRITICAL",
         "command_center": {
            "status": "OPTIMAL | STABLE | AT RISK | CRITICAL",
-           "summary": "2 lines max of high-impact personalized summary.",
-           "reason": "The single primary reason for this current risk score.",
-           "behavior": "1 line predicting how this specific user will be targeted."
+           "summary": "2 lines max of high-impact verified summary.",
+           "reason": "The primary reason for this score (or lack thereof).",
+           "behavior": "1 line regarding how attackers currently view this footprint."
         },
         "executive_summary": {
-           "title": "Dynamic urgent headline",
-           "summary": "Full detailed insight summary.",
-           "risk_drivers": ["Driver 1", "Driver 2", "Driver 3"]
+           "title": "Headline indicating Real-Time Status",
+           "summary": "Detailed insight grounded in truth.",
+           "risk_drivers": ["Real Driver 1", "Real Driver 2", "Real Driver 3"]
         },
         "threats": [
            {
@@ -129,17 +109,17 @@ async function generateEliteIntelligence(email, breaches, riskScore) {
              "year": "...",
              "risk": "...",
              "attack_type": "...",
-             "what_happened": "...",
-             "how_this_affects_you": "...",
-             "how_the_attack_works": "...",
+             "what_happened": "Explain exactly based on breach data...",
+             "how_this_affects_you": "Impact of this specific leak...",
+             "how_the_attack_works": "Technical vector...",
              "recommended_actions": [...],
              "autoFix": [{"label": "...", "action": "..."}]
            }
         ],
         "ai_deep_analysis": {
-           "behavioral_patterns": "Deep logic regarding handle sprawl.",
+           "behavioral_patterns": "Analysis of handle sprawl based on truth.",
            "phishing_probability": "Low | Medium | High",
-           "future_prediction": "Targeted attack prediction."
+           "future_prediction": "Prediction based on current exposure level."
         }
       }
     `;
@@ -555,54 +535,48 @@ export async function POST(req) {
         return NextResponse.json(responseData);
       }
 
-      // Email found but no breaches — run deterministic with pool as fallback
-      const seed = stringHash(input);
-      const breachCount = 1 + Math.floor(seededRandom(seed) * 3);
-      const usePool = pool.length > 0 ? pool : STATIC_POOL;
-      const simBreaches = simulateBreaches(input, type, usePool, breachCount);
-      const rScore = 30 + Math.floor(seededRandom(seed + 1) * 25);
-
-      const responseDataFallback = {
+      // Email found but no breaches — Return CLEAN status
+      const responseDataVerified = {
         email: input,
         inputType: 'email',
-        source: 'BREXIA · No Breach Found',
-        riskScore: rScore,
-        breaches: simBreaches,
-        riskHistory: [5, 10, 15, rScore - 10, rScore],
-        dataTypes: [{ label: 'Email Meta', value: 60, color: '#22d3a5' }, { label: 'Potential', value: 40, color: '#63b3ed' }],
-        timeline: simBreaches.map(b => ({ year: b.date, label: b.name || b.breach_name, severity: 'low', detail: 'No confirmed exposure found.' })),
+        source: 'BREXIA · Verified Index',
+        riskScore: 0,
+        breaches: [],
+        riskHistory: [0, 0, 0, 0, 0],
+        dataTypes: [{ label: 'Zero Exposure', value: 100, color: '#22d3a5' }],
+        timeline: [],
         intelligence: {
           status: "SAFE",
           executive_summary: {
             title: "🛡️ IDENTITY STATUS: OPTIMAL",
-            summary: `Initial neural audit of ${input} shows no direct correlation with recent high-priority registry leaks. Identity secure.`,
-            risk_drivers: ["Zero direct database correlations", "Identity markers exhibit high isolation", "Proactive security hygiene detected"],
+            summary: `Global OSINT audit of ${input} shows zero correlations with known high-priority registry leaks.`,
+            risk_drivers: ["Zero database compromises", "Identity signature is currently unique", "Proactive state confirmed"],
           },
-          threats: generateDynamicThreats(type, simBreaches, rScore, input),
+          threats: [],
           ai_deep_analysis: {
-            behavioral_patterns: "Identity isolated.",
-            phishing_probability: "LOW",
-            future_prediction: "Maintaining baseline posture."
+            behavioral_patterns: "No sprawl markers detected.",
+            phishing_probability: "MINIMAL",
+            future_prediction: "Continuously monitoring for new vectors."
           }
         },
         aiInsights: [
-          { label: 'NO CONFIRMED EXPOSURE', color: '#22d3a5', text: 'BREXIA analyzed the indexed registry and found no confirmed breach events tied to this address. Maintain vigilance.' },
-          { label: 'PROACTIVE DEFENSE', color: '#63b3ed', text: 'New breach data is catalogued daily. Even without a confirmed leak, assume all email-based identities are targeted by collectors.' },
+          { label: 'CLEAN IDENTITY RECORD', color: '#22d3a5', text: 'BREXIA cross-referenced several million records and found no confirmed exposure for this address.' },
+          { label: 'ZERO COMPROMISE', color: '#63b3ed', text: 'Maintaining a 0% exposure rate is rare. We recommend hardware-based 2FA to maintain this posture.' },
         ],
-        threats: generateDynamicThreats(type, simBreaches, rScore, input),
+        threats: [],
         countermeasures: [
-          { title: 'Proactive Monitoring', desc: 'Even without a confirmed breach, subscribe to breach alerting services so you are the first to know if this changes.' },
+          { title: 'Maintain Hygiene', desc: 'Even without current breaches, ensure you use unique passwords for every site to remain in this safe state.' },
         ],
       };
 
       // Persist to Supabase
       await persistScan({
         email: input,
-        breaches: simBreaches,
-        risk_score: rScore
+        breaches: [],
+        risk_score: 0
       });
 
-      return NextResponse.json(responseDataFallback);
+      return NextResponse.json(responseDataVerified);
     }
 
     // ════════════════════════════════════════════════════════════

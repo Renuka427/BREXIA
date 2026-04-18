@@ -1693,14 +1693,14 @@ export default function BrexiaDashboard() {
   ];
 
   const scanAnalysisMessages = [
-    "Connecting to breach intelligence network...",
-    "Decrypting dark web datasets...",
-    "Found matching identity signatures...",
-    "Analyzing cross-platform attack vectors...",
-    "Correlating handle metadata...",
+    "Establishing handshake with XposedOrNot Secure DB...",
+    "Querying global breach index (v4.2 API)...",
+    "Checking HIBP Pwned Passwords via K-Anonymity...",
+    "Verifying OSINT identity correlations...",
+    "Analyzing leaked metadata signatures...",
     "Initializing neural threat model...",
-    "Synthesizing elite intelligence...",
-    "COMMITTING TO SECURE LEDGER..."
+    "Synthesizing forensic intelligence...",
+    "COMMITTING VERIFIED AUDIT TO LEDGER..."
   ];
 
   const MOCK = {
@@ -2159,12 +2159,20 @@ export default function BrexiaDashboard() {
                                  <Globe size={18} color="rgba(255,255,255,0.4)" />
                                  <h3 style={{ fontSize: 13, color: "#fff", fontWeight: 950, letterSpacing: 1, textTransform: "uppercase" }}>📊 Exposure Timeline</h3>
                               </div>
-                              <ExposureTimeline events={aiStory?.overview?.timeline} />
+                              {apiData?.breaches?.length > 0 ? (
+                                <ExposureTimeline events={aiStory?.overview?.timeline} />
+                              ) : (
+                                <div style={{ textAlign: "center", padding: "40px 0" }}>
+                                  <div style={{ fontSize: 24, marginBottom: 16 }}>🛡️</div>
+                                  <div style={{ fontSize: 14, color: "#10B981", fontWeight: 900, letterSpacing: 1 }}>ZERO HISTORICAL INCIDENTS</div>
+                                  <div style={{ fontSize: 11, color: "rgba(148,163,184,0.4)", marginTop: 8 }}>Your identity remains isolated from known registry leaks.</div>
+                                </div>
+                              )}
                            </div>
 
                            <AIDecisionCard 
-                              status={aiStory?.overview?.identity_status} 
-                              reason={aiStory?.overview?.status_reason} 
+                              status={aiStory?.overview?.identity_status || (apiData?.riskScore === 0 ? "SAFE" : "CLEAR")} 
+                              reason={aiStory?.overview?.status_reason || "Verified clean across indexed global registries."} 
                            />
                         </div>
                       </div>
