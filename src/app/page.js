@@ -999,11 +999,7 @@ function TacticalHUD({ stats }) {
 
   return (
     <div className="tactical-hud-mobile" style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1100, color: "rgba(124, 58, 237, 0.3)", fontFamily: "'Space Mono', monospace", fontSize: 9 }}>
-      {/* Corner Brackets */}
-      <div style={{ position: "absolute", top: 20, left: 20, width: 30, height: 30, borderTop: "1px solid", borderLeft: "1px solid" }} />
-      <div style={{ position: "absolute", top: 20, right: 20, width: 30, height: 30, borderTop: "1px solid", borderRight: "1px solid" }} />
-      <div style={{ position: "absolute", bottom: 20, left: 20, width: 30, height: 30, borderBottom: "1px solid", borderLeft: "1px solid" }} />
-      <div style={{ position: "absolute", bottom: 20, right: 20, width: 30, height: 30, borderBottom: "1px solid", borderRight: "1px solid" }} />
+      {/* Corner Brackets Removed per User Request */}
       
       {/* HUD Data Readouts */}
       <div style={{ position: "absolute", top: 120, left: 25, display: "flex", flexDirection: "column", gap: 10 }} className="hud-telemetry-desktop">
