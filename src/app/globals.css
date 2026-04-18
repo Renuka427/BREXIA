@@ -158,6 +158,22 @@ html, body {
     flex-direction: column !important;
     padding-bottom: 160px !important;
   }
+  .target-card-mobile {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+  .target-card-mobile > div:last-child {
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+  }
+  .dashboard-heading {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+  }
   .tabs-wrapper {
     position: fixed !important;
     bottom: 0px !important;
