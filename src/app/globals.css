@@ -151,69 +151,56 @@ html, body {
   html, body {
     overflow-wrap: break-word;
   }
-  .tabs-wrapper {
-    position: fixed !important;
-    bottom: 8px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 98% !important;
-    max-width: 450px !important;
-    z-index: 100 !important;
-    margin-bottom: 0 !important;
-  }
   .dashboard-font {
     transform: none !important;
     animation: none !important;
-  }
-  .target-card-mobile {
+    display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
   }
-  .target-card-mobile > div:last-child {
-    align-items: flex-start !important;
-    text-align: left !important;
+  .tabs-wrapper {
+    order: 10 !important;
+  }
+  .tabs-wrapper {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
     width: 100% !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-  }
-  .scan-again-fab {
-    bottom: 110px !important;
-  }
-  .tabs-wrapper::after {
-    display: none !important;
+    max-width: none !important;
+    z-index: 10 !important;
+    margin: 40px 0 60px !important;
   }
   .mobile-scroll-tabs {
-    background: rgba(10, 15, 30, 0.8) !important;
+    background: rgba(15, 23, 42, 0.6) !important;
     backdrop-filter: blur(20px) !important;
-    border-radius: 20px !important;
-    padding: 6px !important;
-    border: 1px solid rgba(124, 58, 237, 0.3) !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+    border-radius: 16px !important;
+    padding: 12px 6px !important;
+    border: 1px solid rgba(124, 58, 237, 0.2) !important;
     display: flex !important;
-    justify-content: space-between !important;
+    justify-content: space-around !important;
     overflow: hidden !important;
-    gap: 2px !important;
+    gap: 4px !important;
   }
   .mobile-scroll-tabs button {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 6px 2px !important;
+    padding: 10px 2px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    gap: 4px !important;
+    gap: 6px !important;
     flex: 1 !important;
   }
   .tab-icon {
     display: flex !important;
     color: currentColor;
-    transform: scale(0.85) !important;
+    transform: scale(1.15) !important;
   }
   .tab-label {
-    font-size: 6.5px !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
     letter-spacing: 0px !important;
     white-space: nowrap !important;
   }
@@ -315,9 +302,9 @@ html, body {
   inset: 0;
   z-index: -1;
   background: 
-    radial-gradient(at 0% 0%, var(--mesh-cyan) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, var(--mesh-violet) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, var(--mesh-indigo) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, var(--mesh-cyan) 0px, transparent 80%),
+    radial-gradient(at 100% 0%, var(--mesh-violet) 0px, transparent 80%),
+    radial-gradient(at 50% 100%, var(--mesh-indigo) 0px, transparent 80%);
   filter: blur(80px);
   animation: meshFlow 20s ease-in-out infinite alternate;
 }
