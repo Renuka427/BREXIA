@@ -161,6 +161,10 @@ html, body {
     z-index: 100 !important;
     margin-bottom: 0 !important;
   }
+  .dashboard-font {
+    transform: none !important;
+    animation: none !important;
+  }
   .tabs-wrapper::after {
     display: none !important;
   }
