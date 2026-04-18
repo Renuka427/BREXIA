@@ -148,6 +148,20 @@ html, body {
   .dashboard-grid {
     grid-template-columns: 1fr !important;
   }
+  .target-identity-wrapper {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+  .target-identity-badge {
+    width: 100% !important;
+    align-items: flex-start !important;
+  }
+  .target-identity-avatar {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 20px !important;
+  }
   html, body {
     overflow-wrap: break-word;
   }
