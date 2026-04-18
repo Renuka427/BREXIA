@@ -1703,6 +1703,13 @@ export default function BrexiaDashboard() {
     "COMMITTING VERIFIED AUDIT TO LEDGER..."
   ];
 
+  const tabs = [
+    { id: "overview", label: "OVERVIEW", icon: <Activity size={20} strokeWidth={1.5} /> },
+    { id: "threats", label: "THREATS", icon: <AlertTriangle size={20} strokeWidth={1.5} /> },
+    { id: "exposure", label: "EXPOSURE", icon: <Fingerprint size={20} strokeWidth={1.5} /> },
+    { id: "ai", label: "AI INSIGHT", icon: <Brain size={20} strokeWidth={1.5} /> }
+  ];
+
   const MOCK = {
     dataTypes: [
       { label: "Emails", value: 45, color: "#7C3AED" },
