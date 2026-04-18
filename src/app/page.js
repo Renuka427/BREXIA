@@ -2180,10 +2180,10 @@ export default function BrexiaDashboard() {
                              {/* LEFT: MAIN STORY */}
                             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                               <KineticCard style={{ borderLeft: `8px solid ${getRiskColor(mainBreach.riskScore || 90)}`, padding: 40 }}>
-                                <div style={{ fontSize: 13, color: getRiskColor(mainBreach.riskScore || 90), fontWeight: 950, marginBottom: 8, letterSpacing: 2 }}>
+                                <div className="breach-signature-subtitle" style={{ fontSize: 13, color: getRiskColor(mainBreach.riskScore || 90), fontWeight: 950, marginBottom: 8, letterSpacing: 2 }}>
                                   ⚡ {mainBreach.riskScore > 80 ? 'CRITICAL' : 'ELEVATED'} BREACH SIGNATURE
                                 </div>
-                                <h1 style={{ fontSize: 48, fontWeight: 950, color: "#fff", margin: "0 0 16px 0", letterSpacing: -1.5 }}>
+                                <h1 className="breach-hero-title" style={{ fontSize: 48, fontWeight: 950, color: "#fff", margin: "0 0 16px 0", letterSpacing: -1.5 }}>
                                   {mainBreach.name.toUpperCase()}
                                 </h1>
                                 <div style={{ display: "flex", gap: 32 }}>
