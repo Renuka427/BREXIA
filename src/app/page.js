@@ -2001,6 +2001,10 @@ export default function BrexiaDashboard() {
            max-width: 1400px;
            margin: 0 auto;
         }
+        @media (min-width: 1025px) {
+           .main-container { padding: 80px 40px !important; }
+           .dashboard-grid { gap: 48px !important; }
+        }
         @media (max-width: 768px) {
            .main-container { padding: 16px; }
            .tabs-wrapper { width: 100% !important; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
@@ -2010,7 +2014,7 @@ export default function BrexiaDashboard() {
            width: fit-content;
            margin: 0 auto 32px auto;
            display: flex;
-           gap: 12;
+           gap: 12px;
            background: rgba(15, 23, 42, 0.3);
            border-radius: 16px;
            padding: 8px;
@@ -2055,19 +2059,21 @@ export default function BrexiaDashboard() {
             ) : (
               <div className="dashboard-font" style={{ animation: "springIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
                 
-                <div className="cyber-card target-card-mobile" style={{ ...styles.glassCard, marginBottom: 24, display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", overflow: "hidden" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, width: 4, height: "100%", background: "linear-gradient(to bottom, #7C3AED, #EC4899)" }} />
-                  <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                    <div style={{ width: 64, height: 64, borderRadius: 16, background: "rgba(124, 58, 237, 0.1)", border: "1px solid rgba(124, 58, 237, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>👤</div>
-                    <div>
-                      <div style={{ fontSize: 11, color: "rgba(148, 163, 184, 0.5)", fontFamily: "'Space Mono', monospace", letterSpacing: 2, marginBottom: 4 }}>TARGET IDENTITY</div>
-                      <h2 className="dashboard-heading" style={{ margin: 0, fontSize: 24, fontWeight: 900, color: "#F1F5F9", letterSpacing: -0.5 }}>{email}</h2>
+                <div style={{ maxWidth: 800, margin: "0 auto 24px auto" }}>
+                  <div className="cyber-card target-card-mobile" style={{ ...styles.glassCard, padding: "20px 32px", display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", overflow: "hidden" }}>
+                    <div style={{ position: "absolute", top: 0, left: 0, width: 4, height: "100%", background: "linear-gradient(to bottom, #7C3AED, #EC4899)" }} />
+                    <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+                      <div style={{ width: 64, height: 64, borderRadius: 16, background: "rgba(124, 58, 237, 0.1)", border: "1px solid rgba(124, 58, 237, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>👤</div>
+                      <div>
+                        <div style={{ fontSize: 11, color: "rgba(148, 163, 184, 0.5)", fontFamily: "'Space Mono', monospace", letterSpacing: 2, marginBottom: 4 }}>TARGET IDENTITY</div>
+                        <h2 className="dashboard-heading" style={{ margin: 0, fontSize: 24, fontWeight: 900, color: "#F1F5F9", letterSpacing: -0.5 }}>{email}</h2>
+                      </div>
                     </div>
-                  </div>
-                  <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: 8, padding: "8px 16px" }}>
-                      <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981", animation: "pulse 2s infinite" }} />
-                      <span style={{ fontSize: 12, color: "#10B981", fontWeight: 700, fontFamily: "'Space Mono', monospace" }}>ANALYSIS COMPLETE</span>
+                    <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: 8, padding: "8px 16px" }}>
+                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981", animation: "pulse 2s infinite" }} />
+                        <span style={{ fontSize: 12, color: "#10B981", fontWeight: 700, fontFamily: "'Space Mono', monospace" }}>ANALYSIS COMPLETE</span>
+                      </div>
                     </div>
                   </div>
                 </div>
