@@ -465,8 +465,8 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
 
       {/* Status Badge */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24, marginBottom: 32, zIndex: 1, animation: scanning ? "flicker 1.5s infinite" : "none" }}>
-        <img src="/bx-logo-light.png" alt="BX" style={{ width: 64, height: 64, borderRadius: 16, boxShadow: "0 0 30px rgba(255, 255, 255, 0.15)", animation: "float 4s ease-in-out infinite" }} />
-        <div style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 30, padding: "8px 20px", animation: "springIn 0.8s ease both", fontSize: 10, color: "rgba(255,255,255,0.6)", fontFamily: "'Space Mono', monospace", letterSpacing: 3 }}>
+        <img className="hero-logo-img" src="/bx-logo-light.png" alt="BX" style={{ width: 64, height: 64, borderRadius: 16, boxShadow: "0 0 30px rgba(255, 255, 255, 0.15)", animation: "float 4s ease-in-out infinite" }} />
+        <div className="hero-status-badge" style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 30, padding: "8px 20px", animation: "springIn 0.8s ease both", fontSize: 10, color: "rgba(255,255,255,0.6)", fontFamily: "'Space Mono', monospace", letterSpacing: 3 }}>
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: scanning ? "#F43F5E" : "#10B981", boxShadow: `0 0 12px ${scanning ? "#F43F5E" : "#10B981"}` }} />
           {scanning ? "THREAT ANALYSIS ACTIVE" : "ACTIVE BREACH NETWORK • v7.42"}
         </div>

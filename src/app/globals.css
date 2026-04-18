@@ -232,59 +232,77 @@ html, body {
     letter-spacing: 1px !important;
   }
   .hero-rings {
-    transform: translate(-50%, -50%) scale(0.35) !important;
+    transform: translate(-50%, -50%) scale(0.65) !important;
     opacity: 0.4 !important;
   }
   .hero-input-field input {
-    font-size: 11px !important;
-    padding: 18px 12px !important;
+    font-size: 14px !important;
+    padding: 20px 16px !important;
     letter-spacing: 0px !important;
   }
   .hero-input-field input::placeholder {
-    font-size: 10px !important;
-    letter-spacing: 0px !important;
+    font-size: 13px !important;
+    letter-spacing: 0.5px !important;
   }
   .mobile-email-pills {
     flex-wrap: wrap !important;
     padding: 0 10px !important;
-    gap: 10px !important;
+    gap: 12px !important;
   }
   .mobile-email-pills button {
-    font-size: 10px !important;
-    padding: 8px 12px !important;
+    font-size: 12px !important;
+    padding: 10px 16px !important;
+  }
+  .hero-logo-img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .hero-status-badge {
+    font-size: 11px !important;
+    padding: 10px 24px !important;
+    letter-spacing: 2px !important;
   }
 }
 
 /* ── Ultra-Small Phone (max-width: 480px) Alignment Overrides ── */
 @media (max-width: 480px) {
   .fluid-hero-title {
-    font-size: 2.2rem !important;
-    letter-spacing: -0.05em !important;
+    font-size: 2.8rem !important;
+    letter-spacing: 0em !important;
     text-align: center !important;
   }
   .hero-tagline {
-    font-size: 0.65rem !important;
-    letter-spacing: 0.25em !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.2em !important;
     text-align: center !important;
     margin-bottom: 32px !important;
     white-space: normal !important;
   }
   .hero-input-field input {
-    font-size: 10px !important;
-    padding: 14px 10px !important;
+    font-size: 13px !important;
+    padding: 16px 12px !important;
   }
   .hero-input-field input::placeholder {
-    font-size: 9px !important;
+    font-size: 11px !important;
   }
   .hero-scan-btn {
-    font-size: 12px !important;
-    padding: 16px !important;
+    font-size: 15px !important;
+    padding: 18px !important;
   }
   .top-nav {
     padding: 10px 12px !important;
   }
   .mobile-email-pills {
     justify-content: center !important;
+  }
+  .hero-logo-img {
+    width: 72px !important;
+    height: 72px !important;
+  }
+  .hero-status-badge {
+    font-size: 10px !important;
+    letter-spacing: 1px !important;
+    padding: 8px 16px !important;
   }
 }
 
