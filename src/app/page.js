@@ -424,7 +424,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
   }, []);
 
   return (
-    <div className="hero-main-wrapper" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "85vh", overflow: "hidden", padding: "0 24px" }}>
+    <div className="hero-main-wrapper" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "85vh", overflow: "hidden", padding: 0 }}>
 
       {/* Atmospheric Scanning Effects */}
       <AnimatePresence>
@@ -2009,7 +2009,7 @@ export default function BrexiaDashboard() {
       <ParticleField />
 
       <main className="main-container" style={{ ...styles.main, paddingTop: "120px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+        <div style={{ maxWidth: "100%", margin: "0 auto", width: "100%" }}>
           <AnimatePresence mode="wait">
             {!apiData || Object.keys(apiData).length === 0 ? (
               <motion.div

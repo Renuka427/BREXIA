@@ -157,6 +157,8 @@ html, body {
     display: flex !important;
     flex-direction: column !important;
     padding-bottom: 220px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   .target-card-mobile {
     flex-direction: column !important;
@@ -272,7 +274,7 @@ html, body {
 /* ── Ultra-Small Phone (max-width: 480px) Alignment Overrides ── */
 @media (max-width: 480px) {
   .hero-main-wrapper {
-    padding: 0 4px !important;
+    padding: 0 !important;
   }
   .fluid-hero-title {
     font-size: 2.8rem !important;
@@ -372,29 +374,8 @@ html, body {
   overflow: hidden;
 }
 
-/* Technical Corner Brackets */
-.elite-card::before, .elite-card::after {
-  content: "";
-  position: absolute;
-  width: 8px; height: 8px;
-  border-style: solid;
-  pointer-events: none;
-  opacity: 0.6;
-}
+/* Technical Corner Brackets Removed per User Request */
 
-/* Top-Left */
-.elite-card::before {
-  top: 8px; left: 8px;
-  border-width: 1px 0 0 1px;
-  border-color: var(--accent);
-}
-
-/* Bottom-Right */
-.elite-card::after {
-  bottom: 8px; right: 8px;
-  border-width: 0 1px 1px 0;
-  border-color: var(--accent-secondary);
-}
 
 /* ── Text Gradients ── */
 .text-gradient {
