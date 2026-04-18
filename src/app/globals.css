@@ -189,17 +189,22 @@ html, body {
 
 /* ── Ultra-Small Phone (max-width: 480px) Alignment Overrides ── */
 @media (max-width: 480px) {
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
   .fluid-hero-title {
-    font-size: 2.2rem !important;
+    font-size: 1.8rem !important;
     letter-spacing: -0.05em !important;
     text-align: center !important;
   }
   .hero-tagline {
-    font-size: 0.65rem !important;
-    letter-spacing: 0.25em !important;
+    font-size: 0.55rem !important;
+    letter-spacing: 0.12em !important;
     text-align: center !important;
-    margin-bottom: 32px !important;
+    margin-bottom: 24px !important;
     white-space: normal !important;
+    line-height: 1.4 !important;
   }
   .hero-input-field input {
     font-size: 10px !important;
@@ -207,13 +212,14 @@ html, body {
   }
   .hero-input-field input::placeholder {
     font-size: 9px !important;
+    letter-spacing: 0 !important;
   }
   .hero-scan-btn {
     font-size: 12px !important;
     padding: 16px !important;
   }
   .top-nav {
-    padding: 10px 12px !important;
+    padding: 10px !important;
   }
   .mobile-email-pills {
     justify-content: center !important;
