@@ -404,9 +404,14 @@ html, body {
   -webkit-text-fill-color: transparent;
 }
 
+.fluid-hero-title {
+  transform: scaleX(1.15);
+  display: inline-block;
+}
+
 @keyframes bluePulseTitle {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.2)) drop-shadow(0 0 40px rgba(0, 240, 255, 0.1)) !important; }
-  50% { filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.8)) drop-shadow(0 0 60px rgba(0, 240, 255, 0.5)) !important; }
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.4)) drop-shadow(0 0 50px rgba(162, 89, 255, 0.2)) !important; }
+  50% { filter: drop-shadow(0 0 40px rgba(162, 89, 255, 0.8)) drop-shadow(0 0 80px rgba(124, 58, 237, 0.6)) !important; }
 }
 .blue-cyber-glow {
   animation: bluePulseTitle 3.5s infinite ease-in-out !important;
