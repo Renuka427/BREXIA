@@ -184,7 +184,7 @@ function GlobalStyles() {
         border: 1px solid rgba(124, 58, 237, 0.2);
         border-radius: 20px;
         padding: 32px;
-        margin-bottom: 24px;
+        margin-bottom: 32px;
         position: relative;
         overflow: hidden;
       }
@@ -2045,77 +2045,79 @@ export default function BrexiaDashboard() {
                   </div>
                 </div>
 
-                <div className="tabs-wrapper" style={{ position: "relative", width: "100%", marginBottom: 32 }}>
-                  <div className="mobile-scroll-tabs" style={{ display: "flex", gap: 12, background: "rgba(15, 23, 42, 0.3)", borderRadius: 16, padding: "8px", border: "1px solid rgba(255,255,255,0.05)", width: "100%", overflowX: "auto" }}>
-                    {[
-                      { id: "overview", label: "OVERVIEW", icon: <Activity size={20} strokeWidth={1.5} /> },
-                      { id: "threats", label: "THREATS", icon: <AlertTriangle size={20} strokeWidth={1.5} /> },
-                      { id: "exposure", label: "EXPOSURE", icon: <Fingerprint size={20} strokeWidth={1.5} /> },
-                      { id: "ai", label: "AI INSIGHT", icon: <Brain size={20} strokeWidth={1.5} /> }
-                    ].map(tab => {
-                      const active = activeTab === tab.id;
-                      return (
-                        <button 
-                          key={tab.id}
-                          onClick={() => {
-                            setActiveTab(tab.id);
-                            window.scrollTo({ top: 0, behavior: "instant" });
-                          }}
-                          style={{
-                            padding: "12px 28px",
-                            borderRadius: 12,
-                            background: active ? "rgba(162, 89, 255, 0.15)" : "transparent",
-                            color: active ? "#A259FF" : "rgba(148, 163, 184, 0.5)",
-                            border: active ? "1px solid rgba(162, 89, 255, 0.3)" : "1px solid transparent",
-                            fontSize: 12,
-                            fontWeight: 900,
-                            letterSpacing: 1.5,
-                            cursor: "pointer",
-                            fontFamily: "'Space Mono', monospace",
-                            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                            boxShadow: active ? "0 0 20px rgba(162, 89, 255, 0.2)" : "none",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "8px"
-                          }}
-                        >
-                          <span className="tab-icon" style={{ color: active ? "#A259FF" : "currentColor" }}>{tab.icon}</span>
-                          <span className="tab-label" style={{ color: active ? "#fff" : "currentColor" }}>{tab.label}</span>
-                        </button>
-                      );
-                    })}
-                    
-                    {scanDone && (
+                <div className="tabs-wrapper" style={{ 
+                  display: "flex", 
+                  gap: 12, 
+                  marginBottom: 32, 
+                  background: "rgba(15, 23, 42, 0.3)", 
+                  borderRadius: 16, 
+                  padding: "8px", 
+                  border: "1px solid rgba(255,255,255,0.05)", 
+                  width: "fit-content" 
+                }}>
+                  {tabs.map((tab) => {
+                    const active = activeTab === tab.id;
+                    return (
                       <button 
+                        key={tab.id}
                         onClick={() => {
-                          setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
-                          window.scrollTo({ top: 0, behavior: "smooth" });
+                          setActiveTab(tab.id);
+                          window.scrollTo({ top: 0, behavior: "instant" });
                         }}
                         style={{
                           padding: "12px 28px",
                           borderRadius: 12,
-                          background: "rgba(239, 68, 68, 0.1)",
-                          color: "#EF4444",
-                          border: "1px solid rgba(239, 68, 68, 0.3)",
+                          background: active ? "rgba(162, 89, 255, 0.15)" : "transparent",
+                          color: active ? "#A259FF" : "rgba(148, 163, 184, 0.5)",
+                          border: active ? "1px solid rgba(162, 89, 255, 0.3)" : "1px solid transparent",
                           fontSize: 12,
                           fontWeight: 900,
                           letterSpacing: 1.5,
                           cursor: "pointer",
                           fontFamily: "'Space Mono', monospace",
-                          transition: "all 0.3s",
+                          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                          boxShadow: active ? "0 0 20px rgba(162, 89, 255, 0.2)" : "none",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          gap: "8px",
-                          boxShadow: "0 0 15px rgba(239, 68, 68, 0.2)"
+                          gap: "8px"
                         }}
                       >
-                        <span className="tab-icon"><RefreshCcw size={20} strokeWidth={2} /></span>
-                        <span className="tab-label">RESTART</span>
+                        <span className="tab-icon" style={{ color: active ? "#A259FF" : "currentColor" }}>{tab.icon}</span>
+                        <span className="tab-label" style={{ color: active ? "#fff" : "currentColor" }}>{tab.label}</span>
                       </button>
-                    )}
-                  </div>
+                    );
+                  })}
+                  
+                  {scanDone && (
+                    <button 
+                      onClick={() => {
+                        setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      style={{
+                        padding: "12px 28px",
+                        borderRadius: 12,
+                        background: "rgba(239, 68, 68, 0.1)",
+                        color: "#EF4444",
+                        border: "1px solid rgba(239, 68, 68, 0.3)",
+                        fontSize: 12,
+                        fontWeight: 900,
+                        letterSpacing: 1.5,
+                        cursor: "pointer",
+                        fontFamily: "'Space Mono', monospace",
+                        transition: "all 0.3s",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "8px",
+                        boxShadow: "0 0 15px rgba(239, 68, 68, 0.2)"
+                      }}
+                    >
+                      <span className="tab-icon"><RefreshCcw size={20} strokeWidth={2} /></span>
+                      <span className="tab-label">RESTART</span>
+                    </button>
+                  )}
                 </div>
 
 
@@ -2377,6 +2379,41 @@ export default function BrexiaDashboard() {
           data={threatAiStory}
         />
         
+        {/* ── Floating Restore Action Center ─────────────────────────── */}
+        <AnimatePresence>
+          {scanDone && (
+            <motion.button
+              initial={{ scale: 0, opacity: 0, x: 50 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ scale: 0, opacity: 0, x: 50 }}
+              whileHover={{ scale: 1.05, background: "rgba(239, 68, 68, 0.95)" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              style={{
+                position: "fixed", bottom: "40px", right: "40px",
+                padding: "12px 24px", 
+                borderRadius: "30px",
+                background: "rgba(239, 68, 68, 0.8)", backdropFilter: "blur(12px)",
+                color: "#FFF", border: "1px solid rgba(255,255,255,0.2)",
+                boxShadow: "0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(239, 68, 68, 0.3)",
+                cursor: "pointer",
+                zIndex: 3000, 
+                display: "flex", alignItems: "center", justifyContent: "center",
+                gap: "10px",
+                fontFamily: "'Space Mono', monospace",
+                fontWeight: 900,
+                fontSize: 12,
+                letterSpacing: 1
+              }}
+            >
+              <RefreshCcw size={18} />
+              <span>RESTART SCAN</span>
+            </motion.button>
+          )}
+        </AnimatePresence>
       </main>
     </div>
   );
