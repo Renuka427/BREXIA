@@ -232,8 +232,8 @@ html, body {
     letter-spacing: 1px !important;
   }
   .hero-rings {
-    transform: translate(-50%, -50%) scale(0.65) !important;
-    opacity: 0.4 !important;
+    transform: translate(-50%, -50%) scale(1.4) !important;
+    opacity: 0.7 !important;
   }
   .hero-input-field input {
     font-size: 14px !important;
@@ -399,4 +399,12 @@ html, body {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes bluePulseTitle {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.2)) drop-shadow(0 0 40px rgba(0, 240, 255, 0.1)) !important; }
+  50% { filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.8)) drop-shadow(0 0 60px rgba(0, 240, 255, 0.5)) !important; }
+}
+.blue-cyber-glow {
+  animation: bluePulseTitle 3.5s infinite ease-in-out !important;
 }

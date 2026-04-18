@@ -483,7 +483,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ textAlign: "center", zIndex: 1, position: "relative", width: "100%" }}
           >
-            <h1 className="fluid-hero-title logo-glow" style={{ 
+            <h1 className="fluid-hero-title blue-cyber-glow logo-glow" style={{ 
               margin: "0 0 12px", 
               fontWeight: 950, 
               color: "#fff", 
