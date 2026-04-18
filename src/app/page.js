@@ -2182,7 +2182,7 @@ export default function BrexiaDashboard() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
-                      style={{ height: "calc(100vh - 350px)", display: "flex", flexDirection: "column", gap: 24 }}
+                      style={{ display: "flex", flexDirection: "column", gap: 24 }}
                     >
                       {/* BREACH SELECTOR BAR */}
                       {apiData?.breaches?.length > 1 && (
