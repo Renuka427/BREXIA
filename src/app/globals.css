@@ -410,8 +410,14 @@ html, body {
 }
 
 @keyframes bluePulseTitle {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.4)) drop-shadow(0 0 50px rgba(162, 89, 255, 0.2)) !important; }
-  50% { filter: drop-shadow(0 0 40px rgba(162, 89, 255, 0.8)) drop-shadow(0 0 80px rgba(124, 58, 237, 0.6)) !important; }
+  0%, 100% { 
+    filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.4)) drop-shadow(0 0 50px rgba(162, 89, 255, 0.2)); 
+    text-shadow: 0 0 20px rgba(162, 89, 255, 0.3);
+  }
+  50% { 
+    filter: drop-shadow(0 0 40px rgba(162, 89, 255, 0.8)) drop-shadow(0 0 80px rgba(124, 58, 237, 0.6)); 
+    text-shadow: 0 0 40px rgba(124, 58, 237, 0.6);
+  }
 }
 .blue-cyber-glow {
   animation: bluePulseTitle 3.5s infinite ease-in-out !important;
