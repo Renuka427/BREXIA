@@ -148,20 +148,6 @@ html, body {
   .dashboard-grid {
     grid-template-columns: 1fr !important;
   }
-  .target-identity-wrapper {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
-  }
-  .target-identity-badge {
-    width: 100% !important;
-    align-items: flex-start !important;
-  }
-  .target-identity-avatar {
-    width: 48px !important;
-    height: 48px !important;
-    font-size: 20px !important;
-  }
   html, body {
     overflow-wrap: break-word;
   }
@@ -178,6 +164,21 @@ html, body {
   .dashboard-font {
     transform: none !important;
     animation: none !important;
+  }
+  .target-card-mobile {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+  .target-card-mobile > div:last-child {
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+  }
+  .scan-again-fab {
+    bottom: 110px !important;
   }
   .tabs-wrapper::after {
     display: none !important;
