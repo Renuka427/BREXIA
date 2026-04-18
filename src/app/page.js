@@ -440,7 +440,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
       </AnimatePresence>
 
       {/* Extreme Radial background glow */}
-      <div style={{ position: "absolute", width: 800, height: 800, borderRadius: "50%", background: "radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 75%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", width: "150vw", height: "150vh", borderRadius: "50%", background: "radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 75%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", pointerEvents: "none" }} />
 
       {/* Orbital Resonance: Kinetic Rings */}
       <div className="hero-rings" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 700, height: 700, pointerEvents: "none" }}>
