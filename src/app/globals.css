@@ -156,7 +156,7 @@ html, body {
     animation: none !important;
     display: flex !important;
     flex-direction: column !important;
-    padding-bottom: 220px !important;
+    padding-bottom: 120px !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
