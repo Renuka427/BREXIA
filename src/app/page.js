@@ -2066,27 +2066,57 @@ export default function BrexiaDashboard() {
                           style={{
                             padding: "12px 28px",
                             borderRadius: 12,
-                            background: active ? "rgba(124, 58, 237, 0.15)" : "transparent",
-                            color: active ? "#FFF" : "rgba(148, 163, 184, 0.5)",
-                            border: active ? "1px solid rgba(124, 58, 237, 0.3)" : "1px solid transparent",
+                            background: active ? "rgba(162, 89, 255, 0.15)" : "transparent",
+                            color: active ? "#A259FF" : "rgba(148, 163, 184, 0.5)",
+                            border: active ? "1px solid rgba(162, 89, 255, 0.3)" : "1px solid transparent",
                             fontSize: 12,
                             fontWeight: 900,
                             letterSpacing: 1.5,
                             cursor: "pointer",
                             fontFamily: "'Space Mono', monospace",
                             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                            boxShadow: active ? "0 0 20px rgba(124, 58, 237, 0.2)" : "none",
+                            boxShadow: active ? "0 0 20px rgba(162, 89, 255, 0.2)" : "none",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             gap: "8px"
                           }}
                         >
-                          <span className="tab-icon">{tab.icon}</span>
-                          <span className="tab-label">{tab.label}</span>
+                          <span className="tab-icon" style={{ color: active ? "#A259FF" : "currentColor" }}>{tab.icon}</span>
+                          <span className="tab-label" style={{ color: active ? "#fff" : "currentColor" }}>{tab.label}</span>
                         </button>
                       );
                     })}
+                    
+                    {scanDone && (
+                      <button 
+                        onClick={() => {
+                          setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                        style={{
+                          padding: "12px 28px",
+                          borderRadius: 12,
+                          background: "rgba(239, 68, 68, 0.1)",
+                          color: "#EF4444",
+                          border: "1px solid rgba(239, 68, 68, 0.3)",
+                          fontSize: 12,
+                          fontWeight: 900,
+                          letterSpacing: 1.5,
+                          cursor: "pointer",
+                          fontFamily: "'Space Mono', monospace",
+                          transition: "all 0.3s",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "8px",
+                          boxShadow: "0 0 15px rgba(239, 68, 68, 0.2)"
+                        }}
+                      >
+                        <span className="tab-icon"><RefreshCcw size={20} strokeWidth={2} /></span>
+                        <span className="tab-label">RESTART</span>
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -2341,33 +2371,6 @@ export default function BrexiaDashboard() {
           data={threatAiStory}
         />
         
-        {/* Floating Red New Scan Button (Icon Only) */}
-        <AnimatePresence>
-          {scanDone && (
-            <motion.button
-              className="scan-again-fab"
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(239, 68, 68, 0.4)" }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => {
-                setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              style={{
-                position: "fixed", bottom: "32px", right: "32px",
-                width: 56, height: 56, borderRadius: "50%",
-                background: "rgba(239, 68, 68, 0.9)", backdropFilter: "blur(10px)",
-                color: "#FFF", border: "1px solid rgba(255,255,255,0.1)",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.5)", cursor: "pointer",
-                zIndex: 2000, display: "flex", alignItems: "center", justifyContent: "center"
-              }}
-            >
-              <RefreshCcw size={24} />
-            </motion.button>
-          )}
-        </AnimatePresence>
       </main>
     </div>
   );
