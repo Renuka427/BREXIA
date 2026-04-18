@@ -424,7 +424,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
   }, []);
 
   return (
-    <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "85vh", overflow: "hidden", padding: "0 24px" }}>
+    <div className="hero-main-wrapper" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "85vh", overflow: "hidden", padding: "0 24px" }}>
 
       {/* Atmospheric Scanning Effects */}
       <AnimatePresence>
@@ -492,7 +492,6 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
               background: "linear-gradient(to bottom, #fff 100%, rgba(255,255,255,0.3))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              filter: "drop-shadow(0 0 50px rgba(124, 58, 237, 0.4))",
               textTransform: "uppercase"
             }}>
               BREXIA
