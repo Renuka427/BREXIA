@@ -443,17 +443,17 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
       <div style={{ position: "absolute", width: "150vw", height: "150vh", borderRadius: "50%", background: "radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 75%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", pointerEvents: "none" }} />
 
       {/* Orbital Resonance: Kinetic Rings */}
-      <div className="hero-rings" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 700, height: 700, pointerEvents: "none" }}>
-        {[700, 560, 420, 280, 140, 100].map((size, i) => (
+      <div className="hero-rings" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "150vw", height: "150vh", pointerEvents: "none" }}>
+        {[100, 80, 60, 40, 20, 10].map((sizePercent, i) => (
           <div key={i} style={{ 
-            position: "absolute", width: size, height: size, 
+            position: "absolute", width: `${sizePercent}vw`, height: `${sizePercent * 1.5}vh`, 
             borderRadius: "50%", 
             border: `1px solid rgba(255,255,255,${0.05+(i<2?0.04:0.02)})`, 
             top: "50%", left: "50%", 
             transform: "translate(-50%,-50%)", 
-            animation: `spin ${size < 200 ? 5 : 25 + i*12}s linear infinite ${i%2===0?"":"reverse"}`, 
+            animation: `spin ${sizePercent < 40 ? 10 : 30 + i*15}s linear infinite ${i%2===0?"":"reverse"}`, 
             opacity: scanning ? 1 : 0.85,
-            boxShadow: scanning && size < 300 ? `0 0 60px rgba(124, 58, 237, ${0.4 + (i*0.1)})` : (size < 200 ? "0 0 20px rgba(255,255,255,0.05)" : "none"),
+            boxShadow: scanning && sizePercent < 50 ? `0 0 60px rgba(124, 58, 237, ${0.4 + (i*0.1)})` : (sizePercent < 30 ? "0 0 20px rgba(255,255,255,0.05)" : "none"),
             pointerEvents: "none" 
           }} >
              {scanning && i === 3 && (
