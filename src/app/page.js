@@ -443,17 +443,17 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
       <div style={{ position: "absolute", width: "150vw", height: "150vh", borderRadius: "50%", background: "radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 75%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", pointerEvents: "none" }} />
 
       {/* Orbital Resonance: Kinetic Rings */}
-      <div className="hero-rings" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "150vw", height: "150vh", pointerEvents: "none" }}>
-        {[100, 80, 60, 40, 20, 10].map((sizePercent, i) => (
+      <div className="hero-rings" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 700, height: 700, pointerEvents: "none" }}>
+        {[700, 560, 420, 280, 140, 100].map((size, i) => (
           <div key={i} style={{ 
-            position: "absolute", width: `${sizePercent}vw`, height: `${sizePercent * 1.5}vh`, 
+            position: "absolute", width: size, height: size, 
             borderRadius: "50%", 
             border: `1px solid rgba(255,255,255,${0.05+(i<2?0.04:0.02)})`, 
             top: "50%", left: "50%", 
             transform: "translate(-50%,-50%)", 
-            animation: `spin ${sizePercent < 40 ? 10 : 30 + i*15}s linear infinite ${i%2===0?"":"reverse"}`, 
+            animation: `spin ${size < 200 ? 5 : 25 + i*12}s linear infinite ${i%2===0?"":"reverse"}`, 
             opacity: scanning ? 1 : 0.85,
-            boxShadow: scanning && sizePercent < 50 ? `0 0 60px rgba(124, 58, 237, ${0.4 + (i*0.1)})` : (sizePercent < 30 ? "0 0 20px rgba(255,255,255,0.05)" : "none"),
+            boxShadow: scanning && size < 300 ? `0 0 60px rgba(124, 58, 237, ${0.4 + (i*0.1)})` : (size < 200 ? "0 0 20px rgba(255,255,255,0.05)" : "none"),
             pointerEvents: "none" 
           }} >
              {scanning && i === 3 && (
@@ -707,7 +707,7 @@ function AIPanel({ data, openai }) {
           <div style={{ fontSize: 10, color: "#7C3AED", letterSpacing: 2, marginBottom: 12, fontWeight: 800, fontFamily: "'Space Mono', monospace" }}>AI STRATEGIC ADVISORY</div>
           <h3 className="dashboard-heading" style={{ margin: "0 0 12px", fontSize: 18, color: "#F1F5F9" }}>{openai.summary}</h3>
           <p style={{ fontSize: 14, color: "#AFC2D5", lineHeight: 1.7, margin: "0 0 20px" }}>
-             {openai.advisory}
+             <TypingText text={openai.advisory} />
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
             <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(124, 58, 237, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🧠</div>
@@ -1361,21 +1361,21 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <section>
                 <div style={{ fontSize: 11, color: "#7C3AED", fontWeight: 900, marginBottom: 8 }}>🧠 About this website</div>
-                <div style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>{story.about_site}</div>
+                <TypingText text={story.about_site} delay={20} style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }} />
               </section>
 
               <div style={{ height: 1, background: "rgba(255,255,255,0.05)" }} />
 
               <section>
                 <div style={{ fontSize: 11, color: "#00f0ff", fontWeight: 900, marginBottom: 8 }}>🛠 How the breach happened</div>
-                <div style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>{story.breach_mechanics}</div>
+                <TypingText text={story.breach_mechanics} delay={20} pause={1000} style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }} />
               </section>
 
               <div style={{ height: 1, background: "rgba(255,255,255,0.05)" }} />
 
               <section>
                 <div style={{ fontSize: 11, color: "#F43F5E", fontWeight: 900, marginBottom: 8 }}>⚠️ Why this is dangerous</div>
-                <div style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>{story.user_danger || story.why_it_matters}</div>
+                <TypingText text={story.user_danger} delay={20} pause={2000} style={{ fontSize: 16, color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }} />
               </section>
            </div>
 
@@ -1693,21 +1693,14 @@ export default function BrexiaDashboard() {
   ];
 
   const scanAnalysisMessages = [
-    "Establishing handshake with XposedOrNot Secure DB...",
-    "Querying global breach index (v4.2 API)...",
-    "Checking HIBP Pwned Passwords via K-Anonymity...",
-    "Verifying OSINT identity correlations...",
-    "Analyzing leaked metadata signatures...",
+    "Connecting to breach intelligence network...",
+    "Decrypting dark web datasets...",
+    "Found matching identity signatures...",
+    "Analyzing cross-platform attack vectors...",
+    "Correlating handle metadata...",
     "Initializing neural threat model...",
-    "Synthesizing forensic intelligence...",
-    "COMMITTING VERIFIED AUDIT TO LEDGER..."
-  ];
-
-  const tabs = [
-    { id: "overview", label: "OVERVIEW", icon: <Activity size={20} strokeWidth={1.5} /> },
-    { id: "threats", label: "THREATS", icon: <AlertTriangle size={20} strokeWidth={1.5} /> },
-    { id: "exposure", label: "EXPOSURE", icon: <Fingerprint size={20} strokeWidth={1.5} /> },
-    { id: "ai", label: "AI INSIGHT", icon: <Brain size={20} strokeWidth={1.5} /> }
+    "Synthesizing elite intelligence...",
+    "COMMITTING TO SECURE LEDGER..."
   ];
 
   const MOCK = {
@@ -1996,30 +1989,6 @@ export default function BrexiaDashboard() {
         .dashboard-grid {
            grid-template-columns: 1.1fr 0.9fr;
         }
-        .main-container {
-           padding: 32px;
-           max-width: 1400px;
-           margin: 0 auto;
-        }
-        @media (min-width: 1025px) {
-           .main-container { padding: 80px 40px !important; }
-           .dashboard-grid { gap: 48px !important; }
-        }
-        @media (max-width: 768px) {
-           .main-container { padding: 16px; }
-           .tabs-wrapper { width: 100% !important; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
-           .tabs-wrapper::-webkit-scrollbar { display: none; }
-        }
-        .tabs-wrapper {
-           width: fit-content;
-           margin: 0 auto 32px auto;
-           display: flex;
-           gap: 12px;
-           background: rgba(15, 23, 42, 0.3);
-           border-radius: 16px;
-           padding: 8px;
-           border: 1px solid rgba(255,255,255,0.05);
-        }
         .nav-item:hover { background: rgba(162, 89, 255,0.08) !important; }
         .breach-row:hover { background: rgba(162, 89, 255,0.05) !important; }
         .scan-btn:hover { box-shadow: 0 0 24px rgba(162, 89, 255,0.4) !important; transform: translateY(-1px) !important; }
@@ -2059,59 +2028,94 @@ export default function BrexiaDashboard() {
             ) : (
               <div className="dashboard-font" style={{ animation: "springIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
                 
-                <div style={{ maxWidth: 800, margin: "0 auto 24px auto" }}>
-                  <div className="cyber-card target-card-mobile" style={{ ...styles.glassCard, padding: "20px 32px", display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", overflow: "hidden" }}>
-                    <div style={{ position: "absolute", top: 0, left: 0, width: 4, height: "100%", background: "linear-gradient(to bottom, #7C3AED, #EC4899)" }} />
-                    <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                      <div style={{ width: 64, height: 64, borderRadius: 16, background: "rgba(124, 58, 237, 0.1)", border: "1px solid rgba(124, 58, 237, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>👤</div>
-                      <div>
-                        <div style={{ fontSize: 11, color: "rgba(148, 163, 184, 0.5)", fontFamily: "'Space Mono', monospace", letterSpacing: 2, marginBottom: 4 }}>TARGET IDENTITY</div>
-                        <h2 className="dashboard-heading" style={{ margin: 0, fontSize: 24, fontWeight: 900, color: "#F1F5F9", letterSpacing: -0.5 }}>{email}</h2>
-                      </div>
+                <div className="cyber-card target-card-mobile" style={{ ...styles.glassCard, marginBottom: 24, display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", overflow: "hidden" }}>
+                  <div style={{ position: "absolute", top: 0, left: 0, width: 4, height: "100%", background: "linear-gradient(to bottom, #7C3AED, #EC4899)" }} />
+                  <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+                    <div style={{ width: 64, height: 64, borderRadius: 16, background: "rgba(124, 58, 237, 0.1)", border: "1px solid rgba(124, 58, 237, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>👤</div>
+                    <div>
+                      <div style={{ fontSize: 11, color: "rgba(148, 163, 184, 0.5)", fontFamily: "'Space Mono', monospace", letterSpacing: 2, marginBottom: 4 }}>TARGET IDENTITY</div>
+                      <h2 className="dashboard-heading" style={{ margin: 0, fontSize: 24, fontWeight: 900, color: "#F1F5F9", letterSpacing: -0.5 }}>{email}</h2>
                     </div>
-                    <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: 8, padding: "8px 16px" }}>
-                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981", animation: "pulse 2s infinite" }} />
-                        <span style={{ fontSize: 12, color: "#10B981", fontWeight: 700, fontFamily: "'Space Mono', monospace" }}>ANALYSIS COMPLETE</span>
-                      </div>
+                  </div>
+                  <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: 8, padding: "8px 16px" }}>
+                      <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981", animation: "pulse 2s infinite" }} />
+                      <span style={{ fontSize: 12, color: "#10B981", fontWeight: 700, fontFamily: "'Space Mono', monospace" }}>ANALYSIS COMPLETE</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="tabs-wrapper">
-                  {tabs.map(tab => {
-                    const active = activeTab === tab.id;
-                    return (
+                <div className="tabs-wrapper" style={{ position: "relative", width: "100%", marginBottom: 32 }}>
+                  <div className="mobile-scroll-tabs" style={{ display: "flex", gap: 12, background: "rgba(15, 23, 42, 0.3)", borderRadius: 16, padding: "8px", border: "1px solid rgba(255,255,255,0.05)", width: "100%", overflowX: "auto" }}>
+                    {[
+                      { id: "overview", label: "OVERVIEW", icon: <Activity size={20} strokeWidth={1.5} /> },
+                      { id: "threats", label: "THREATS", icon: <AlertTriangle size={20} strokeWidth={1.5} /> },
+                      { id: "exposure", label: "EXPOSURE", icon: <Fingerprint size={20} strokeWidth={1.5} /> },
+                      { id: "ai", label: "AI INSIGHT", icon: <Brain size={20} strokeWidth={1.5} /> }
+                    ].map(tab => {
+                      const active = activeTab === tab.id;
+                      return (
+                        <button 
+                          key={tab.id}
+                          onClick={() => {
+                            setActiveTab(tab.id);
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                          }}
+                          style={{
+                            padding: "12px 28px",
+                            borderRadius: 12,
+                            background: active ? "rgba(162, 89, 255, 0.15)" : "transparent",
+                            color: active ? "#A259FF" : "rgba(148, 163, 184, 0.5)",
+                            border: active ? "1px solid rgba(162, 89, 255, 0.3)" : "1px solid transparent",
+                            fontSize: 12,
+                            fontWeight: 900,
+                            letterSpacing: 1.5,
+                            cursor: "pointer",
+                            fontFamily: "'Space Mono', monospace",
+                            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                            boxShadow: active ? "0 0 20px rgba(162, 89, 255, 0.2)" : "none",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "8px"
+                          }}
+                        >
+                          <span className="tab-icon" style={{ color: active ? "#A259FF" : "currentColor" }}>{tab.icon}</span>
+                          <span className="tab-label" style={{ color: active ? "#fff" : "currentColor" }}>{tab.label}</span>
+                        </button>
+                      );
+                    })}
+                    
+                    {scanDone && (
                       <button 
-                        key={tab.id}
                         onClick={() => {
-                          setActiveTab(tab.id);
-                          window.scrollTo({ top: 0, behavior: "instant" });
+                          setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
+                          window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                         style={{
                           padding: "12px 28px",
                           borderRadius: 12,
-                          background: active ? "rgba(162, 89, 255, 0.15)" : "transparent",
-                          color: active ? "#A259FF" : "rgba(148, 163, 184, 0.5)",
-                          border: active ? "1px solid rgba(162, 89, 255, 0.3)" : "1px solid transparent",
+                          background: "rgba(239, 68, 68, 0.1)",
+                          color: "#EF4444",
+                          border: "1px solid rgba(239, 68, 68, 0.3)",
                           fontSize: 12,
                           fontWeight: 900,
                           letterSpacing: 1.5,
                           cursor: "pointer",
                           fontFamily: "'Space Mono', monospace",
-                          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                          boxShadow: active ? "0 0 20px rgba(162, 89, 255, 0.2)" : "none",
+                          transition: "all 0.3s",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          gap: "8px"
+                          gap: "8px",
+                          boxShadow: "0 0 15px rgba(239, 68, 68, 0.2)"
                         }}
                       >
-                        <span className="tab-icon" style={{ color: active ? "#A259FF" : "currentColor" }}>{tab.icon}</span>
-                        <span className="tab-label" style={{ color: active ? "#fff" : "currentColor" }}>{tab.label}</span>
+                        <span className="tab-icon"><RefreshCcw size={20} strokeWidth={2} /></span>
+                        <span className="tab-label">RESTART</span>
                       </button>
-                    );
-                  })}
+                    )}
+                  </div>
                 </div>
 
 
@@ -2155,20 +2159,12 @@ export default function BrexiaDashboard() {
                                  <Globe size={18} color="rgba(255,255,255,0.4)" />
                                  <h3 style={{ fontSize: 13, color: "#fff", fontWeight: 950, letterSpacing: 1, textTransform: "uppercase" }}>📊 Exposure Timeline</h3>
                               </div>
-                              {apiData?.breaches?.length > 0 ? (
-                                <ExposureTimeline events={aiStory?.overview?.timeline} />
-                              ) : (
-                                <div style={{ textAlign: "center", padding: "40px 0" }}>
-                                  <div style={{ fontSize: 24, marginBottom: 16 }}>🛡️</div>
-                                  <div style={{ fontSize: 14, color: "#10B981", fontWeight: 900, letterSpacing: 1 }}>ZERO HISTORICAL INCIDENTS</div>
-                                  <div style={{ fontSize: 11, color: "rgba(148,163,184,0.4)", marginTop: 8 }}>Your identity remains isolated from known registry leaks.</div>
-                                </div>
-                              )}
+                              <ExposureTimeline events={aiStory?.overview?.timeline} />
                            </div>
 
                            <AIDecisionCard 
-                              status={aiStory?.overview?.identity_status || (apiData?.riskScore === 0 ? "SAFE" : "CLEAR")} 
-                              reason={aiStory?.overview?.status_reason || "Verified clean across indexed global registries."} 
+                              status={aiStory?.overview?.identity_status} 
+                              reason={aiStory?.overview?.status_reason} 
                            />
                         </div>
                       </div>
@@ -2372,45 +2368,6 @@ export default function BrexiaDashboard() {
           type={modalType} 
           data={threatAiStory}
         />
-
-        <AnimatePresence>
-          {scanDone && (
-            <motion.button
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(162, 89, 255, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setApiData(null); setScanDone(false); setScanning(false); setEmail(""); setActiveTab("overview");
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              style={{
-                position: "fixed",
-                bottom: "40px",
-                right: "40px",
-                padding: "16px 24px",
-                borderRadius: "100px",
-                background: "linear-gradient(135deg, #7C3AED, #4F46E5)",
-                color: "#fff",
-                border: "1px solid rgba(255,255,255,0.2)",
-                boxShadow: "0 10px 40px rgba(0,0,0,0.5)",
-                zIndex: 9999,
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                cursor: "pointer",
-                fontFamily: "'Space Mono', monospace",
-                fontWeight: 900,
-                fontSize: 12,
-                letterSpacing: 1
-              }}
-            >
-              <RefreshCcw size={18} strokeWidth={3} />
-              <span className="restart-label">RESTART SCAN</span>
-            </motion.button>
-          )}
-        </AnimatePresence>
         
       </main>
     </div>
@@ -2435,11 +2392,11 @@ const styles = {
     overflow: "visible"
   },
   glassCard: {
-    background: "linear-gradient(135deg, rgba(162, 89, 255, 0.08), rgba(15, 23, 42, 0.5))",
-    backdropFilter: "blur(40px) saturate(1.4)",
-    border: "1px solid rgba(162, 89, 255, 0.15)",
-    borderRadius: 16,
-    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.03)"
+    background: "rgba(15, 23, 42, 0.4)",
+    backdropFilter: "blur(20px)",
+    border: "1px solid rgba(255, 255, 255, 0.05)",
+    borderRadius: 8,
+    boxShadow: "0 20px 50px rgba(0, 0, 0, 0.3)"
   },
   cardLabel: {
     fontSize: 10,

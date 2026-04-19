@@ -75,9 +75,9 @@ export default function ActionModal({ isOpen, onClose, type, data }) {
           exit={{ scale: 0.9, y: 30, opacity: 0, rotateX: -5 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
           style={{ 
-            width: '100%', maxWidth: 400, background: 'rgba(15, 23, 42, 0.85)', 
-            borderRadius: 24, border: '1px solid rgba(255,255,255,0.08)',
-            padding: 'clamp(20px, 4vw, 32px)', boxShadow: '0 50px 120px rgba(0,0,0,0.9), inset 0 0 20px rgba(124, 58, 237, 0.1)',
+            width: '100%', maxWidth: 540, background: 'rgba(15, 23, 42, 0.8)', 
+            borderRadius: 32, border: '1px solid rgba(255,255,255,0.08)',
+            padding: 'clamp(24px, 6vw, 48px)', boxShadow: '0 50px 120px rgba(0,0,0,0.9), inset 0 0 20px rgba(124, 58, 237, 0.1)',
             position: 'relative', overflow: 'hidden',
             perspective: 1000
           }}
@@ -94,7 +94,7 @@ export default function ActionModal({ isOpen, onClose, type, data }) {
           />
 
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                  <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(124, 58, 237, 0.2)', border: '1px solid rgba(124, 58, 237, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7C3AED' }}>
                     {type === 'generate_password' ? <Fingerprint size={20} /> : <Shield size={20} />}
@@ -140,8 +140,8 @@ export default function ActionModal({ isOpen, onClose, type, data }) {
                     <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(16, 185, 129, 0.1)', border: '2px solid #10B981', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px auto', boxShadow: '0 0 30px rgba(16, 185, 129, 0.3)' }}>
                         <CheckCircle2 color="#10B981" size={48} />
                     </div>
-                    <h2 style={{ fontSize: 24, color: '#fff', fontWeight: 950, marginBottom: 8 }}>NODE SECURED</h2>
-                    <p style={{ color: 'rgba(148, 163, 184, 0.7)', fontSize: 13, marginBottom: 32, lineHeight: 1.5 }}>The identified vulnerability has been neutralized and identity nodes have been re-indexed. Your posture is now stable.</p>
+                    <h2 style={{ fontSize: 32, color: '#fff', fontWeight: 950, marginBottom: 12 }}>NODE SECURED</h2>
+                    <p style={{ color: 'rgba(148, 163, 184, 0.7)', fontSize: 16, marginBottom: 40, lineHeight: 1.6 }}>The identified vulnerability has been neutralized and identity nodes have been re-indexed. Your posture is now stable.</p>
                     <button 
                        onClick={onClose}
                        style={{ background: '#10B981', color: '#000', padding: '16px 40px', borderRadius: 16, border: 'none', fontWeight: 900, fontSize: 14, cursor: 'pointer', transition: '0.2s' }}
@@ -151,13 +151,13 @@ export default function ActionModal({ isOpen, onClose, type, data }) {
                 </motion.div>
             ) : type === 'generate_password' ? (
               <>
-                <h2 style={{ fontSize: 22, color: '#fff', fontWeight: 950, marginBottom: 8, letterSpacing: -0.5 }}>NEURAL KEY SYNTHESIS</h2>
-                <p style={{ fontSize: 13, color: 'rgba(148,163,184,0.7)', lineHeight: 1.5, marginBottom: 24 }}>
+                <h2 style={{ fontSize: 32, color: '#fff', fontWeight: 950, marginBottom: 12, letterSpacing: -0.5 }}>NEURAL KEY SYNTHESIS</h2>
+                <p style={{ fontSize: 16, color: 'rgba(148,163,184,0.7)', lineHeight: 1.6, marginBottom: 40 }}>
                   Generating a high-entropy identity key using neural sprawl compensation. This key is stored in your local enclave.
                 </p>
 
-                <div style={{ background: 'rgba(5, 7, 10, 0.4)', borderRadius: 20, padding: 20, border: '1px solid rgba(255,255,255,0.08)', marginBottom: 24, position: 'relative' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
+                <div style={{ background: 'rgba(5, 7, 10, 0.4)', borderRadius: 24, padding: 32, border: '1px solid rgba(255,255,255,0.08)', marginBottom: 32, position: 'relative' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
                         <div style={{ fontSize: 10, color: '#A855F7', fontWeight: 900, fontFamily: "'Space Mono', monospace" }}>ENTROPY_ANALYSIS</div>
                         <div style={{ fontSize: 10, color: '#A855F7', fontWeight: 900 }}>STRENGTH: {entropy}%</div>
                     </div>
@@ -190,22 +190,22 @@ export default function ActionModal({ isOpen, onClose, type, data }) {
               </>
             ) : type === 'open_2fa_guide' ? (
               <>
-                <h2 style={{ fontSize: 22, color: '#fff', fontWeight: 950, marginBottom: 8 }}>IDENTITY LOCKDOWN</h2>
-                <p style={{ fontSize: 13, color: 'rgba(148,163,184,0.7)', lineHeight: 1.5, marginBottom: 24 }}>
+                <h2 style={{ fontSize: 32, color: '#fff', fontWeight: 950, marginBottom: 12 }}>IDENTITY LOCKDOWN</h2>
+                <p style={{ fontSize: 16, color: 'rgba(148,163,184,0.7)', lineHeight: 1.6, marginBottom: 40 }}>
                    AI identified 2FA missing on this node. We will now simulate a security hardware bind for this identity.
                 </p>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 40 }}>
                    {[
-                     { icon: <RefreshCcw size={14}/>, title: "Invalidate Sessions", desc: "Forcing logout on all correlated devices." },
-                     { icon: <Shield size={14}/>, title: "Apply Virtual MFA", desc: "Generating temporary neural recovery bypass keys." },
-                     { icon: <Lock size={14}/>, title: "Hardware Bind", desc: "Restricting access to your hardware fingerprint." },
+                     { icon: <RefreshCcw size={16}/>, title: "Invalidate Sessions", desc: "Forcing logout on all correlated devices." },
+                     { icon: <Shield size={16}/>, title: "Apply Virtual MFA", desc: "Generating temporary neural recovery bypass keys." },
+                     { icon: <Lock size={16}/>, title: "Hardware Bind", desc: "Restricting access to your specific hardware fingerprint." },
                    ].map((s, i) => (
-                     <div key={i} style={{ display: 'flex', gap: 12, background: 'rgba(255,255,255,0.02)', padding: 12, borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(124,58,237,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7C3AED', flexShrink: 0 }}>{s.icon}</div>
+                     <div key={i} style={{ display: 'flex', gap: 20, background: 'rgba(255,255,255,0.02)', padding: 16, borderRadius: 16, border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(124,58,237,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7C3AED', flexShrink: 0 }}>{s.icon}</div>
                         <div>
-                          <div style={{ fontSize: 13, color: '#fff', fontWeight: 800, marginBottom: 2 }}>{s.title}</div>
-                          <div style={{ fontSize: 11, color: 'rgba(148, 163, 184, 0.6)', lineHeight: 1.3 }}>{s.desc}</div>
+                          <div style={{ fontSize: 15, color: '#fff', fontWeight: 800, marginBottom: 4 }}>{s.title}</div>
+                          <div style={{ fontSize: 13, color: 'rgba(148,163,184,0.6)', lineHeight: 1.4 }}>{s.desc}</div>
                         </div>
                      </div>
                    ))}

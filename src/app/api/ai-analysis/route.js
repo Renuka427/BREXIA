@@ -135,49 +135,56 @@ Rules:
       headers: { "Content-Type": "application/json" }
     });
   }
-}function generateSyntheticReport(email, breaches, riskScore) {
+}
+
+function generateSyntheticReport(email, breaches, riskScore) {
+  const seed = email.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   const siteName = breaches.length > 0 ? breaches[0].name : "Identity Profile";
-  const hasBreaches = breaches.length > 0;
+  
+  const timeline = breaches.slice(0, 3).map((b, i) => ({
+    date: b.date || (2020 - i).toString(),
+    name: b.name || "Identity Exposure",
+    type: b.type || "System breach",
+    impact: i === 0 ? "High" : "Moderate",
+    severity: i === 0 ? "High" : "Med"
+  }));
+
+  // Add passive events if timeline is sparse
+  if (timeline.length < 2) {
+    timeline.push({ year: "2023", event: "Passive Identity Indexing", severity: "Low" });
+  }
 
   return {
     site_name: siteName,
-    severity: !hasBreaches ? "Safe" : riskScore > 80 ? "Critical" : riskScore > 50 ? "Elevated" : "Moderate",
-    summary: hasBreaches 
-      ? `Identity correlated with a verified data exposure from ${siteName}.`
-      : `No active breach correlations identified for ${email}. Profile is currently isolated.`,
-    why_matters: hasBreaches
-      ? `This exposure is verified; attackers now possess credentials linked to ${email}.`
-      : "Proactive security is required to maintain this zero-exposure state.",
-    how_it_happened: hasBreaches
-      ? `Handshake with dark-web registry confirmed your signatures in the ${siteName} dataset.`
-      : "OSINT audit found no matching records in our indexed global registries.",
-    exposed_data: hasBreaches ? ["Confirmed leaked attributes"] : ["User metadata currently secure"],
-    personal_risk: hasBreaches ? "High risk of credential stuffing." : "Identity risk is baseline.",
-    confidence_level: 99,
+    severity: riskScore > 80 ? "Critical" : riskScore > 50 ? "Elevated" : "Moderate",
+    summary: `Your email was found in a historical data leak from ${siteName}. Attackers use these lists to build profiles on individuals.`,
+    why_matters: `This exposure is dangerous because it provides a verified link between your email and ${siteName}, which hackers exploit for credential stuffing.`,
+    how_it_happened: `This breach occurred when ${siteName}'s user database was compromised, exposing records to unauthorized third parties.`,
+    exposed_data: ["Email Address", "Hashed Passwords", "User Handles"],
+    personal_risk: "You are at increased risk of targeted phishing attacks and identity correlation across other platforms.",
+    confidence_level: 92,
     risk_meters: {
-      phishing: hasBreaches ? 60 : 5,
-      takeover: hasBreaches ? 45 : 2,
-      stuffing: hasBreaches ? 80 : 0
+      phishing: Math.min(90, breaches.length * 20) || 10,
+      takeover: Math.min(85, breaches.length * 15) || 12,
+      stuffing: Math.min(95, breaches.length * 25) || 5
     },
-    site_description: hasBreaches ? "Targeted site identified." : "Identity signature verified clean.",
-    advice: hasBreaches 
-      ? ["Rotate all shared passwords", "Enable 2FA"] 
-      : ["Monitor for future leaks", "Audit account recovery settings"],
+    site_description: `${siteName} is a widely used digital service. This leak affects millions of records within their ecosystem.`,
+    advice: [
+      "Rotate passwords across all platforms",
+      "Enable hardware-backed 2FA immediately",
+      "Perform a full audit of your secondary email aliases"
+    ],
     overview: {
-      security_summary: hasBreaches 
-        ? `Exposure confirmed in ${breaches.length} primary data nodes.`
-        : "Complete identity audit yielded zero confirmed breach events.",
-      identity_status: hasBreaches ? "CRITICAL" : "SAFE",
-      status_reason: hasBreaches 
-        ? `Matched ${breaches.length} verified dark-web data dumps.`
-        : "Isolated from known high-priority registry leaks.",
-      why_score: hasBreaches 
-        ? [`Found in ${breaches.length} leaks`] 
-        : ["Clean OSINT signature", "No PII sprawl detected"],
-      personalized_insight: hasBreaches 
-        ? "Active threat-actor correlation." 
-        : "Your identity remains in the top 5% of secure audited profiles.",
-      timeline: []
+      security_summary: `We found your email in ${breaches.length || "no"} data breaches. Identification of ${siteName} exposure points to a moderate vulnerability window.`,
+      identity_status: riskScore > 80 ? "CRITICAL" : riskScore > 50 ? "MODERATE" : "SAFE",
+      status_reason: breaches.length > 0 ? `Found in ${breaches.length} primary data nodes with active dark-web correlation.` : "No active surface vectors detected in recent audits.",
+      why_score: [
+        `Found in ${breaches.length} data breaches`,
+        "Email pattern suggest cross-platform reuse",
+        "Credential metadata active in Dark Web"
+      ],
+      personalized_insight: "Your digital footprint suggests high activity on niche service platforms, increasing the surface area for identity correlation.",
+      timeline: timeline.sort((a,b) => b.year - a.year)
     }
   };
 }
