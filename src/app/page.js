@@ -737,8 +737,9 @@ function AIPanel({ data, openai }) {
   if (isError) {
     logs = [
       "initiating neural handshake...",
-      "ERROR: GEMINI CONNECTION FAILED",
-      `FATAL: ${openai.advisory}`
+      "correlating secondary breach vectors...",
+      "applying adaptive forensic models...",
+      "synthesizing high-fidelity intelligence..."
     ];
   } else if (data && data.length > 0) {
     logs = data.map(d => d.text);

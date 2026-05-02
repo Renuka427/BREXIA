@@ -231,9 +231,26 @@ Return STRICT JSON ONLY:
   }
 }`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    let result;
+    try {
+      // Primary: 1.5 Flash
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", generationConfig: { temperature: 0.85, maxOutputTokens: 1400, responseMimeType: "application/json" } });
+      result = await model.generateContent(prompt);
+    } catch (e) {
+      console.warn("AI Analysis: Gemini 1.5 Flash failed, trying fallback...", e.message);
+      if (e.message.includes("404") || e.message.includes("not found")) {
+        // Fallback: Gemini Pro (older but stable)
+        const fallbackModel = genAI.getGenerativeModel({ 
+          model: "gemini-pro", 
+          generationConfig: { temperature: 0.85, maxOutputTokens: 1400, responseMimeType: "text/plain" }
+        });
+        result = await fallbackModel.generateContent(prompt + "\n\nIMPORTANT: OUTPUT MUST BE RAW JSON ONLY.");
+      } else {
+        throw e;
+      }
+    }
 
+    const text = result.response.text();
     const jsonStart = text.indexOf('{');
     const jsonEnd = text.lastIndexOf('}');
 
@@ -247,7 +264,7 @@ Return STRICT JSON ONLY:
     });
 
   } catch (error) {
-    console.error("AI Analysis Error:", error.message);
+    console.error("AI Analysis Final Error:", error.message);
     // Fallback uses real breach data — never generic
     return new Response(JSON.stringify(generateSyntheticReport(email, breaches, riskScore)), {
       status: 200,
