@@ -3,10 +3,18 @@
 :root {
   --background: #080B11;
   --foreground: #F1F5F9;
-  --accent: #60A5FA;
+  --surface: #0D111A;
+  --surface-soft: #161B22;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.04);
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --accent: #7C3AED;
+  --accent-glow: rgba(124, 58, 237, 0.2);
   --accent-secondary: #C084FC;
   --accent-tertiary: #2DD4BF;
-  --danger: #FF4D6D;
+  --danger: #F43F5E;
   --warning: #FB923C;
   --success: #10B981;
   --glass-bg: rgba(13, 17, 26, 0.6);
@@ -16,6 +24,26 @@
   --mesh-cyan: rgba(6, 182, 212, 0.15);
   --mesh-violet: rgba(139, 92, 246, 0.15);
   --mesh-indigo: rgba(79, 70, 229, 0.15);
+}
+
+.light-mode {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --surface: #FFFFFF;
+  --surface-soft: #F1F5F9;
+  --border: #E2E8F0;
+  --border-soft: #F1F5F9;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --accent: #7C3AED;
+  --accent-glow: rgba(124, 58, 237, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --glass-inner-light: rgba(255, 255, 255, 0.4);
+  --mesh-cyan: rgba(124, 58, 237, 0.05);
+  --mesh-violet: rgba(124, 58, 237, 0.05);
+  --mesh-indigo: rgba(124, 58, 237, 0.05);
 }
 
 @theme inline {
@@ -30,7 +58,7 @@
 }
 
 html, body {
-  background: #0a0a12 !important;
+  background: var(--background) !important;
   color: var(--foreground);
   font-family: 'Syne', sans-serif;
   overflow-x: hidden;
@@ -137,14 +165,13 @@ html, body {
     height: 24px !important;
   }
   .main-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
     padding-top: 24px !important;
     overflow-x: hidden !important;
     width: 100% !important;
-    max-width: 420px !important;
+    max-width: 600px !important;
     margin: 0 auto !important;
-    /* Removed transform: scale(0.95) to allow position: fixed to work correctly on children */
   }
   .dashboard-grid {
     grid-template-columns: 1fr !important;
@@ -272,6 +299,18 @@ html, body {
     padding: 10px 24px !important;
     letter-spacing: 2px !important;
     border-radius: 14px !important;
+  }
+  .overview-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .overview-layout > div {
+    width: 100% !important;
+  }
+  .cyber-card {
+    padding: 20px !important;
+    border-radius: 20px !important;
   }
 }
 

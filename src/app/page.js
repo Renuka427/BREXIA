@@ -79,32 +79,30 @@ function GlobalStyles() {
       @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } 80% { opacity: 0.9; } }
       @keyframes beamDrift { 0% { transform: translateY(-100%); opacity: 0; } 10% { opacity: 0.3; } 90% { opacity: 0.3; } 100% { transform: translateY(100vh); opacity: 0; } }
       @keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
-      @keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-      
       .cursor-blink {
         animation: cursor-blink 1s step-end infinite;
         display: inline-block;
         width: 10px;
         height: 18px;
-        background: #7C3AED;
+        background: var(--accent);
         margin-left: 4px;
         vertical-align: middle;
       }
 
       .scan-line {
         position: fixed; inset: 0; width: 100%; height: 100%;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-        z-index: 2000; background-size: 100% 4px, 3px 100%; pointer-events: none; opacity: 0.1;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(var(--text-primary-rgb, 0,0,0), 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+        z-index: 2000; background-size: 100% 4px, 3px 100%; pointer-events: none; opacity: 0.05;
       }
       .noise-overlay {
         position: fixed; inset: 0; width: 100%; height: 100%;
         background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-        opacity: 0.05; z-index: 2001; pointer-events: none; mix-blend-mode: overlay;
+        opacity: 0.03; z-index: 2001; pointer-events: none; mix-blend-mode: overlay;
       }
       .scanning-beam {
         position: fixed; top: 0; left: 0; width: 100%; height: 2px;
-        background: linear-gradient(to right, transparent, rgba(124, 58, 237, 0.2), #00f0ff, rgba(124, 58, 237, 0.2), transparent);
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        background: linear-gradient(to right, transparent, rgba(124, 58, 237, 0.1), #00f0ff, rgba(124, 58, 237, 0.1), transparent);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
         z-index: 1500; pointer-events: none; animation: beamDrift 8s infinite linear;
       }
       .hud-number {
@@ -118,7 +116,7 @@ function GlobalStyles() {
         width: 48px;
         height: 48px;
         border-radius: 12px;
-        background: linear-gradient(135deg, #7C3AED, #00f0ff);
+        background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -126,17 +124,17 @@ function GlobalStyles() {
         color: white;
         font-size: 18px;
         animation: pulseGlow 2s infinite ease-in-out;
-        box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+        box-shadow: 0 0 30px var(--accent-glow);
       }
       .brand-text {
         font-family: 'Syne', sans-serif;
         font-weight: 900;
         margin: 0;
-        text-shadow: 0 0 20px rgba(255,255,255,0.2);
+        text-shadow: 0 0 20px var(--accent-glow);
         transition: all 0.3s ease;
         font-size: 38px;
         letter-spacing: 0.1em;
-        background: linear-gradient(to bottom, #fff, #7C3AED);
+        background: linear-gradient(to bottom, var(--text-primary), var(--accent));
         WebkitBackgroundClip: text;
         WebkitTextFillColor: transparent;
       }
@@ -161,27 +159,28 @@ function GlobalStyles() {
       h1 { font-size: 32px; }
       h2 { font-size: 24px; }
       p { font-size: 16px; }
-      .text-accent { color: #7C3AED; }
-      .text-danger { color: #F43F5E; }
+      .text-accent { color: var(--accent); }
+      .text-danger { color: var(--danger); }
       .tagline {
         font-size: 13px;
         opacity: 0.6;
-        color: #fff;
+        color: var(--text-primary);
         letter-spacing: 2px;
         margin-top: 6px;
         font-family: 'Space Mono', monospace;
       }
       @keyframes slowPan { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
       @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-      .logo-glow { text-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.2); }
+      .logo-glow { text-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-glow); }
       .hud-grid {
-        background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
         background-size: 30px 30px;
         position: fixed; inset: 0; pointer-events: none; z-index: 0;
+        opacity: 0.3;
       }
       .ai-decision {
-        background: rgba(124, 58, 237, 0.05);
-        border: 1px solid rgba(124, 58, 237, 0.2);
+        background: var(--accent-glow);
+        border: 1px solid var(--accent);
         border-radius: 20px;
         padding: 32px;
         margin-bottom: 24px;
@@ -191,7 +190,7 @@ function GlobalStyles() {
       .ai-decision h3 {
         font-family: 'Space Mono', monospace;
         font-size: 10px;
-        color: #7C3AED;
+        color: var(--accent);
         text-transform: uppercase;
         letter-spacing: 2px;
         margin-bottom: 16px;
@@ -199,16 +198,16 @@ function GlobalStyles() {
       .ai-decision p {
         font-size: 18px !important;
         line-height: 1.6 !important;
-        color: #F1F5F9;
+        color: var(--text-primary);
         font-weight: 600;
         margin: 0;
       }
       .alert-bar {
-        background: linear-gradient(90deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
-        border: 1px solid rgba(239, 68, 68, 0.3);
+        background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+        border: 1px solid rgba(239, 68, 68, 0.2);
         border-radius: 12px;
         padding: 16px 24px;
-        color: #FCA5A5;
+        color: var(--danger);
         font-weight: 800;
         font-size: 14px;
         display: flex;
@@ -218,8 +217,8 @@ function GlobalStyles() {
         animation: neonBreathing 3s infinite;
       }
       .behavior-box {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: var(--surface-soft);
+        border: 1px solid var(--border-soft);
         border-radius: 20px;
         padding: 24px;
         margin-bottom: 32px;
@@ -234,7 +233,7 @@ function GlobalStyles() {
       }
       .behavior-box p {
         font-size: 15px !important;
-        color: #CBD5E1;
+        color: var(--text-secondary);
         margin: 0;
       }
       .quick-actions {
@@ -245,9 +244,9 @@ function GlobalStyles() {
         flex: 1;
         padding: 16px;
         border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #fff;
+        background: var(--surface-soft);
+        border: 1px solid var(--border-soft);
+        color: var(--text-primary);
         font-size: 12px;
         font-weight: 950;
         cursor: pointer;
@@ -256,10 +255,10 @@ function GlobalStyles() {
         letter-spacing: 1px;
       }
       .quick-actions button:hover {
-        background: rgba(124, 58, 237, 0.1);
-        border-color: #7C3AED;
+        background: var(--accent-glow);
+        border-color: var(--accent);
         transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(124, 58, 237, 0.2);
+        box-shadow: 0 5px 20px var(--accent-glow);
       }
       .status-pill {
         display: flex;
@@ -287,7 +286,7 @@ function GlobalStyles() {
       .dot {
         width: 6px;
         height: 6px;
-        background: #a855f7;
+        background: var(--accent);
         border-radius: 50%;
         animation: blink 1s infinite;
       }
@@ -300,7 +299,7 @@ function GlobalStyles() {
         left: 0;
         width: 100%;
         height: 100px;
-        background: linear-gradient(to bottom, transparent, rgba(162, 89, 255, 0.05), transparent);
+        background: linear-gradient(to bottom, transparent, var(--accent-glow), transparent);
         z-index: 2;
         pointer-events: none;
         animation: scanMove 4s linear infinite;
@@ -312,14 +311,14 @@ function GlobalStyles() {
       }
 
       .terminal-window {
-        background: rgba(15, 23, 42, 0.4);
-        border: 1px solid rgba(124, 58, 237, 0.2);
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 16px;
         padding: 32px;
         position: relative;
         overflow: hidden;
         min-height: 400px;
-        box-shadow: inset 0 0 40px rgba(124, 58, 237, 0.05);
+        box-shadow: inset 0 0 40px var(--accent-glow);
       }
 
       .terminal-header {
@@ -327,14 +326,14 @@ function GlobalStyles() {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 24px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid var(--border-soft);
         padding-bottom: 16px;
       }
 
       .terminal-text {
         font-family: 'Space Mono', monospace;
         font-size: 14px;
-        color: #10B981;
+        color: var(--success);
         white-space: pre-wrap;
         line-height: 1.6;
       }
@@ -343,7 +342,7 @@ function GlobalStyles() {
         display: inline-block;
         width: 8px;
         height: 15px;
-        background: #10B981;
+        background: var(--success);
         margin-left: 4px;
         vertical-align: middle;
         animation: cursor-blink 1s step-end infinite;
@@ -361,8 +360,8 @@ function GlobalStyles() {
         animation: feedSlide 0.5s ease-out forwards;
       }
       .probability-card:hover {
-        background: rgba(255, 255, 255, 0.05) !important;
-        border-color: rgba(124, 58, 237, 0.3) !important;
+        background: var(--surface-soft) !important;
+        border-color: var(--accent) !important;
       }
     `}</style>
   );
@@ -371,7 +370,7 @@ function GlobalStyles() {
 // ── Shared UI Components ─────────────────────────────────────────────────────
 function TopNav() {
   return (
-    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "8px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "rgba(5, 7, 10, 0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.08)", transition: "all 0.3s" }}>
+    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "8px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "var(--glass-bg)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--border)", transition: "all 0.3s" }}>
       <button 
         onClick={() => { window.location.reload(); }}
         style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none", cursor: "pointer", padding: 0 }}
@@ -871,9 +870,9 @@ function PieChart({ slices }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
       <svg width="90" height="90" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="#111111" />
+        <circle cx="50" cy="50" r="40" fill="var(--surface-soft)" />
         {paths.map((p, i) => <path key={i} d={p.d} fill={p.color} opacity="0.85" />)}
-        <circle cx="50" cy="50" r="22" fill="#111111" />
+        <circle cx="50" cy="50" r="22" fill="var(--surface)" />
       </svg>
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
         {paths.map((p, i) => (
@@ -1297,11 +1296,11 @@ function ForensicTerminal({ logs = [] }) {
   }, [logs]);
 
   return (
-    <div style={{ background: "#05070A", borderRadius: 16, border: "1px solid rgba(255,255,255,0.05)", padding: 20, fontFamily: "'Space Mono', monospace", height: 200, display: "flex", flexDirection: "column" }}>
+    <div style={{ background: "var(--background)", borderRadius: 16, border: "1px solid var(--border)", padding: 20, fontFamily: "'Space Mono', monospace", height: 200, display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#F43F5E" }} />
-        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FACC15" }} />
-        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981" }} />
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--danger)" }} />
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--warning)" }} />
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--success)" }} />
       </div>
       <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", fontSize: 11, color: "#4ade80", lineHeight: 1.6 }}>
         {logs.map((log, i) => (
@@ -1358,15 +1357,19 @@ function AIDecisionCard({ status, reason }) {
   const color = status === "CRITICAL" ? "var(--danger)" : status === "MODERATE" ? "var(--warning)" : "var(--success)";
 
   return (
-    <div className="cyber-card" style={{ background: "var(--surface-soft)", border: `1px solid ${color}`, borderRadius: 24, padding: 32, position: "relative", overflow: "hidden" }}>
-      <div style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 900, letterSpacing: 2, marginBottom: 16 }}>NEURAL_DECISION_ENGINE</div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-        <div style={{ fontSize: 28, fontWeight: 950, color }}>{status}</div>
-        <div style={{ width: 10, height: 10, borderRadius: "50%", background: color, boxShadow: `0 0 15px ${color}`, animation: "pulse 2s infinite" }} />
+    <div className="cyber-card" style={{ background: "var(--surface-soft)", border: `1px solid ${color}`, borderRadius: 24, padding: "24px 32px", position: "relative", overflow: "hidden" }}>
+      <div style={{ display: "flex", flexDirection: (typeof window !== 'undefined' && window.innerWidth < 768) ? "column" : "row", gap: (typeof window !== 'undefined' && window.innerWidth < 768) ? 12 : 24, alignItems: (typeof window !== 'undefined' && window.innerWidth < 768) ? "flex-start" : "center" }}>
+        <div style={{ flexShrink: 0 }}>
+          <div style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 900, letterSpacing: 2, marginBottom: 8 }}>NEURAL_DECISION</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ fontSize: 28, fontWeight: 950, color }}>{status}</div>
+            <div style={{ width: 10, height: 10, borderRadius: "50%", background: color, boxShadow: `0 0 15px ${color}`, animation: "pulse 2s infinite" }} />
+          </div>
+        </div>
+        <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+          {reason || "Neural model is processing cross-vector telemetry for a final identity determination..."}
+        </p>
       </div>
-      <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
-        {reason || "Neural model is processing cross-vector telemetry for a final identity determination..."}
-      </p>
     </div>
   );
 }
@@ -1375,9 +1378,14 @@ function RiskWhyCard({ score, bullets }) {
   const color = score > 80 ? "var(--danger)" : score > 60 ? "var(--warning)" : "var(--success)";
 
   return (
-    <div className="cyber-card" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 24, padding: "32px" }}>
-       <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
-          <div style={{ position: "relative", width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+    <div className="cyber-card" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 24, padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "24px" : "32px" }}>
+       <div style={{ 
+         display: "flex", 
+         flexDirection: (typeof window !== 'undefined' && window.innerWidth < 768) ? "column" : "row", 
+         alignItems: (typeof window !== 'undefined' && window.innerWidth < 768) ? "flex-start" : "center", 
+         gap: (typeof window !== 'undefined' && window.innerWidth < 768) ? 24 : 32 
+       }}>
+          <div style={{ position: "relative", width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, margin: (typeof window !== 'undefined' && window.innerWidth < 768) ? "0 auto" : "0" }}>
             <svg viewBox="0 0 36 36" style={{ width: "100%", height: "100%", transform: "rotate(-90deg)" }}>
               <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--surface-soft)" strokeWidth="3" />
               <motion.path 
@@ -1390,7 +1398,7 @@ function RiskWhyCard({ score, bullets }) {
             </svg>
             <div style={{ position: "absolute", fontSize: 24, fontWeight: 950, color }}>{score}</div>
           </div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, width: "100%" }}>
              <h4 style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 900, letterSpacing: 2, marginBottom: 16 }}>STRATEGIC_RISK_JUSTIFICATION</h4>
              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
                 {bullets?.map((b, i) => (
@@ -1506,7 +1514,7 @@ function CompactIdentityBar({ email, riskScore }) {
     <motion.div 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="cyber-card"
+      className="cyber-card compact-identity-bar"
       style={{
         display: "flex",
         alignItems: "center",
@@ -1517,20 +1525,22 @@ function CompactIdentityBar({ email, riskScore }) {
         padding: "16px 24px",
         marginBottom: 32,
         width: "100%",
-        boxShadow: "var(--shadow-soft)"
+        boxShadow: "var(--shadow-soft)",
+        flexWrap: "wrap",
+        gap: 16
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
         <div style={{
           width: 44, height: 44, borderRadius: "50%",
-          background: "linear-gradient(135deg, #7C3AED, #0891B2)",
+          background: "linear-gradient(135deg, var(--accent), var(--accent-secondary))",
           display: "flex", alignItems: "center", justifyContent: "center",
-          color: "white"
+          color: "white", flexShrink: 0
         }}>
           <User size={24} />
         </div>
-        <div>
-          <div style={{ fontSize: 16, fontWeight: 800, color: "var(--text-primary)", letterSpacing: -0.5 }}>{email}</div>
+        <div style={{ minWidth: 200 }}>
+          <div style={{ fontSize: 16, fontWeight: 800, color: "var(--text-primary)", letterSpacing: -0.5, wordBreak: "break-all" }}>{email}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 2 }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--success)" }} />
             <span style={{ fontSize: 10, color: "var(--text-secondary)", fontWeight: 900, letterSpacing: 1, fontFamily: "'Space Mono', monospace" }}>IDENTITY_SECURE</span>
@@ -1539,6 +1549,10 @@ function CompactIdentityBar({ email, riskScore }) {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ textAlign: "right" }}>
+          <div style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 800, letterSpacing: 1 }}>RISK_LEVEL</div>
+          <div style={{ fontSize: 18, fontWeight: 950, color: riskScore > 70 ? "var(--danger)" : "var(--success)" }}>{riskScore}%</div>
+        </div>
       </div>
     </motion.div>
   );
@@ -1700,7 +1714,7 @@ function FixingOverlay({ isSuccess = false }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       style={{ 
-        position: "fixed", inset: 0, background: "rgba(5, 7, 10, 0.98)", 
+        position: "fixed", inset: 0, background: "var(--background)", 
         backdropFilter: "blur(24px)", zIndex: 3000, 
         display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, gap: (typeof window !== 'undefined' && window.innerWidth < 768) ? 20 : 32 
       }}
@@ -2606,9 +2620,10 @@ export default function BrexiaDashboard() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
+                      style={{ width: "100%" }}
                     >
-                      <div style={{ maxWidth: 1000, margin: "0 auto", width: "100%" }}>
-                        <div className="cyber-grid" style={{ marginBottom: 24, overflow: "visible" }}>
+                      <div style={{ maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? "100%" : 1000, margin: "0 auto", width: "100%" }}>
+                        <div className="cyber-grid overview-layout" style={{ marginBottom: 24, overflow: "visible", width: "100%" }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
 
@@ -2866,7 +2881,7 @@ export default function BrexiaDashboard() {
 const styles = {
   root: {
     minHeight: "100vh",
-    backgroundColor: "var(--bg)",
+    backgroundColor: "var(--background)",
     color: "var(--text-primary)",
     position: "relative",
     width: "100%",
@@ -2888,8 +2903,8 @@ const styles = {
     alignItems: "center",
     paddingTop: (typeof window !== 'undefined' && window.innerWidth < 768) ? 40 : 80,
     paddingBottom: 80,
-    paddingLeft: (typeof window !== 'undefined' && window.innerWidth < 768) ? 20 : 24,
-    paddingRight: (typeof window !== 'undefined' && window.innerWidth < 768) ? 20 : 24,
+    paddingLeft: (typeof window !== 'undefined' && window.innerWidth < 768) ? 0 : 24,
+    paddingRight: (typeof window !== 'undefined' && window.innerWidth < 768) ? 0 : 24,
     minHeight: "100vh",
     position: "relative",
     zIndex: 1,
