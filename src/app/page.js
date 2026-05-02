@@ -525,7 +525,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              style={{ width: "100%", maxWidth: 850, margin: "0 auto", position: "relative" }}
+              style={{ width: "100%", maxWidth: 1050, margin: "0 auto", position: "relative" }}
             >
               <div className="hero-input-container" style={{ 
                 position: "relative", display: "flex",
@@ -2331,7 +2331,7 @@ export default function BrexiaDashboard() {
         </p>
       </div>
 
-      <div style={{ width: 240, height: 6, background: "var(--surface-soft)", borderRadius: 100, overflow: "hidden", marginTop: 12, border: "1px solid var(--border-soft)", position: "relative" }}>
+      <div style={{ width: 400, maxWidth: "85%", height: 6, background: "var(--surface-soft)", borderRadius: 100, overflow: "hidden", marginTop: 12, border: "1px solid var(--border-soft)", position: "relative" }}>
         <motion.div 
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
@@ -2382,9 +2382,9 @@ export default function BrexiaDashboard() {
           .mobile-email-pills button { font-size: 9px !important; padding: 8px 12px !important; }
           .fluid-hero-title { font-size: clamp(3rem, 11vw, 5.5rem) !important; }
           .hero-tagline { font-size: 0.6rem !important; letter-spacing: 0.2em !important; }
-          .tabs-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; display: flex; justify-content: center; width: 100%; }
-          .tabs-wrapper > div { min-width: max-content; max-width: 90%; margin: 0 auto; }
-          .main-container { padding-left: 32px !important; padding-right: 32px !important; }
+          .tabs-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .tabs-wrapper > div { min-width: max-content; }
+          .main-container { padding-left: 20px !important; padding-right: 20px !important; }
           .cyber-card { border-radius: 16px !important; }
           .cyber-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
         }
@@ -2545,12 +2545,11 @@ export default function BrexiaDashboard() {
                 maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? 380 : 550,
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
-                borderRadius: (typeof window !== 'undefined' && window.innerWidth < 768) ? "32px 32px 0 0" : "28px",
-                padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "24px 24px calc(24px + env(safe-area-inset-bottom)) 24px" : "20px 32px 32px 32px",
+                borderRadius: (typeof window !== 'undefined' && window.innerWidth < 768) ? "28px 28px 0 0" : "28px",
+                padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "20px 20px env(safe-area-inset-bottom, 20px) 20px" : "20px 32px 32px 32px",
                 boxShadow: "0 25px 60px rgba(0,0,0,0.5)",
                 zIndex: 1,
-                overflow: "hidden",
-                marginBottom: (typeof window !== 'undefined' && window.innerWidth < 768) ? 0 : 20
+                overflow: "hidden"
               }}
             >
               {/* iOS Drag Handle */}
@@ -2679,9 +2678,9 @@ export default function BrexiaDashboard() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
                     >
-                      <div className="cyber-grid" style={{ marginBottom: 24, overflow: "visible" }}>
+                      <div style={{ maxWidth: 900, margin: "0 auto", width: "100%" }}>
+                        <div className="cyber-grid" style={{ marginBottom: 24, overflow: "visible" }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
 
@@ -2710,7 +2709,8 @@ export default function BrexiaDashboard() {
                            />
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
+                  </motion.div>
                   )}
 
                   {activeTab === "threats" && (
