@@ -1660,13 +1660,13 @@ function SecurityAlertPanel({ data, onAction }) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: window.innerWidth < 768 ? 24 : 40 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: (typeof window !== 'undefined' && window.innerWidth < 768) ? 24 : 40 }}>
       
       {/* SECTION: DEFENSE ACTIONS (Primary Focus) */}
-      <div style={{ background: "var(--surface)", border: "1px solid var(--border)", padding: window.innerWidth < 768 ? "24px" : "32px", borderRadius: 24, boxShadow: "var(--shadow-medium)", display: "flex", flexDirection: "column", gap: 20 }}>
+      <div style={{ background: "var(--surface)", border: "1px solid var(--border)", padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "24px" : "32px", borderRadius: 24, boxShadow: "var(--shadow-medium)", display: "flex", flexDirection: "column", gap: 20 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <ShieldAlert size={20} color="var(--accent)" />
-          <h3 style={{ fontSize: window.innerWidth < 768 ? 12 : 14, color: "var(--text-primary)", fontWeight: 950, letterSpacing: 1, margin: 0 }}>ACTIVE DEFENSE PROTOCOLS</h3>
+          <h3 style={{ fontSize: (typeof window !== 'undefined' && window.innerWidth < 768) ? 12 : 14, color: "var(--text-primary)", fontWeight: 950, letterSpacing: 1, margin: 0 }}>ACTIVE DEFENSE PROTOCOLS</h3>
         </div>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
            <button onClick={() => onAction('secure_email')} style={{ flex: 1, minWidth: 140, padding: "16px", background: "var(--surface-soft)", border: "1px solid var(--border-soft)", borderRadius: 12, color: "var(--text-primary)", fontSize: 11, fontWeight: 950, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, transition: "all 0.2s" }}>
@@ -1683,7 +1683,7 @@ function SecurityAlertPanel({ data, onAction }) {
 
 
 
-      <div className="cyber-card" style={{ padding: window.innerWidth < 768 ? "24px" : "32px" }}>
+      <div className="cyber-card" style={{ padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "24px" : "32px" }}>
          <PasswordLab />
       </div>
     </div>
@@ -1701,7 +1701,7 @@ function FixingOverlay({ isSuccess = false }) {
       style={{ 
         position: "fixed", inset: 0, background: "rgba(5, 7, 10, 0.98)", 
         backdropFilter: "blur(24px)", zIndex: 3000, 
-        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, gap: window.innerWidth < 768 ? 20 : 32 
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, gap: (typeof window !== 'undefined' && window.innerWidth < 768) ? 20 : 32 
       }}
     >
       <div className="hud-grid" style={{ opacity: 0.15 }} />
@@ -1730,11 +1730,11 @@ function FixingOverlay({ isSuccess = false }) {
             </motion.div>
 
             <div style={{ textAlign: "center", width: "100%", maxWidth: "80vw" }}>
-              <h2 style={{ fontSize: window.innerWidth < 768 ? 14 : 24, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 4, margin: "0 0 8px", fontFamily: "'Syne', sans-serif" }}>DEFENSE_ENGAGED</h2>
+              <h2 style={{ fontSize: (typeof window !== 'undefined' && window.innerWidth < 768) ? 14 : 24, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 4, margin: "0 0 8px", fontFamily: "'Syne', sans-serif" }}>DEFENSE_ENGAGED</h2>
               <p style={{ fontSize: 9, color: "var(--text-secondary)", fontFamily: "'Space Mono', monospace", letterSpacing: 1 }}>REMEDIATING...</p>
             </div>
 
-            <div style={{ width: window.innerWidth < 768 ? 240 : 300, height: 4, background: "rgba(255,255,255,0.05)", borderRadius: 100, overflow: "hidden", border: "1px solid var(--border-soft)", position: "relative" }}>
+            <div style={{ width: (typeof window !== 'undefined' && window.innerWidth < 768) ? 240 : 300, height: 4, background: "rgba(255,255,255,0.05)", borderRadius: 100, overflow: "hidden", border: "1px solid var(--border-soft)", position: "relative" }}>
               <motion.div 
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
@@ -1759,8 +1759,8 @@ function FixingOverlay({ isSuccess = false }) {
               <Check size={48} color="var(--success)" />
             </motion.div>
             <div style={{ padding: "0 20px" }}>
-              <h2 style={{ fontSize: window.innerWidth < 768 ? 20 : 28, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 2, margin: "0 0 12px", fontFamily: "'Syne', sans-serif" }}>SUCCESS</h2>
-              <p style={{ fontSize: window.innerWidth < 768 ? 12 : 13, color: "var(--text-secondary)", lineHeight: 1.6, maxWidth: 300, margin: "0 auto" }}>Identity Shield initialized. Check email for audit.</p>
+              <h2 style={{ fontSize: (typeof window !== 'undefined' && window.innerWidth < 768) ? 20 : 28, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 2, margin: "0 0 12px", fontFamily: "'Syne', sans-serif" }}>SUCCESS</h2>
+              <p style={{ fontSize: (typeof window !== 'undefined' && window.innerWidth < 768) ? 12 : 13, color: "var(--text-secondary)", lineHeight: 1.6, maxWidth: 300, margin: "0 auto" }}>Identity Shield initialized. Check email for audit.</p>
             </div>
             <div style={{ fontSize: 10, color: "var(--success)", fontWeight: 900, fontFamily: "'Space Mono', monospace", letterSpacing: 3, background: "rgba(16, 185, 129, 0.1)", padding: "8px 20px", borderRadius: 100, border: "1px solid rgba(16, 185, 129, 0.3)" }}>
               STATUS: SECURED
@@ -2374,7 +2374,7 @@ export default function BrexiaDashboard() {
         .light-mode .hero-input-field input::placeholder { color: #94A3B8 !important; }
         /* MOBILE RESPONSIVE */
         @media (max-width: 640px) {
-          .hero-main-wrapper { padding: 0 16px !important; min-height: 85vh !important; }
+          .hero-main-wrapper { padding: 0 24px !important; min-height: 85vh !important; }
           .hero-input-container { flex-direction: column !important; border-radius: 16px !important; padding: 12px !important; }
           .hero-scan-btn { width: 100% !important; padding: 18px 24px !important; border-radius: 12px !important; font-size: 14px !important; margin-top: 8px; }
           .hero-input-field input { padding: 18px 20px !important; font-size: 15px !important; letter-spacing: 1px !important; }
@@ -2382,11 +2382,11 @@ export default function BrexiaDashboard() {
           .mobile-email-pills button { font-size: 9px !important; padding: 8px 12px !important; }
           .fluid-hero-title { font-size: clamp(3rem, 11vw, 5.5rem) !important; }
           .hero-tagline { font-size: 0.6rem !important; letter-spacing: 0.2em !important; }
-          .tabs-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-          .tabs-wrapper > div { min-width: max-content; }
-          .main-container { padding-left: 12px !important; padding-right: 12px !important; }
+          .tabs-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; display: flex; justify-content: center; width: 100%; }
+          .tabs-wrapper > div { min-width: max-content; max-width: 90%; margin: 0 auto; }
+          .main-container { padding-left: 32px !important; padding-right: 32px !important; }
           .cyber-card { border-radius: 16px !important; }
-          .cyber-grid { grid-template-columns: 1fr !important; }
+          .cyber-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
         }
         @media (max-width: 480px) {
           .hero-main-wrapper { padding: 0 12px !important; }
@@ -2528,28 +2528,29 @@ export default function BrexiaDashboard() {
 
       <AnimatePresence>
         {isSettingsOpen && (
-          <div style={{ position: "fixed", inset: 0, zIndex: 2000, display: "flex", alignItems: window.innerWidth < 768 ? "flex-end" : "center", justifyContent: "center", paddingBottom: window.innerWidth < 768 ? "32px" : 0 }}>
+          <div style={{ position: "fixed", inset: 0, zIndex: 2000, display: "flex", alignItems: (typeof window !== 'undefined' && window.innerWidth < 768) ? "flex-end" : "center", justifyContent: "center", paddingBottom: 0 }}>
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setIsSettingsOpen(false)}
               style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.8)" }} 
             />
             <motion.div 
-              initial={window.innerWidth < 768 ? { y: "100%" } : { scale: 0.9, opacity: 0, y: 20 }}
-              animate={window.innerWidth < 768 ? { y: 0 } : { scale: 1, opacity: 1, y: 0 }}
-              exit={window.innerWidth < 768 ? { y: "100%" } : { scale: 0.9, opacity: 0, y: 20 }}
+              initial={(typeof window !== 'undefined' && window.innerWidth < 768) ? { y: "100%" } : { scale: 0.9, opacity: 0, y: 20 }}
+              animate={(typeof window !== 'undefined' && window.innerWidth < 768) ? { y: 0 } : { scale: 1, opacity: 1, y: 0 }}
+              exit={(typeof window !== 'undefined' && window.innerWidth < 768) ? { y: "100%" } : { scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
               style={{
                 position: "relative",
                 width: "100%",
-                maxWidth: window.innerWidth < 768 ? 420 : 550,
+                maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? 380 : 550,
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
-                borderRadius: "28px",
-                padding: window.innerWidth < 768 ? "20px" : "20px 32px 32px 32px",
+                borderRadius: (typeof window !== 'undefined' && window.innerWidth < 768) ? "32px 32px 0 0" : "28px",
+                padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "24px 24px calc(24px + env(safe-area-inset-bottom)) 24px" : "20px 32px 32px 32px",
                 boxShadow: "0 25px 60px rgba(0,0,0,0.5)",
                 zIndex: 1,
-                overflow: "hidden"
+                overflow: "hidden",
+                marginBottom: (typeof window !== 'undefined' && window.innerWidth < 768) ? 0 : 20
               }}
             >
               {/* iOS Drag Handle */}
