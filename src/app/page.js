@@ -2462,7 +2462,7 @@ export default function BrexiaDashboard() {
       <ParticleField />
 
       {/* TOP-RIGHT SETTINGS TRIGGER */}
-      <div style={{ position: "fixed", top: 12, right: 12, zIndex: 1200 }}>
+      <div style={{ position: "fixed", top: 10, right: 12, zIndex: 1200 }}>
         <motion.button 
           whileHover={{ rotate: 90, scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
