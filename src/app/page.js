@@ -2387,6 +2387,46 @@ export default function BrexiaDashboard() {
           .main-container { padding-left: 20px !important; padding-right: 20px !important; }
           .cyber-card { border-radius: 16px !important; }
           .cyber-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          
+          /* Settings Sheet Mobile Fix */
+          .settings-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 0;
+          }
+          
+          .settings-sheet {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 20px 32px 32px 32px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            z-index: 1;
+            overflow: hidden;
+            transform-origin: center;
+          }
+
+          @media (max-width: 768px) {
+            .settings-overlay {
+              align-items: flex-end !important;
+              padding-bottom: 0 !important;
+            }
+            .settings-sheet {
+              max-width: 100% !important;
+              border-radius: 28px 28px 0 0 !important;
+              padding: 20px 20px calc(24px + env(safe-area-inset-bottom, 24px)) 20px !important;
+              margin-bottom: 0 !important;
+              bottom: 0 !important;
+              border-bottom: none !important;
+            }
+          }
         }
         @media (max-width: 480px) {
           .hero-main-wrapper { padding: 0 12px !important; }
@@ -2426,30 +2466,18 @@ export default function BrexiaDashboard() {
 
       <AnimatePresence>
         {isSettingsOpen && (
-          <div style={{ position: "fixed", inset: 0, zIndex: 2000, display: "flex", alignItems: (typeof window !== 'undefined' && window.innerWidth < 768) ? "flex-end" : "center", justifyContent: "center", paddingBottom: 0 }}>
+          <div className="settings-overlay">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setIsSettingsOpen(false)}
-              style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.8)" }} 
+              style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.85)", backdropFilter: "blur(4px)" }} 
             />
             <motion.div 
+              className="settings-sheet"
               initial={(typeof window !== 'undefined' && window.innerWidth < 768) ? { y: "100%" } : { scale: 0.9, opacity: 0, y: 20 }}
               animate={(typeof window !== 'undefined' && window.innerWidth < 768) ? { y: 0 } : { scale: 1, opacity: 1, y: 0 }}
               exit={(typeof window !== 'undefined' && window.innerWidth < 768) ? { y: "100%" } : { scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
-              style={{
-                position: "relative",
-                width: "100%",
-                maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? 420 : 550,
-                bottom: (typeof window !== 'undefined' && window.innerWidth < 768) ? 0 : "auto",
-                background: "var(--surface)",
-                border: "1px solid var(--border)",
-                borderRadius: (typeof window !== 'undefined' && window.innerWidth < 768) ? "28px 28px 0 0" : "28px",
-                padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "20px 20px calc(20px + env(safe-area-inset-bottom, 20px)) 20px" : "20px 32px 32px 32px",
-                boxShadow: "0 25px 60px rgba(0,0,0,0.5)",
-                zIndex: 1,
-                overflow: "hidden"
-              }}
             >
               {/* iOS Drag Handle */}
               <div style={{ width: 36, height: 5, background: "var(--text-muted)", borderRadius: 10, margin: "0 auto 24px auto", opacity: 0.4 }} />

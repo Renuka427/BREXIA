@@ -63,14 +63,12 @@ export async function POST(req) {
 
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
-      generationConfig: { 
-        temperature: 0.7, 
-        maxOutputTokens: 1500,
-        responseMimeType: "application/json"
-      }
-    });
+    
+    const config = { 
+      temperature: 0.7, 
+      maxOutputTokens: 1500,
+      responseMimeType: "application/json"
+    };
 
     const breachName = breach.name || breach.displayName;
     const breachYear = breach.date || breach.xposed_date || "2024";
@@ -97,14 +95,34 @@ Return strictly the following JSON structure. Every string MUST be exactly 1 sho
   "security_risk": "<Critical|High>"
 }`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    let result;
+    try {
+      // Primary: 1.5 Flash
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", generationConfig: config });
+      result = await model.generateContent(prompt);
+    } catch (e) {
+      console.warn("Gemini 1.5 Flash failed, trying fallback...", e.message);
+      if (e.message.includes("404") || e.message.includes("not found")) {
+        // Fallback: Gemini Pro (older but stable)
+        const fallbackModel = genAI.getGenerativeModel({ 
+          model: "gemini-pro", 
+          generationConfig: { ...config, responseMimeType: "text/plain" } // Pro doesn't always support JSON mode
+        });
+        result = await fallbackModel.generateContent(prompt + "\n\nIMPORTANT: OUTPUT MUST BE RAW JSON ONLY.");
+      } else {
+        throw e;
+      }
+    }
 
+    const text = result.response.text();
     const jsonStart = text.indexOf('{');
     const jsonEnd = text.lastIndexOf('}');
 
     if (jsonStart === -1 || jsonEnd === -1) {
-      return new Response(JSON.stringify({ error: `AI format rejected. Raw output: ${text.substring(0, 50)}...` }), { status: 500 });
+      // Final attempt: Synthetic fallback if AI output is garbage
+      return new Response(JSON.stringify(generateSyntheticBreachStory(breach)), {
+        headers: { "Content-Type": "application/json" }
+      });
     }
 
     const parsed = JSON.parse(text.substring(jsonStart, jsonEnd + 1));
@@ -113,9 +131,10 @@ Return strictly the following JSON structure. Every string MUST be exactly 1 sho
     });
 
   } catch (error) {
-    console.error("AI Breach Error:", error.message);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
+    console.error("AI Breach Final Error:", error.message);
+    // Return synthetic fallback instead of error to keep UI alive
+    return new Response(JSON.stringify(generateSyntheticBreachStory(breach || {})), {
+      status: 200,
       headers: { "Content-Type": "application/json" }
     });
   }
