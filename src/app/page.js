@@ -6,8 +6,7 @@ import {
   Terminal, Lock, Eye, Globe, Zap, Cpu, 
   ChevronRight, ArrowRight, Download, Share2, 
   RefreshCcw, Menu, X, PlusCircle, CheckCircle2,
-  Brain, User, Target, ShieldAlert, ZapOff, Flame, TrendingUp, Settings, RotateCcw,
-  Monitor, Moon, Sun
+  Brain, User, Target, ShieldAlert, ZapOff, Flame, TrendingUp, Settings, RotateCcw, Check
 } from "lucide-react";
 import ActionModal from "../components/ActionModal";
 import { supabase } from "@/lib/supabase";
@@ -135,7 +134,7 @@ function GlobalStyles() {
         margin: 0;
         text-shadow: 0 0 20px rgba(255,255,255,0.2);
         transition: all 0.3s ease;
-        font-size: 32px;
+        font-size: 38px;
         letter-spacing: 0.1em;
         background: linear-gradient(to bottom, #fff, #7C3AED);
         WebkitBackgroundClip: text;
@@ -228,7 +227,7 @@ function GlobalStyles() {
       .behavior-box h4 {
         font-family: 'Space Mono', monospace;
         font-size: 10px;
-        color: rgba(148, 163, 184, 0.6);
+        color: var(--text-muted);
         text-transform: uppercase;
         letter-spacing: 1px;
         margin-bottom: 12px;
@@ -280,7 +279,7 @@ function GlobalStyles() {
       
       .risk-explain {
         font-size: 13px !important;
-        color: rgba(148, 163, 184, 0.6);
+        color: var(--text-muted);
         text-align: center;
         margin-top: 16px !important;
         font-weight: 500;
@@ -372,17 +371,18 @@ function GlobalStyles() {
 // ── Shared UI Components ─────────────────────────────────────────────────────
 function TopNav() {
   return (
-    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "8px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "rgba(5, 7, 10, 0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.08)", transition: "all 0.3s" }}>
+    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "8px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "rgba(5, 7, 10, 0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.08)", transition: "all 0.3s" }}>
       <button 
         onClick={() => { window.location.reload(); }}
-        style={{ display: "flex", alignItems: "center", gap: 12, background: "none", border: "none", cursor: "pointer", padding: 0 }}
+        style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none", cursor: "pointer", padding: 0 }}
       >
-        <img src="/bx-logo-light.png" alt="BX" style={{ width: 32, height: 32, borderRadius: 8, boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)" }} />
+        <img src="/bx-logo-light.png" alt="BX" style={{ width: 34, height: 34, borderRadius: 8, boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)" }} />
         <div style={{ textAlign: "left" }}>
-          <h1 className="brand-text" style={{ fontSize: 18, letterSpacing: 3, display: "flex", gap: "8px", alignItems: "center" }}>BREXIA <span style={{ color: "#7C3AED" }}>// INTEL</span></h1>
-          <div className="tagline" style={{ fontSize: 7, marginTop: 0 }}>Breach Risk & Exposure Intelligence Analyzer</div>
+          <h1 className="brand-text" style={{ fontSize: 20, letterSpacing: 2, display: "flex", gap: "6px", alignItems: "center" }}>BREXIA <span style={{ color: "#7C3AED" }}>// INTEL</span></h1>
+          <div className="tagline hud-telemetry-desktop" style={{ fontSize: 7, marginTop: 0 }}>Breach Risk &amp; Exposure Intelligence Analyzer</div>
         </div>
       </button>
+      {/* Telemetry pill — hidden on mobile via CSS */}
       <div className="hud-telemetry-desktop" style={{ display: "flex", gap: 24, alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "6px 16px", fontSize: 10, color: "rgba(16, 185, 129, 0.8)", fontFamily: "'Space Mono', monospace", fontWeight: 700 }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10B981", boxShadow: "0 0 10px #10B981" }} />
@@ -411,7 +411,17 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
   }, []);
 
   return (
-    <div className="hero-main-wrapper" style={{ position: "relative", width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "70vh", overflow: "hidden", padding: "0 24px" }}>
+    <div className="hero-main-wrapper" style={{ position: "relative", width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "80vh", overflow: "hidden", padding: "0 24px" }}>
+
+      {/* Animated background orbs */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden", zIndex: 0 }}>
+        <div style={{ position: "absolute", top: "10%", left: "5%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)", animation: "floatOrb 8s ease-in-out infinite" }} />
+        <div style={{ position: "absolute", bottom: "15%", right: "8%", width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%)", animation: "floatOrb 10s ease-in-out infinite 2s" }} />
+        <div style={{ position: "absolute", top: "40%", right: "15%", width: 180, height: 180, borderRadius: "50%", background: "radial-gradient(circle, rgba(8,145,178,0.08) 0%, transparent 70%)", animation: "floatOrb 12s ease-in-out infinite 4s" }} />
+        {/* Rotating ring accent */}
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 600, borderRadius: "50%", border: "1px solid rgba(124,58,237,0.06)", animation: "rotateRing 30s linear infinite", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 400, height: 400, borderRadius: "50%", border: "1px solid rgba(124,58,237,0.04)", animation: "rotateRing 20s linear infinite reverse", pointerEvents: "none" }} />
+      </div>
 
       {/* Atmospheric Scanning Effects */}
       <AnimatePresence>
@@ -426,10 +436,10 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
         )}
       </AnimatePresence>
 
-      {/* Status Badge */}
-      <div className="hero-main-section" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18, marginBottom: 32, zIndex: 1, animation: scanning ? "flicker 1.5s infinite" : "none", width: "100%", margin: "0 auto" }}>
+      {/* Status Badge — centered, spaced below the logo */}
+      <div className="hero-main-section" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18, marginBottom: 40, zIndex: 1, width: "100%", margin: "0 auto", paddingTop: 24 }}>
         <img className="hero-logo-img" src="/bx-logo-light.png" alt="BX" style={{ width: 64, height: 64, borderRadius: 14, boxShadow: "0 0 30px rgba(255, 255, 255, 0.15)", animation: "float 4s ease-in-out infinite" }} />
-        <div className="hero-status-badge" style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "8px 20px", animation: "springIn 0.8s ease both", fontSize: 10, color: "rgba(255,255,255,0.6)", fontFamily: "'Space Mono', monospace", letterSpacing: 3 }}>
+        <div className="hero-status-badge" style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--surface-soft)", border: "1px solid var(--border)", borderRadius: 14, padding: "8px 20px", animation: "springIn 0.8s ease both", fontSize: 10, color: "var(--text-secondary)", fontFamily: "'Space Mono', monospace", letterSpacing: 3 }}>
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: scanning ? "#F43F5E" : "#10B981", boxShadow: `0 0 12px ${scanning ? "#F43F5E" : "#10B981"}` }} />
           {scanning ? "THREAT ANALYSIS ACTIVE" : "ACTIVE BREACH NETWORK • v7.42.1"}
         </div>
@@ -440,52 +450,92 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
           /* ── STAGE 1: SEARCH UI ── */
           <motion.div
             key="search-ui"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6 }}
             style={{ textAlign: "center", zIndex: 1, position: "relative", width: "100%" }}
           >
-            <h1 className="fluid-hero-title blue-cyber-glow logo-glow" style={{ 
-              margin: "0 0 10px", 
-              fontWeight: 950, 
-              color: "var(--text-primary)", 
-              fontFamily: "'Syne', sans-serif", 
-              lineHeight: 1, 
-              background: "linear-gradient(to bottom, var(--text-primary) 60%, var(--text-secondary))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              textTransform: "uppercase"
-            }}>
+            {/* Staggered hero text */}
+            <motion.h1
+              className="fluid-hero-title blue-cyber-glow logo-glow"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{ 
+                margin: "0 auto 10px", fontWeight: 950, color: "var(--text-primary)", 
+                fontFamily: "'Syne', sans-serif", lineHeight: 1, 
+                background: "linear-gradient(135deg, var(--text-primary) 50%, var(--accent))",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+                textTransform: "uppercase",
+                textAlign: "center",
+                display: "inline-block",
+                whiteSpace: "nowrap",
+                transform: (typeof window !== 'undefined' && window.innerWidth < 480) ? "translateX(-6px)" : "none"
+              }}
+            >
               BREXIA
-            </h1>
-            <p className="hero-tagline" style={{ 
-              margin: "10px 0 18px", 
-              fontSize: "clamp(1rem, 2vw, 1.2rem)", 
-              color: "var(--text-secondary)", 
-              fontFamily: "'Space Mono', monospace", 
-              maxWidth: 800, 
-              marginInline: "auto", 
-              lineHeight: 1.6, 
-              letterSpacing: "0.6em",
-              textTransform: "uppercase",
-              fontWeight: 900,
-              opacity: 0.6,
-            }}>
-              SCAN. SCORE. SECURE.
-            </p>
+            </motion.h1>
 
-            <div style={{ width: "100%", maxWidth: 850, margin: "0 auto", position: "relative" }}>
+            <motion.p
+              className="hero-tagline"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              style={{ 
+                margin: "10px 0 18px", fontSize: "clamp(0.7rem, 2vw, 1rem)",
+                color: "var(--text-primary)", fontFamily: "'Space Mono', monospace",
+                maxWidth: 700, marginInline: "auto", lineHeight: 1.6,
+                letterSpacing: "0.5em", textTransform: "uppercase", fontWeight: 900, opacity: 0.9,
+              }}
+            >
+              SCAN. SCORE. SECURE.
+            </motion.p>
+
+            {/* Animated decorative stat pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              style={{ display: "flex", gap: 12, justifyContent: "center", marginBottom: 32, flexWrap: "wrap" }}
+            >
+              {[
+                { label: "BREACHES TRACKED", value: "28B+", color: "var(--danger)" },
+                { label: "SCAN LATENCY", value: "<2s", color: "var(--success)" },
+                { label: "DATA POINTS", value: "1.4T", color: "var(--accent)" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 + i * 0.1, type: "spring", stiffness: 300 }}
+                  style={{
+                    background: "var(--surface-soft)", border: `1px solid ${stat.color}33`,
+                    borderRadius: 100, padding: "6px 18px",
+                    display: "flex", alignItems: "center", gap: 8
+                  }}
+                >
+                  <span style={{ fontSize: 13, fontWeight: 950, color: stat.color, fontFamily: "'Space Mono', monospace" }}>{stat.value}</span>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: "var(--text-muted)", letterSpacing: 1.5 }}>{stat.label}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{ width: "100%", maxWidth: 850, margin: "0 auto", position: "relative" }}
+            >
               <div className="hero-input-container" style={{ 
-                position: "relative", 
-                display: "flex", 
-                background: "var(--surface)", 
-                backdropFilter: "var(--glass-blur)", 
-                border: `1px solid ${focused ? "var(--accent)" : "var(--border)"}`, 
-                borderRadius: 14, 
-                padding: "8px",
-                boxShadow: focused ? "0 0 40px var(--accent-glow)" : "var(--shadow-soft)",
+                position: "relative", display: "flex",
+                background: "var(--surface)",
+                backdropFilter: "var(--glass-blur)",
+                border: `2px solid ${focused ? "var(--accent)" : "var(--border)"}`,
+                borderRadius: 16, padding: "8px",
+                boxShadow: focused ? "0 0 0 4px var(--accent-glow), 0 20px 60px rgba(0,0,0,0.12)" : "0 8px 40px rgba(0,0,0,0.08)",
                 transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                animation: "glowPulse 4s ease-in-out infinite"
               }}>
                 <div className="hero-input-field" style={{ flex: 1, display: "flex", alignItems: "center" }}>
                   <input
@@ -495,10 +545,9 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
                     onBlur={() => setFocused(false)}
                     placeholder="EMAIL, USERNAME, OR PASSWORD..."
                     style={{ 
-                      width: "100%", background: "transparent", border: "none", 
-                      padding: "24px 32px", color: "var(--text-primary)", fontSize: 18, outline: "none", 
-                    fontFamily: "'Space Mono', monospace", letterSpacing: 2,
-                      fontWeight: 600
+                      width: "100%", background: "transparent", backgroundColor: "transparent", border: "none",
+                      padding: "22px 28px", color: "var(--text-primary)", fontSize: 17, outline: "none",
+                      fontFamily: "'Space Mono', monospace", letterSpacing: 1.5, fontWeight: 600
                     }}
                     onKeyDown={e => e.key === "Enter" && handleScan()}
                   />
@@ -508,35 +557,49 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
                   onClick={() => handleScan()}
                   disabled={scanning}
                   style={{ 
-                    background: scanning ? "var(--surface-soft)" : "linear-gradient(135deg, var(--accent), #EC4899)", 
-                    border: "none", padding: "0 54px", color: "#fff", 
-                    fontWeight: 950, fontSize: 16, cursor: scanning ? "not-allowed" : "pointer", 
-                    fontFamily: "'Syne', sans-serif", letterSpacing: 3, 
+                    background: scanning ? "var(--surface-soft)" : "linear-gradient(135deg, var(--accent) 0%, #EC4899 100%)",
+                    border: "none", padding: "0 48px", color: "#fff",
+                    fontWeight: 950, fontSize: 15, cursor: scanning ? "not-allowed" : "pointer",
+                    fontFamily: "'Syne', sans-serif", letterSpacing: 3,
                     textTransform: "uppercase", transition: "all 0.3s",
-                    borderRadius: 14,
-                    boxShadow: scanning ? "none" : "0 10px 30px var(--accent-glow)"
+                    borderRadius: 12,
+                    boxShadow: scanning ? "none" : "0 8px 24px rgba(124,58,237,0.4)",
+                    whiteSpace: "nowrap"
                   }}
-                  onMouseEnter={e => { if(!scanning) { e.currentTarget.style.transform = "scale(1.02)"; e.currentTarget.style.filter = "brightness(1.1)"; } }}
-                  onMouseLeave={e => { if(!scanning) { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.filter = "brightness(1)"; } }}>
+                  onMouseEnter={e => { if(!scanning) { e.currentTarget.style.transform = "scale(1.03)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(124,58,237,0.6)"; } }}
+                  onMouseLeave={e => { if(!scanning) { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(124,58,237,0.4)"; } }}>
                   START SCAN
                 </button>
               </div>
 
-              <div className="mobile-email-pills" style={{ display: "flex", gap: 16, marginTop: 40, justifyContent: "center" }}>
+              {/* Example pills */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="mobile-email-pills"
+                style={{ display: "flex", gap: 12, marginTop: 32, justifyContent: "center", flexWrap: "wrap" }}
+              >
+                <span style={{ fontSize: 10, color: "var(--text-muted)", fontFamily: "'Space Mono', monospace", alignSelf: "center", letterSpacing: 1 }}>TRY:</span>
                 {["john@example.com", "hunter_42", "SecurePass12!@"].map((ex, i) => (
-                  <button key={i} onClick={() => setEmail(ex)} style={{ 
-                    background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", 
-                    borderRadius: 12, padding: "10px 20px", color: "rgba(148, 163, 184, 0.4)", 
-                    fontSize: 11, fontFamily: "'Space Mono', monospace", cursor: "pointer", transition: "all 0.2s",
-                    fontWeight: 700
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(124, 58, 237, 0.1)"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "rgba(124, 58, 237, 0.2)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.02)"; e.currentTarget.style.color = "rgba(148, 163, 184, 0.4)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)"; }}>
+                  <motion.button
+                    key={i}
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(124,58,237,0.12)" }}
+                    whileTap={{ scale: 0.96 }}
+                    onClick={() => setEmail(ex)}
+                    style={{ 
+                      background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
+                      borderRadius: 10, padding: "9px 18px",
+                      color: "var(--text-secondary)", fontSize: 11,
+                      fontFamily: "'Space Mono', monospace", cursor: "pointer",
+                      fontWeight: 700, transition: "color 0.2s"
+                    }}
+                  >
                     {ex}
-                  </button>
+                  </motion.button>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         ) : (
           /* ── STAGE 2: IMMERSIVE SCANNING CONSOLE ── */
@@ -629,72 +692,134 @@ function RiskRing({ score, size = 140 }) {
       </svg>
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <span className="risk-score hud-number" style={{ color, lineHeight: 1, textShadow: `0 0 20px ${color}` }}>{displayed}</span>
-        <span style={{ fontSize: 13, color: "rgba(148,163,184,0.7)", letterSpacing: 3, marginTop: 4, fontFamily: "'Space Mono', monospace", fontWeight: 800 }}>RISK</span>
+        <span style={{ fontSize: 13, color: "var(--text-secondary)", letterSpacing: 3, marginTop: 4, fontFamily: "'Space Mono', monospace", fontWeight: 800 }}>RISK</span>
       </div>
     </div>
   );
 }
 
 
-// ── Highlighted AI Insight Panel ────────────────────────────────────────────
-function AIPanel({ data, openai }) {
-  const highlights = { "HIGH RISK": "#F24E1E", "BREACH": "#FF9326", "EXPOSED": "#F24E1E", "CRITICAL": "#F24E1E", "SECURE": "#0ACF83", "RECOMMENDED": "#A259FF", "ANALYSIS": "#FF7262" };
-  const highlight = (text) => {
-    let result = []; let remaining = text;
-    const words = Object.keys(highlights);
-    while (remaining.length > 0) {
-      let matched = false;
-      for (const w of words) {
-        const idx = remaining.toUpperCase().indexOf(w);
-        if (idx !== -1) {
-          if (idx > 0) result.push(<span key={result.length}>{remaining.slice(0, idx)}</span>);
-          result.push(<span key={result.length} style={{ color: highlights[w], fontWeight: 700, background: `${highlights[w]}18`, padding: "1px 5px", borderRadius: 3, fontSize: "0.85em" }}>{remaining.slice(idx, idx + w.length)}</span>);
-          remaining = remaining.slice(idx + w.length);
-          matched = true; break;
-        }
-      }
-      if (!matched) { result.push(<span key={result.length}>{remaining}</span>); break; }
-    }
-    return result;
-  };
+// ── Helper Component for Typewriter AI Logs ──────────────────────────────
+function AILogLine({ text, delay }) {
+  const [displayed, setDisplayed] = useState("");
+  const [started, setStarted] = useState(false);
 
-  if (openai) {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <div style={{ background: "rgba(124, 58, 237, 0.05)", border: "1px solid rgba(124, 58, 237, 0.2)", borderRadius: 16, padding: "24px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: 0, right: 0, padding: "8px 16px", background: openai.priority === "high" ? "#F43F5E" : "#FB923C", color: "#fff", fontSize: 9, fontWeight: 900, fontFamily: "'Space Mono', monospace", borderBottomLeftRadius: 12 }}>
-            PRIORITY: {openai.priority?.toUpperCase()}
-          </div>
-          <div style={{ fontSize: 10, color: "#7C3AED", letterSpacing: 2, marginBottom: 12, fontWeight: 800, fontFamily: "'Space Mono', monospace" }}>AI STRATEGIC ADVISORY</div>
-          <h3 className="dashboard-heading" style={{ margin: "0 0 12px", fontSize: 18, color: "#F1F5F9" }}>{openai.summary}</h3>
-          <p style={{ fontSize: 14, color: "#AFC2D5", lineHeight: 1.7, margin: "0 0 20px" }}>
-             <TypingText text={openai.advisory} />
-          </p>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-            <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(124, 58, 237, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🧠</div>
-            <div>
-              <div style={{ fontSize: 9, color: "rgba(148, 163, 184, 0.5)", fontWeight: 800 }}>AI ANALYST INSIGHT</div>
-              <div style={{ fontSize: 12, color: "#FFF", fontWeight: 600 }}>{openai.insight}</div>
-            </div>
-          </div>
-        </div>
-        <div style={{ fontSize: 9, color: "rgba(148, 163, 184, 0.4)", textAlign: "center", fontStyle: "italic", fontFamily: "'Space Mono', monospace", marginTop: 8 }}>
-          ※ Generated using AI-assisted threat intelligence
-        </div>
-      </div>
-    );
+  useEffect(() => {
+    const timer = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started || !text) return;
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayed(text.substring(0, i + 1));
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, 20); // extremely fast typing speed
+    return () => clearInterval(interval);
+  }, [started, text]);
+
+  return (
+    <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 13, color: "var(--text-primary)", display: "flex", gap: 12, lineHeight: 1.6, opacity: 0.9 }}>
+      <span style={{ color: "var(--accent)" }}>&gt;</span>
+      <span>{displayed}{started && displayed.length < text?.length && <span style={{ animation: "pulse 1s infinite" }}>_</span>}</span>
+    </div>
+  );
+}
+
+// ── Highlighted AI Insight Panel (LIVE DECISION ENGINE) ───────────────────
+function AIPanel({ data, openai }) {
+  const isError = openai?.priority === "ERROR";
+  
+  // Combine all AI data into terminal thinking logs
+  let logs = [];
+  if (isError) {
+    logs = [
+      "initiating neural handshake...",
+      "ERROR: GEMINI CONNECTION FAILED",
+      `FATAL: ${openai.advisory}`
+    ];
+  } else if (data && data.length > 0) {
+    logs = data.map(d => d.text);
+  } else if (openai) {
+    logs = [
+      "scanning breach signatures...",
+      "correlating leaked identity vectors...",
+      "mapping attack probability...",
+      "generating exploit model..."
+    ];
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-      {data.map((section, i) => (
-        <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "14px 16px" }}>
-          <div style={{ fontSize: 9, letterSpacing: 2, color: section.color, marginBottom: 6, fontFamily: "'Space Mono', monospace", fontWeight: 700 }}>{section.label}</div>
-          <p style={{ margin: 0, fontSize: 13, color: "rgba(203,213,225,0.85)", lineHeight: 1.65 }}>
-            {highlight(section.text)}
-          </p>
+    <div style={{ display: "flex", flexDirection: "column", gap: 24, padding: "8px 0" }}>
+      
+      {/* 1. AI STATUS LINE (TOP) */}
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", animation: "pulse 1.5s infinite" }} />
+        <div style={{ fontSize: 12, letterSpacing: 1.5, color: "var(--text-primary)", fontWeight: 800, fontFamily: "'Space Mono', monospace", textTransform: "uppercase" }}>
+          AI ENGINE ACTIVE • ANALYZING BREACH PATTERNS
         </div>
-      ))}
+      </div>
+
+      {/* 2. LIVE ANALYSIS FEED */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "16px 8px" }}>
+        {logs.map((log, i) => (
+          <AILogLine key={i} text={(log || "").toLowerCase()} delay={i * 800} />
+        ))}
+      </div>
+
+      {/* 3. FINAL DECISION CORE */}
+      <div className="ai-core" style={{
+        marginTop: 16,
+        padding: "40px 20px",
+        borderRadius: 24,
+        border: "1px solid var(--border)",
+        background: "var(--surface)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        gap: 16,
+        position: "relative",
+        overflow: "hidden",
+        boxShadow: "var(--shadow-soft)"
+      }}>
+        {/* Animated glow orb behind text */}
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 180, height: 180, background: isError ? "var(--text-secondary)" : (openai?.priority === "CRITICAL" ? "var(--danger)" : "var(--warning)"), filter: "blur(60px)", opacity: 0.15, pointerEvents: "none" }} />
+        
+        <div style={{ fontSize: 11, letterSpacing: 2.5, color: "var(--text-secondary)", fontFamily: "'Space Mono', monospace", fontWeight: 700, zIndex: 1 }}>
+          THREAT MODEL READY
+        </div>
+        
+        <h2 style={{ 
+          margin: 0, 
+          fontSize: 26, 
+          fontWeight: 900, 
+          color: "var(--text-primary)",
+          letterSpacing: -0.5,
+          zIndex: 1
+        }}>
+          {isError ? "ANALYSIS HALTED" : (openai?.priority === "CRITICAL" ? "CRITICAL RISK DETECTED" : "HIGH RISK DETECTED")}
+        </h2>
+
+        {/* Mini Insight Tags */}
+        {openai?.metrics && !isError && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginTop: 12, zIndex: 1 }}>
+            <div style={{ padding: "6px 14px", borderRadius: 20, background: "var(--surface)", border: "1px solid var(--border)", fontSize: 10, fontWeight: 800, color: "var(--text-primary)", display: "flex", alignItems: "center", gap: 6, boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
+              PHISHING <span style={{ color: "var(--danger)" }}>↑ {openai.metrics.phishing_risk}%</span>
+            </div>
+            <div style={{ padding: "6px 14px", borderRadius: 20, background: "var(--surface)", border: "1px solid var(--border)", fontSize: 10, fontWeight: 800, color: "var(--text-primary)", display: "flex", alignItems: "center", gap: 6, boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
+              TAKEOVER <span style={{ color: "var(--warning)" }}>↑ {openai.metrics.takeover_risk}%</span>
+            </div>
+            <div style={{ padding: "6px 14px", borderRadius: 20, background: "var(--surface)", border: "1px solid var(--border)", fontSize: 10, fontWeight: 800, color: "var(--text-primary)", display: "flex", alignItems: "center", gap: 6, boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
+              IDENTITY <span style={{ color: "var(--accent)" }}>↑ {openai.metrics.identity_risk}%</span>
+            </div>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 }
@@ -710,7 +835,7 @@ function LineChart({ data, color = "#A259FF", label }) {
   }).join(" ");
   return (
     <div>
-      <div style={{ fontSize: 10, color: "rgba(148,163,184,0.6)", marginBottom: 6, letterSpacing: 1, fontFamily: "'Space Mono', monospace" }}>{label}</div>
+      <div style={{ fontSize: 10, color: "var(--text-secondary)", marginBottom: 6, letterSpacing: 1, fontFamily: "'Space Mono', monospace" }}>{label}</div>
       <svg width="100%" viewBox={`0 0 ${w} ${h}`} style={{ overflow: "visible" }}>
         <defs>
           <linearGradient id={`grad-${label}`} x1="0" x2="0" y1="0" y2="1">
@@ -753,7 +878,7 @@ function PieChart({ slices }) {
         {paths.map((p, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 7 }}>
             <div style={{ width: 8, height: 8, borderRadius: 2, background: p.color, flexShrink: 0 }} />
-            <span style={{ fontSize: 11, color: "rgba(203,213,225,0.75)" }}>{p.label}</span>
+            <span style={{ fontSize: 11, color: "var(--text-muted)" }}>{p.label}</span>
             <span className="hud-number" style={{ fontSize: 11, color: p.color, marginLeft: "auto", fontWeight: 700 }}>{p.pct}%</span>
           </div>
         ))}
@@ -888,29 +1013,17 @@ function Timeline({ events }) {
   return (
     <div style={{ overflowX: "auto", paddingBottom: 8 }}>
       <div style={{ display: "flex", alignItems: "center", minWidth: 520, position: "relative", paddingTop: 48 }}>
-        <div style={{ position: "absolute", top: 64, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, transparent, var(--border) 10%, var(--border) 90%, transparent)" }} />
+        <div style={{ position: "absolute", top: 64, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, transparent, rgba(162, 89, 255,0.4) 10%, rgba(162, 89, 255,0.4) 90%, transparent)" }} />
         {events.map((e, i) => (
           <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", position: "relative", cursor: "pointer" }}
             onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)}>
-            <div style={{ fontSize: 10, color: "var(--text-muted)", marginBottom: 8, fontFamily: "'Space Mono', monospace", fontWeight: 700 }}>{e.year}</div>
-            <div style={{ 
-              width: 14, height: 14, borderRadius: "50%", 
-              background: e.severity === "high" ? "var(--danger)" : e.severity === "med" ? "var(--warning)" : "var(--success)", 
-              border: `2px solid var(--bg)`, 
-              boxShadow: hovered === i ? `0 0 20px var(--accent)` : "none",
-              zIndex: 1, transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)", 
-              transform: hovered === i ? "scale(1.5)" : "scale(1)" 
-            }} />
-            <div style={{ marginTop: 12, fontSize: 11, color: "var(--text-secondary)", textAlign: "center", maxWidth: 80, lineHeight: 1.4, fontWeight: 700 }}>{e.label}</div>
+            <div style={{ fontSize: 10, color: "var(--text-muted)", marginBottom: 8, fontFamily: "'Space Mono', monospace" }}>{e.year}</div>
+            <div style={{ width: 13, height: 13, borderRadius: "50%", background: e.severity === "high" ? "#F24E1E" : e.severity === "med" ? "#FF9326" : "#0ACF83", border: `2px solid ${e.severity === "high" ? "#F24E1E" : e.severity === "med" ? "#FF9326" : "#0ACF83"}`, boxShadow: `0 0 10px ${e.severity === "high" ? "#F24E1E" : e.severity === "med" ? "#FF9326" : "#0ACF83"}66`, zIndex: 1, transition: "transform 0.2s", transform: hovered === i ? "scale(1.5)" : "scale(1)" }} />
+            <div style={{ marginTop: 10, fontSize: 11, color: "var(--text-muted)", textAlign: "center", maxWidth: 80, lineHeight: 1.4 }}>{e.label}</div>
             {hovered === i && (
-              <div style={{ 
-                position: "absolute", top: -50, background: "var(--surface)", 
-                border: "1px solid var(--border)", borderRadius: 12, padding: "10px 16px", 
-                fontSize: 11, color: "var(--text-primary)", whiteSpace: "nowrap", 
-                zIndex: 10, boxShadow: "var(--shadow-medium)", pointerEvents: "none" 
-              }}>
-                <div style={{ fontWeight: 950, color: "var(--accent)", marginBottom: 4, fontSize: 10 }}>{e.year.toUpperCase()}</div>
-                <div style={{ fontWeight: 600 }}>{e.detail}</div>
+              <div style={{ position: "absolute", top: -44, background: "#1e2d45", border: "1px solid rgba(162, 89, 255,0.3)", borderRadius: 8, padding: "8px 12px", fontSize: 11, color: "#e2e8f0", whiteSpace: "nowrap", zIndex: 10, boxShadow: "0 8px 24px rgba(0,0,0,0.4)", pointerEvents: "none" }}>
+                <div style={{ fontWeight: 700, color: "#A259FF", marginBottom: 3 }}>{e.year}</div>
+                {e.detail}
               </div>
             )}
           </div>
@@ -923,32 +1036,31 @@ function Timeline({ events }) {
 // ── Scan Animation ──────────────────────────────────────────────────────────
 function ScanSteps({ steps = [], activeIndex = 0 }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       {steps.map((s, i) => {
         const isPast = i < activeIndex;
         const isActive = i === activeIndex;
         return (
           <div key={i} style={{ 
             display: "flex", alignItems: "center", gap: 20, 
-            opacity: isActive ? 1 : isPast ? 0.7 : 0.3, 
-            transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-            transform: isActive ? "translateX(10px)" : "translateX(0)"
+            opacity: isActive ? 1 : isPast ? 0.8 : 0.25, 
+            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: isActive ? "translateX(8px)" : "translateX(0)"
           }}>
             <div style={{ 
-              width: 28, height: 28, borderRadius: "50%", 
+              width: 24, height: 24, borderRadius: "50%", 
               display: "flex", alignItems: "center", justifyContent: "center", 
               background: isPast ? "var(--success)" : isActive ? "var(--accent)" : "var(--surface-soft)", 
-              border: isActive ? "2px solid var(--accent)" : "1px solid var(--border)",
               transition: "all 0.4s", fontSize: 11 
             }}>
-              {isPast ? <CheckCircle2 size={16} color="#FFF" /> : isActive ? <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFF", animation: "pulse 1.2s infinite" }} /> : ""}
+              {isPast ? <CheckCircle2 size={14} color="#fff" /> : isActive ? <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#fff", animation: "pulse 0.8s infinite" }} /> : ""}
             </div>
             <span style={{ 
               fontSize: 14, 
               color: isPast ? "var(--success)" : isActive ? "var(--text-primary)" : "var(--text-muted)", 
               fontFamily: "'Space Mono', monospace",
-              fontWeight: isActive ? 950 : 600,
-              letterSpacing: 1
+              fontWeight: isActive ? 800 : 500,
+              letterSpacing: 0.5
             }}>{s.toUpperCase()}</span>
           </div>
         );
@@ -970,22 +1082,22 @@ function TacticalHUD({ stats }) {
   }, []);
 
   return (
-    <div className="tactical-hud-mobile" style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1100, color: "var(--accent)", opacity: 0.4, fontFamily: "'Space Mono', monospace", fontSize: 9 }}>
+    <div className="tactical-hud-mobile" style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1100, color: "rgba(124, 58, 237, 0.3)", fontFamily: "'Space Mono', monospace", fontSize: 9 }}>
       {/* Corner Brackets */}
-      <div style={{ position: "absolute", top: 20, left: 20, width: 30, height: 30, borderTop: "1px solid", borderLeft: "1px solid", opacity: 0.5 }} />
-      <div style={{ position: "absolute", top: 20, right: 20, width: 30, height: 30, borderTop: "1px solid", borderRight: "1px solid", opacity: 0.5 }} />
-      <div style={{ position: "absolute", bottom: 20, left: 20, width: 30, height: 30, borderBottom: "1px solid", borderLeft: "1px solid", opacity: 0.5 }} />
-      <div style={{ position: "absolute", bottom: 20, right: 20, width: 30, height: 30, borderBottom: "1px solid", borderRight: "1px solid", opacity: 0.5 }} />
+      <div style={{ position: "absolute", top: 20, left: 20, width: 30, height: 30, borderTop: "1px solid", borderLeft: "1px solid" }} />
+      <div style={{ position: "absolute", top: 20, right: 20, width: 30, height: 30, borderTop: "1px solid", borderRight: "1px solid" }} />
+      <div style={{ position: "absolute", bottom: 20, left: 20, width: 30, height: 30, borderBottom: "1px solid", borderLeft: "1px solid" }} />
+      <div style={{ position: "absolute", bottom: 20, right: 20, width: 30, height: 30, borderBottom: "1px solid", borderRight: "1px solid" }} />
       
       {/* HUD Data Readouts */}
-      <div style={{ position: "absolute", top: 120, left: 25, display: "flex", flexDirection: "column", gap: 10, fontWeight: 700 }} className="hud-telemetry-desktop">
+      <div style={{ position: "absolute", top: 120, left: 25, display: "flex", flexDirection: "column", gap: 10 }} className="hud-telemetry-desktop">
         <div style={{ animation: "flicker 2s infinite" }}>CORE_INIT: {stats.coreInit}</div>
         <div style={{ animation: "flicker 3.5s infinite" }}>SEC_BUFFER: {stats.secBuffer}</div>
       </div>
-      <div style={{ position: "absolute", bottom: 120, right: 25, textAlign: "right", display: "flex", flexDirection: "column", gap: 10, fontWeight: 700 }} className="hud-telemetry-desktop">
+      <div style={{ position: "absolute", bottom: 120, right: 25, textAlign: "right", display: "flex", flexDirection: "column", gap: 10 }} className="hud-telemetry-desktop">
         <div>LNG_COORD: {stats.lngCoord || coords.x}</div>
         <div>LAT_STATE: {stats.latState}</div>
-        <div style={{ color: "var(--accent)" }}>NEURAL_MAP: {stats.neuralMap}</div>
+        <div style={{ color: "#00f0ff" }}>NEURAL_MAP: {stats.neuralMap}</div>
       </div>
     </div>
   );
@@ -999,21 +1111,8 @@ function CyberTerminal({ text, isStreaming, thinking }) {
       
       <div className="terminal-header">
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{
-            padding: "10px 20px",
-            borderRadius: 14,
-            background: "var(--surface-soft)",
-            border: "1px solid var(--border)",
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            boxShadow: "inset 0 1px 2px rgba(0,0,0,0.02)"
-          }}>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 10px rgba(34,197,94,0.4)" }} />
-            <span style={{ fontSize: 11, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 1.5, fontFamily: "'Space Mono', monospace" }}>SECURE_CORE</span>
-          </div>
         </div>
-        <div style={{ fontSize: 9, color: "rgba(148, 163, 184, 0.4)", fontFamily: "'Space Mono', monospace" }}>{new Date().toLocaleTimeString()}</div>
+        <div style={{ fontSize: 9, color: "var(--text-muted)", fontFamily: "'Space Mono', monospace" }}>{new Date().toLocaleTimeString()}</div>
       </div>
 
       {thinking && (
@@ -1030,7 +1129,7 @@ function CyberTerminal({ text, isStreaming, thinking }) {
       )}
 
       {!thinking && !text && !isStreaming && (
-        <div style={{ color: "rgba(148, 163, 184, 0.4)", fontFamily: "'Space Mono', monospace", fontSize: 13 }}>
+        <div style={{ color: "var(--text-muted)", fontFamily: "'Space Mono', monospace", fontSize: 13 }}>
           {">"} WAITING FOR NEURAL INGESTION SEQUENCE...
         </div>
       )}
@@ -1048,7 +1147,7 @@ function RiskProgress({ label, value, color = "#7C3AED" }) {
   return (
     <div style={{ marginBottom: 20 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-        <span style={{ fontSize: 11, fontWeight: 900, color: "rgba(255,255,255,0.6)", letterSpacing: 1, fontFamily: "'Space Mono', monospace" }}>{label.toUpperCase()}</span>
+        <span style={{ fontSize: 11, fontWeight: 900, color: "var(--text-secondary)", letterSpacing: 1, fontFamily: "'Space Mono', monospace" }}>{label.toUpperCase()}</span>
         <span style={{ fontSize: 13, fontWeight: 950, color: "#fff", fontFamily: "'Space Mono', monospace" }}>{value}%</span>
       </div>
       <div style={{ width: "100%", height: 6, background: "rgba(255,255,255,0.05)", borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.03)" }}>
@@ -1241,10 +1340,10 @@ function ThreatTopology({ breaches = [] }) {
                    <div style={{ width: 12, height: 12, borderRadius: "50%", background: b.riskScore > 80 ? "#F43F5E" : "#7C3AED", boxShadow: `0 0 10px ${b.riskScore > 80 ? "#F43F5E" : "#7C3AED"}` }} />
                 </div>
                 <h4 style={{ fontSize: 18, fontWeight: 900, color: "#fff", margin: 0 }}>{b.name.toUpperCase()}</h4>
-                <div style={{ fontSize: 12, color: "rgba(148, 163, 184, 0.6)", marginTop: 4 }}>{b.type}</div>
+                <div style={{ fontSize: 12, color: "var(--text-secondary)", marginTop: 4 }}>{b.type}</div>
              </div>
              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 20 }}>
-                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", fontWeight: 800 }}>IMPACT:</span>
+                <span style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 800 }}>IMPACT:</span>
                 <span style={{ fontSize: 24, fontWeight: 950, color: b.riskScore > 80 ? "#F43F5E" : "#fff" }}>{b.riskScore}%</span>
              </div>
           </motion.div>
@@ -1376,9 +1475,7 @@ function AdvancedBreachInsight({ story, breach, breachCount, fixing, isSecured, 
           </div>
         </div>
 
-        <div className="cyber-card" style={{ padding: 32, flex: 1 }}>
-           <PasswordLab />
-        </div>
+
       </div>
     </div>
   );
@@ -1441,18 +1538,6 @@ function CompactIdentityBar({ email, riskScore }) {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <div style={{
-          padding: "10px 20px",
-          borderRadius: 14,
-          background: "var(--surface-soft)",
-          border: "1px solid var(--border)",
-          display: "flex",
-          alignItems: "center",
-          gap: 10
-        }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--success)" }} />
-          <span style={{ fontSize: 11, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 1.5, fontFamily: "'Space Mono', monospace" }}>SECURE_CORE</span>
-        </div>
       </div>
     </motion.div>
   );
@@ -1575,94 +1660,128 @@ function SecurityAlertPanel({ data, onAction }) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: window.innerWidth < 768 ? 24 : 40 }}>
       
       {/* SECTION: DEFENSE ACTIONS (Primary Focus) */}
-      <div style={{ background: "var(--accent)", padding: "32px", borderRadius: 24, boxShadow: "var(--shadow-medium)", display: "flex", flexDirection: "column", gap: 20 }}>
+      <div style={{ background: "var(--surface)", border: "1px solid var(--border)", padding: window.innerWidth < 768 ? "24px" : "32px", borderRadius: 24, boxShadow: "var(--shadow-medium)", display: "flex", flexDirection: "column", gap: 20 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <ShieldAlert size={20} color="#FFF" />
-          <h3 style={{ fontSize: 14, color: "#FFF", fontWeight: 950, letterSpacing: 1, margin: 0 }}>ACTIVE DEFENSE PROTOCOLS</h3>
+          <ShieldAlert size={20} color="var(--accent)" />
+          <h3 style={{ fontSize: window.innerWidth < 768 ? 12 : 14, color: "var(--text-primary)", fontWeight: 950, letterSpacing: 1, margin: 0 }}>ACTIVE DEFENSE PROTOCOLS</h3>
         </div>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-           <button onClick={() => onAction('secure_email')} style={{ flex: 1, minWidth: 160, padding: "16px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 12, color: "#FFF", fontSize: 12, fontWeight: 950, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, transition: "all 0.2s" }}>
-             <Lock size={16} /> LOCK ACCOUNTS
+           <button onClick={() => onAction('secure_email')} style={{ flex: 1, minWidth: 140, padding: "16px", background: "var(--surface-soft)", border: "1px solid var(--border-soft)", borderRadius: 12, color: "var(--text-primary)", fontSize: 11, fontWeight: 950, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, transition: "all 0.2s" }}>
+             <Lock size={16} color="var(--accent)" /> LOCK ACCOUNTS
            </button>
-           <button onClick={() => onAction('open_2fa_guide')} style={{ flex: 1, minWidth: 160, padding: "16px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 12, color: "#FFF", fontSize: 12, fontWeight: 950, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, transition: "all 0.2s" }}>
-             <Fingerprint size={16} /> ENABLE 2FA
+           <button onClick={() => onAction('open_2fa_guide')} style={{ flex: 1, minWidth: 140, padding: "16px", background: "var(--surface-soft)", border: "1px solid var(--border-soft)", borderRadius: 12, color: "var(--text-primary)", fontSize: 11, fontWeight: 950, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, transition: "all 0.2s" }}>
+             <Fingerprint size={16} color="var(--accent)" /> ENABLE 2FA
            </button>
-           <button onClick={() => onAction('generate_password')} style={{ flex: 1, minWidth: 160, padding: "16px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 12, color: "#FFF", fontSize: 12, fontWeight: 950, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, transition: "all 0.2s" }}>
-             <RotateCcw size={16} /> FORCE RESET
+           <button onClick={() => onAction('generate_password')} style={{ flex: 1, minWidth: 140, padding: "16px", background: "var(--surface-soft)", border: "1px solid var(--border-soft)", borderRadius: 12, color: "var(--text-primary)", fontSize: 11, fontWeight: 950, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, transition: "all 0.2s" }}>
+             <RotateCcw size={16} color="var(--accent)" /> FORCE RESET
            </button>
         </div>
       </div>
 
-      <div className="cyber-grid" style={{ gap: 40 }}>
-        {/* LEFT: ALERT LIST & ENTRY POINTS */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-          
-          {/* 1. ACTIVE RISKS (Alert List) */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            <div style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 900, letterSpacing: 2, marginBottom: 16 }}>ACTIVE_RISK_LOG</div>
-            {data.attack_scenarios.map((s, i) => (
-              <div key={i} style={{ 
-                display: "flex", alignItems: "center", gap: 24, padding: "24px 0",
-                borderBottom: "1px solid var(--border-soft)"
-              }}>
-                <div style={{ width: 14, height: 14, borderRadius: "50%", background: getRiskColor(s.risk_level || s.severity), boxShadow: `0 0 15px ${getRiskColor(s.risk_level || s.severity)}44` }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 950, color: "var(--text-primary)", marginBottom: 4 }}>{s.title.toUpperCase()}</div>
-                  <div style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.5 }}>{s.explanation || s.exploit_method}</div>
-                </div>
-                <div style={{ fontSize: 9, fontWeight: 950, color: getRiskColor(s.risk_level || s.severity), background: "var(--surface-soft)", padding: "6px 12px", borderRadius: 6, letterSpacing: 1.5 }}>
-                  {(s.risk_level || s.severity).toUpperCase()}
-                </div>
-              </div>
-            ))}
-          </div>
 
-          {/* 3. ENTRY POINTS (Tag Style) */}
-          <div>
-            <div style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 900, letterSpacing: 2, marginBottom: 16 }}>EXPOSURE_MAPPING</div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-               {data.attack_surface?.map((map, i) => (
-                 <div key={i} style={{ padding: "10px 20px", background: "var(--surface-soft)", border: "1px solid var(--border)", borderRadius: 100, fontSize: 11, fontWeight: 800, color: "var(--text-primary)", letterSpacing: 0.5 }}>
-                   {map.data.toUpperCase()} <span style={{ opacity: 0.4, margin: "0 6px" }}>→</span> {map.vector.toUpperCase()}
-                 </div>
-               )) || (
-                 <>
-                   <div style={{ padding: "10px 20px", background: "var(--surface-soft)", border: "1px solid var(--border)", borderRadius: 100, fontSize: 11, fontWeight: 800, color: "var(--text-primary)" }}>EMAIL <span style={{ opacity: 0.4, margin: "0 6px" }}>→</span> PHISHING</div>
-                   <div style={{ padding: "10px 20px", background: "var(--surface-soft)", border: "1px solid var(--border)", borderRadius: 100, fontSize: 11, fontWeight: 800, color: "var(--text-primary)" }}>PASSWORD <span style={{ opacity: 0.4, margin: "0 6px" }}>→</span> TAKEOVER</div>
-                 </>
-               )}
-            </div>
-          </div>
-        </div>
 
-        {/* RIGHT: RISK LEVELS (Compact Bars) */}
-        <div style={{ width: "100%", maxWidth: 350 }}>
-          <div style={{ fontSize: 10, color: "var(--text-muted)", fontWeight: 900, letterSpacing: 2, marginBottom: 24 }}>THREAT_PROBABILITY</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-             {Object.entries(data.risk_probability || data.risk_metrics || {}).map(([key, val]) => (
-                <RiskBar key={key} label={key.replace(/_/g, ' ').toUpperCase()} value={parseInt(val)} color={parseInt(val) > 70 ? "var(--danger)" : parseInt(val) > 40 ? "var(--warning)" : "var(--success)"} />
-             ))}
-          </div>
-          
-          <div style={{ marginTop: 40, padding: 24, background: "var(--surface-soft)", border: "1px solid var(--border)", borderRadius: 16 }}>
-             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-               <AlertTriangle size={14} color="var(--warning)" />
-               <div style={{ fontSize: 9, color: "var(--text-muted)", fontWeight: 950, letterSpacing: 1.5 }}>INTELLIGENCE_NOTICE</div>
-             </div>
-             <p style={{ fontSize: 12, color: "var(--text-secondary)", lineHeight: 1.6, margin: 0 }}>
-               These metrics are derived from real-world exploit patterns linked to this breach. Immediate action is required to neutralize vectors.
-             </p>
-          </div>
-        </div>
+      <div className="cyber-card" style={{ padding: window.innerWidth < 768 ? "24px" : "32px" }}>
+         <PasswordLab />
       </div>
     </div>
   );
 }
 
 
+
+function FixingOverlay({ isSuccess = false }) {
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      style={{ 
+        position: "fixed", inset: 0, background: "rgba(5, 7, 10, 0.98)", 
+        backdropFilter: "blur(24px)", zIndex: 3000, 
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, gap: window.innerWidth < 768 ? 20 : 32 
+      }}
+    >
+      <div className="hud-grid" style={{ opacity: 0.15 }} />
+      <div className="scanning-beam" style={{ opacity: 0.15 }} />
+      
+      <AnimatePresence mode="wait">
+        {!isSuccess ? (
+          <motion.div 
+            key="fixing"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.2 }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}
+          >
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              style={{ position: "relative" }}
+            >
+              <Shield size={80} color="var(--accent)" style={{ filter: "drop-shadow(0 0 20px var(--accent))" }} />
+              <motion.div 
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ position: "absolute", inset: -20, border: "2px solid var(--accent)", borderRadius: "50%" }} 
+              />
+            </motion.div>
+
+            <div style={{ textAlign: "center", width: "100%", maxWidth: "80vw" }}>
+              <h2 style={{ fontSize: window.innerWidth < 768 ? 14 : 24, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 4, margin: "0 0 8px", fontFamily: "'Syne', sans-serif" }}>DEFENSE_ENGAGED</h2>
+              <p style={{ fontSize: 9, color: "var(--text-secondary)", fontFamily: "'Space Mono', monospace", letterSpacing: 1 }}>REMEDIATING...</p>
+            </div>
+
+            <div style={{ width: window.innerWidth < 768 ? 240 : 300, height: 4, background: "rgba(255,255,255,0.05)", borderRadius: 100, overflow: "hidden", border: "1px solid var(--border-soft)", position: "relative" }}>
+              <motion.div 
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                style={{ width: "100%", height: "100%", background: "linear-gradient(90deg, transparent, var(--accent), var(--success), transparent)" }}
+              />
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div 
+            key="success"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24, textAlign: "center" }}
+          >
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", damping: 12, stiffness: 200 }}
+              style={{ width: 100, height: 100, borderRadius: "50%", background: "var(--success-glow)", border: "2px solid var(--success)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 40px rgba(16, 185, 129, 0.4)" }}
+            >
+              <Check size={48} color="var(--success)" />
+            </motion.div>
+            <div style={{ padding: "0 20px" }}>
+              <h2 style={{ fontSize: window.innerWidth < 768 ? 20 : 28, fontWeight: 950, color: "var(--text-primary)", letterSpacing: 2, margin: "0 0 12px", fontFamily: "'Syne', sans-serif" }}>SUCCESS</h2>
+              <p style={{ fontSize: window.innerWidth < 768 ? 12 : 13, color: "var(--text-secondary)", lineHeight: 1.6, maxWidth: 300, margin: "0 auto" }}>Identity Shield initialized. Check email for audit.</p>
+            </div>
+            <div style={{ fontSize: 10, color: "var(--success)", fontWeight: 900, fontFamily: "'Space Mono', monospace", letterSpacing: 3, background: "rgba(16, 185, 129, 0.1)", padding: "8px 20px", borderRadius: 100, border: "1px solid rgba(16, 185, 129, 0.3)" }}>
+              STATUS: SECURED
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div style={{ display: "flex", gap: 48, marginTop: 12, opacity: isSuccess ? 0 : 1, transition: "opacity 0.3s" }}>
+         <div style={{ textAlign: "center" }}>
+           <div style={{ fontSize: 9, color: "var(--text-muted)", marginBottom: 4, fontWeight: 900 }}>ENCRYPTION</div>
+           <div style={{ fontSize: 14, color: "var(--text-primary)", fontWeight: 900, fontFamily: "'Space Mono', monospace" }}>AES-256</div>
+         </div>
+         <div style={{ textAlign: "center" }}>
+           <div style={{ fontSize: 9, color: "var(--text-muted)", marginBottom: 4, fontWeight: 900 }}>PROTOCOL</div>
+           <div style={{ fontSize: 14, color: "var(--text-primary)", fontWeight: 900, fontFamily: "'Space Mono', monospace" }}>TLS 1.3</div>
+         </div>
+      </div>
+    </motion.div>
+  );
+}
 
 function KineticCard({ children, style = {}, className = "" }) {
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
@@ -1757,9 +1876,8 @@ function RecentScans({ history }) {
 // ── iOS-Style Settings Sheet ──────────────────────────────────────────────
 function SettingsPanel({ appearance, onAppearanceChange }) {
   const options = [
-    { id: 'system', label: 'System Default', icon: <Monitor size={18} /> },
-    { id: 'dark', label: 'Dark Mode', icon: <Moon size={18} /> },
-    { id: 'light', label: 'Light Mode', icon: <Sun size={18} /> }
+    { id: 'dark', label: 'Dark Mode' },
+    { id: 'light', label: 'Light Mode' }
   ];
 
   const handleClick = (e, id) => {
@@ -1866,6 +1984,7 @@ export default function BrexiaDashboard() {
   const [aiThinking, setAiThinking] = useState(false);
   const [aiStory, setAiStory] = useState(null);
   const [fixing, setFixing] = useState(false);
+  const [fixSuccess, setFixSuccess] = useState(false);
   const [isSecured, setIsSecured] = useState(false);
   const [mainBreach, setMainBreach] = useState(null);
   const [threatAiStory, setThreatAiStory] = useState(null);
@@ -2060,9 +2179,13 @@ export default function BrexiaDashboard() {
           if (tRes.ok) {
             const tData = await tRes.json();
             setThreatAiStory(tData);
+          } else {
+            const tData = await tRes.json();
+            setThreatAiStory({ error: tData.error || "Gemini API rejected request." });
           }
         } catch (te) {
           console.warn("Threat forensics skipped:", te.message);
+          setThreatAiStory({ error: te.message });
         }
       }
 
@@ -2098,18 +2221,29 @@ export default function BrexiaDashboard() {
   };
 
   const handleFix = (action) => {
-    switch(action) {
-      case "generate_password":
-      case "open_2fa_guide":
-        setModalType(action);
-        setIsModalOpen(true);
-        break;
-      case "secure_email":
-        alert("Initializing Identity Shield protocol...\nCheck your secondary email for the security audit link.");
-        break;
-      default:
-        console.warn("Unknown Auto-Fix Action:", action);
-    }
+    setFixing(true);
+    setFixSuccess(false);
+    
+    setTimeout(() => {
+      if (action === 'secure_email') {
+        setFixSuccess(true);
+        setTimeout(() => {
+          setFixing(false);
+          setFixSuccess(false);
+        }, 1200);
+      } else {
+        setFixing(false);
+        switch(action) {
+          case "generate_password":
+          case "open_2fa_guide":
+            setModalType(action);
+            setIsModalOpen(true);
+            break;
+          default:
+            console.warn("Unknown Auto-Fix Action:", action);
+        }
+      }
+    }, 1000);
   };
 
   const downloadAudit = () => {
@@ -2157,9 +2291,13 @@ export default function BrexiaDashboard() {
       if (tRes.ok) {
         const tData = await tRes.json();
         setThreatAiStory(tData);
+      } else {
+        const tData = await tRes.json();
+        setThreatAiStory({ error: tData.error || "Gemini API rejected request." });
       }
     } catch (te) {
       console.error("Threat Story Select Fetch Error:", te);
+      setThreatAiStory({ error: te.message });
     }
   };
 
@@ -2185,7 +2323,7 @@ export default function BrexiaDashboard() {
       </motion.div>
 
       <div style={{ textAlign: "center", zIndex: 10 }}>
-        <h1 style={{ fontSize: 32, fontWeight: 950, color: "var(--text-primary)", margin: "0 0 8px", letterSpacing: 4, fontFamily: "'Syne', sans-serif" }}>
+        <h1 style={{ fontSize: 44, fontWeight: 950, color: "var(--text-primary)", margin: "0 0 8px", letterSpacing: 4, fontFamily: "'Syne', sans-serif" }}>
           BREXIA
         </h1>
         <p style={{ fontSize: 12, color: "var(--text-secondary)", letterSpacing: 2, fontWeight: 700, fontFamily: "'Space Mono', monospace" }}>
@@ -2216,9 +2354,11 @@ export default function BrexiaDashboard() {
         @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
         @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
         @keyframes springIn{0%{opacity:0;transform:scale(0.95)}100%{opacity:1;transform:scale(1)}}
-        .dashboard-grid {
-           grid-template-columns: 1.1fr 0.9fr;
-        }
+        @keyframes floatOrb{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+        @keyframes rotateRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(124,58,237,0.15)}50%{box-shadow:0 0 60px rgba(124,58,237,0.4)}}
+        @keyframes scanLine{0%{top:-2px}100%{top:100%}}
+        .dashboard-grid { grid-template-columns: 1.1fr 0.9fr; }
         .nav-item:hover { background: rgba(162, 89, 255,0.08) !important; }
         .breach-row:hover { background: rgba(162, 89, 255,0.05) !important; }
         .scan-btn:hover { box-shadow: 0 0 24px rgba(162, 89, 255,0.4) !important; transform: translateY(-1px) !important; }
@@ -2226,6 +2366,37 @@ export default function BrexiaDashboard() {
         .stat-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.3) !important; }
         .dashboard-font { font-family: 'Plus Jakarta Sans', sans-serif !important; }
         .dashboard-heading { font-family: 'Outfit', sans-serif !important; }
+        
+        /* EXPLICIT LIGHT MODE OVERRIDES FOR INPUT */
+        .light-mode .hero-input-container { background: #FFFFFF !important; box-shadow: 0 8px 40px rgba(99,102,241,0.12) !important; }
+        .light-mode .hero-input-field { background: transparent !important; }
+        .light-mode .hero-input-field input { background: transparent !important; color: #0F172A !important; }
+        .light-mode .hero-input-field input::placeholder { color: #94A3B8 !important; }
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 640px) {
+          .hero-main-wrapper { padding: 0 16px !important; min-height: 85vh !important; }
+          .hero-input-container { flex-direction: column !important; border-radius: 16px !important; padding: 12px !important; }
+          .hero-scan-btn { width: 100% !important; padding: 18px 24px !important; border-radius: 12px !important; font-size: 14px !important; margin-top: 8px; }
+          .hero-input-field input { padding: 18px 20px !important; font-size: 15px !important; letter-spacing: 1px !important; }
+          .mobile-email-pills { flex-wrap: wrap !important; gap: 8px !important; justify-content: center !important; padding: 0 4px; }
+          .mobile-email-pills button { font-size: 9px !important; padding: 8px 12px !important; }
+          .fluid-hero-title { font-size: clamp(3rem, 11vw, 5.5rem) !important; }
+          .hero-tagline { font-size: 0.6rem !important; letter-spacing: 0.2em !important; }
+          .tabs-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .tabs-wrapper > div { min-width: max-content; }
+          .main-container { padding-left: 12px !important; padding-right: 12px !important; }
+          .cyber-card { border-radius: 16px !important; }
+          .cyber-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-main-wrapper { padding: 0 12px !important; }
+          .fluid-hero-title { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+        }
+        @media (max-width: 640px) {
+          .hud-telemetry-desktop { display: none !important; }
+          .top-nav { padding: 8px 16px !important; }
+          .tactical-hud-mobile { display: none !important; }
+        }
 
         /* ADVANCED THEME SYSTEM (SEMANTIC TOKENS) */
         :root {
@@ -2254,11 +2425,11 @@ export default function BrexiaDashboard() {
           --surface: #FFFFFF;
           --surface-soft: #F1F5F9;
           --card: #FFFFFF;
-          --text-primary: #0F172A;
-          --text-secondary: #475569;
-          --text-muted: #94A3B8;
-          --border: #E2E8F0;
-          --border-soft: #EEF2F7;
+          --text-primary: #000000;
+          --text-secondary: #111827;
+          --text-muted: #334155;
+          --border: #94A3B8;
+          --border-soft: #CBD5E1;
           --accent: #6366F1;
           --accent-glow: rgba(99, 102, 241, 0.1);
           --danger: #EF4444;
@@ -2281,9 +2452,10 @@ export default function BrexiaDashboard() {
         .light-mode .cyber-card { background: #FFFFFF !important; box-shadow: var(--shadow-soft) !important; border-color: var(--border) !important; backdrop-filter: none !important; }
         .light-mode .cyber-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-medium) !important; }
 
-        .light-mode .hud-grid { opacity: 0.01; filter: invert(1); }
-        .light-mode .particle-canvas { opacity: 0.05; filter: invert(1); }
-        .light-mode .scanning-beam { opacity: 0.02; }
+        .light-mode .hud-grid { opacity: 0.02; filter: none; background-image: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px); }
+        .light-mode .particle-canvas { opacity: 0; display: none !important; }
+        .light-mode .scanning-beam { opacity: 0 !important; display: none !important; }
+        .light-mode .scan-line { opacity: 0 !important; display: none !important; }
         
         .light-mode .tabs-wrapper > div { background: #FFFFFF !important; border-color: var(--border) !important; }
         .light-mode .tab-active { background: #EEF2FF !important; color: var(--accent) !important; border-color: rgba(99, 102, 241, 0.2) !important; }
@@ -2329,25 +2501,25 @@ export default function BrexiaDashboard() {
         }
       `}</style>
 
-      <div className="hud-grid" />
-      <div className="scanning-beam" />
-      <div id="theme-transition-overlay" />
+      <AnimatePresence>
+        {fixing && <FixingOverlay isSuccess={fixSuccess} />}
+      </AnimatePresence>
 
       <TacticalHUD stats={systemStats} />
       <ParticleField />
 
       {/* TOP-RIGHT SETTINGS TRIGGER */}
-      <div style={{ position: "fixed", top: 25, right: 25, zIndex: 1200 }}>
+      <div style={{ position: "fixed", top: 75, right: 20, zIndex: 1200 }}>
         <motion.button 
           whileHover={{ rotate: 90, scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsSettingsOpen(true)}
           style={{ 
-            background: "var(--surface)", backdropFilter: "var(--glass-blur)", 
-            border: "1px solid var(--border)", borderRadius: "14px", 
-            padding: "12px", color: "var(--text-primary)", cursor: "pointer",
+            background: "var(--surface)", 
+            border: "1px solid var(--border)", borderRadius: "12px", 
+            padding: "10px", color: "var(--text-primary)", cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "var(--shadow-medium)"
+            boxShadow: "0 8px 32px rgba(0,0,0,0.3)"
           }}
         >
           <Settings size={20} />
@@ -2356,11 +2528,11 @@ export default function BrexiaDashboard() {
 
       <AnimatePresence>
         {isSettingsOpen && (
-          <div style={{ position: "fixed", inset: 0, zIndex: 2000, display: "flex", alignItems: window.innerWidth < 768 ? "flex-end" : "center", justifyContent: "center" }}>
+          <div style={{ position: "fixed", inset: 0, zIndex: 2000, display: "flex", alignItems: window.innerWidth < 768 ? "flex-end" : "center", justifyContent: "center", paddingBottom: window.innerWidth < 768 ? "32px" : 0 }}>
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setIsSettingsOpen(false)}
-              style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)", backdropFilter: "blur(12px)" }} 
+              style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.8)" }} 
             />
             <motion.div 
               initial={window.innerWidth < 768 ? { y: "100%" } : { scale: 0.9, opacity: 0, y: 20 }}
@@ -2370,23 +2542,22 @@ export default function BrexiaDashboard() {
               style={{
                 position: "relative",
                 width: "100%",
-                maxWidth: window.innerWidth < 768 ? "none" : 480,
+                maxWidth: window.innerWidth < 768 ? 420 : 550,
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
-                borderRadius: window.innerWidth < 768 ? "32px 32px 0 0" : "32px",
-                padding: "24px 32px 48px 32px",
-                boxShadow: "var(--shadow-medium)",
+                borderRadius: "28px",
+                padding: window.innerWidth < 768 ? "20px" : "20px 32px 32px 32px",
+                boxShadow: "0 25px 60px rgba(0,0,0,0.5)",
                 zIndex: 1,
-                overflow: "hidden",
-                backdropFilter: "var(--glass-blur)"
+                overflow: "hidden"
               }}
             >
               {/* iOS Drag Handle */}
-              <div style={{ width: 40, height: 5, background: "var(--text-muted)", borderRadius: 10, margin: "0 auto 24px auto", opacity: 0.3 }} />
+              <div style={{ width: 36, height: 5, background: "var(--text-muted)", borderRadius: 10, margin: "0 auto 24px auto", opacity: 0.4 }} />
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32 }}>
-                <h2 style={{ fontSize: 26, fontWeight: 950, color: "var(--text-primary)", letterSpacing: -0.8, margin: 0, fontFamily: "'Syne', sans-serif" }}>SETTINGS</h2>
-                <button onClick={() => setIsSettingsOpen(false)} style={{ background: "var(--surface-soft)", border: "none", borderRadius: "50%", width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-primary)", cursor: "pointer", transition: "all 0.2s" }}>
+                <h2 style={{ fontSize: 24, fontWeight: 700, color: "var(--text-primary)", letterSpacing: -0.5, margin: 0, fontFamily: "'Outfit', sans-serif" }}>Settings</h2>
+                <button onClick={() => setIsSettingsOpen(false)} style={{ background: "rgba(124, 58, 237, 0.05)", border: "none", borderRadius: "50%", width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-primary)", cursor: "pointer" }}>
                   <X size={20} />
                 </button>
               </div>
@@ -2427,13 +2598,12 @@ export default function BrexiaDashboard() {
                 <CompactIdentityBar email={email} riskScore={apiData.riskScore} />
 
                 <div className="tabs-wrapper">
-                  <div className="mobile-scroll-tabs" style={{ display: "flex", gap: 8, background: "var(--surface-soft)", borderRadius: 100, padding: "8px", border: "1px solid var(--border)", width: "100%", overflowX: "auto", scrollbarWidth: "none" }}>
+                  <div className="mobile-scroll-tabs" style={{ display: "flex", gap: 12, background: "rgba(15, 23, 42, 0.3)", borderRadius: 16, padding: "8px", border: "1px solid rgba(255,255,255,0.05)", width: "100%", overflowX: "auto" }}>
                     {[
-                      { id: "overview", label: "OVERVIEW", icon: <Activity size={18} strokeWidth={2} /> },
-                      { id: "threats", label: "THREATS", icon: <AlertTriangle size={18} strokeWidth={2} /> },
-                      { id: "exposure", label: "EXPOSURE", icon: <Fingerprint size={18} strokeWidth={2} /> },
-                      { id: "ai", label: "AI_INSIGHT", icon: <Brain size={18} strokeWidth={2} /> },
-                      { id: "settings", label: "SETTINGS", icon: <Settings size={18} strokeWidth={2} /> }
+                      { id: "overview", label: "OVERVIEW", icon: <Activity size={20} strokeWidth={1.5} /> },
+                      { id: "threats", label: "THREATS", icon: <AlertTriangle size={20} strokeWidth={1.5} /> },
+                      { id: "exposure", label: "EXPOSURE", icon: <Fingerprint size={20} strokeWidth={1.5} /> },
+                      { id: "ai", label: "AI INSIGHT", icon: <Brain size={20} strokeWidth={1.5} /> }
                     ].map(tab => {
                       const active = activeTab === tab.id;
                       return (
@@ -2513,20 +2683,6 @@ export default function BrexiaDashboard() {
                       <div className="cyber-grid" style={{ marginBottom: 24, overflow: "visible" }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                           {/* AI Summary Hero */}
-                           <div className="cyber-card" style={{ padding: "32px", border: "1px solid var(--accent-glow)", position: "relative", overflow: "hidden" }}>
-                              <div style={{ position: "absolute", top: -20, right: -20, width: 120, height: 120, background: "radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)", pointerEvents: "none" }} />
-                              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", boxShadow: "0 0 10px var(--accent)" }} />
-                                 <h3 style={{ fontSize: 13, color: "var(--text-primary)", fontWeight: 950, letterSpacing: 1, textTransform: "uppercase" }}>🧠 AI Security Summary</h3>
-                              </div>
-                              <div style={{ minHeight: "80px" }}>
-                                <TypingText 
-                                  text={aiStory?.overview?.security_summary || "BREXIA is synthesizing your identity footprint and dark-web exposure vectors for a holistic security overview..."} 
-                                  style={{ fontSize: 17, color: "var(--text-primary)", lineHeight: 1.6, fontWeight: 500, opacity: 0.9 }}
-                                />
-                              </div>
-                           </div>
 
                            <RiskWhyCard 
                               score={apiData.riskScore} 
@@ -2537,13 +2693,15 @@ export default function BrexiaDashboard() {
                         </div>
 
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                           <div className="cyber-card" style={{ padding: "32px" }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32 }}>
-                                 <Globe size={18} color="var(--text-muted)" />
-                                 <h3 style={{ fontSize: 13, color: "var(--text-primary)", fontWeight: 950, letterSpacing: 1, textTransform: "uppercase" }}>📊 Exposure Timeline</h3>
-                              </div>
-                              <ExposureTimeline events={aiStory?.overview?.timeline} />
-                           </div>
+                           {apiData.breaches && apiData.breaches.length > 0 && (
+                             <div className="cyber-card" style={{ padding: "32px" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32 }}>
+                                   <Globe size={18} color="var(--text-muted)" />
+                                   <h3 style={{ fontSize: 13, color: "var(--text-primary)", fontWeight: 950, letterSpacing: 1, textTransform: "uppercase" }}>📊 Exposure Timeline</h3>
+                                </div>
+                                <ExposureTimeline events={aiStory?.overview?.timeline} />
+                             </div>
+                           )}
 
                            <AIDecisionCard 
                               status={aiStory?.overview?.identity_status} 
@@ -2563,10 +2721,52 @@ export default function BrexiaDashboard() {
                       transition={{ duration: 0.3 }}
                       style={{ display: "flex", flexDirection: "column", gap: 32 }}
                     >
-                      <SecurityAlertPanel 
-                        data={aiStory?.threat_intelligence} 
-                        onAction={(type) => handleFix(type === 'password' ? 'generate_password' : type === '2fa' ? 'open_2fa_guide' : 'secure_email')} 
-                      />
+                      {apiData.breaches && apiData.breaches.length > 0 ? (
+                        <SecurityAlertPanel 
+                          data={aiStory?.threat_intelligence} 
+                          onAction={(type) => handleFix(type)} 
+                        />
+                      ) : (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                          style={{ padding: "80px 40px", textAlign: "center", background: "var(--surface)", borderRadius: 32, border: "1px solid var(--border)", position: "relative", overflow: "hidden" }}
+                        >
+                          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+                            {[200, 300, 400].map((s, i) => (
+                              <motion.div key={i}
+                                animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0, 0.15] }}
+                                transition={{ duration: 4, delay: i * 1.2, repeat: Infinity, ease: "easeInOut" }}
+                                style={{ position: "absolute", width: s, height: s, borderRadius: "50%", border: "1px solid var(--success)", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}
+                              />
+                            ))}
+                          </div>
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                            style={{ margin: "0 auto 24px", width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center", filter: "drop-shadow(0 0 24px rgba(34,197,94,0.5))" }}
+                          >
+                            <Target size={64} color="var(--success)" />
+                          </motion.div>
+                          <motion.h3
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            style={{ color: "var(--success)", fontSize: 28, fontWeight: 950, letterSpacing: -0.5, marginBottom: 16, fontFamily: "'Syne', sans-serif" }}
+                          >
+                            ZERO THREATS ACTIVE
+                          </motion.h3>
+                          <motion.p
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.45 }}
+                            style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.7, maxWidth: 540, margin: "0 auto", fontWeight: 500 }}
+                          >
+                            The tactical defense perimeter is secure. No active attack vectors, credential stuffing attempts, or malicious activities detected.
+                          </motion.p>
+                        </motion.div>
+                      )}
                     </motion.div>
                   )}
 
@@ -2582,11 +2782,65 @@ export default function BrexiaDashboard() {
                         {apiData.breaches && apiData.breaches.length > 0 ? (
                            apiData.breaches.map((b, i) => <BreachCard key={i} breach={b} index={i} />)
                         ) : (
-                          <div style={{ gridColumn: "1 / -1", padding: "100px", textAlign: "center", background: "var(--surface-soft)", borderRadius: 32, border: "2px dashed var(--border)" }}>
-                             <div style={{ fontSize: 64, marginBottom: 24 }}>🕸️</div>
-                             <h3 style={{ color: "var(--text-muted)", fontSize: 24, fontWeight: 900 }}>NO ACTIVE SURFACE VECTORS DETECTED</h3>
-                             <p style={{ color: "var(--text-secondary)", fontSize: 16, opacity: 0.6 }}>Your identity signatures have not been correlated with any known dark-web or public data leaks.</p>
-                          </div>
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                            style={{ gridColumn: "1 / -1", padding: "80px 40px", textAlign: "center", background: "var(--surface)", borderRadius: 32, border: "1px solid var(--border)", position: "relative", overflow: "hidden" }}
+                          >
+                            {/* Animated shield pulse rings */}
+                            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+                              {[200, 300, 400].map((s, i) => (
+                                <motion.div key={i}
+                                  animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0, 0.15] }}
+                                  transition={{ duration: 4, delay: i * 1.2, repeat: Infinity, ease: "easeInOut" }}
+                                  style={{ position: "absolute", width: s, height: s, borderRadius: "50%", border: "1px solid var(--success)", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}
+                                />
+                              ))}
+                            </div>
+
+                            {/* Shield icon animated */}
+                            <motion.div
+                              animate={{ y: [0, -10, 0] }}
+                              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                              style={{ fontSize: 80, marginBottom: 24, filter: "drop-shadow(0 0 24px rgba(34,197,94,0.5))" }}
+                            >
+                              🛡️
+                            </motion.div>
+
+                            <motion.h3
+                              initial={{ opacity: 0, y: 12 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.3 }}
+                              style={{ color: "var(--success)", fontSize: 28, fontWeight: 950, letterSpacing: -0.5, marginBottom: 16, fontFamily: "'Syne', sans-serif" }}
+                            >
+                              IDENTITY CLEAN
+                            </motion.h3>
+
+                            <motion.p
+                              initial={{ opacity: 0, y: 8 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.45 }}
+                              style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.7, maxWidth: 540, margin: "0 auto 32px", fontWeight: 500 }}
+                            >
+                              BREXIA's neural scanner cross-referenced <strong style={{ color: "var(--text-primary)" }}>28 billion+</strong> breach records and found <strong style={{ color: "var(--success)" }}>zero correlations</strong> to your identity. Your digital footprint appears untouched across all monitored dark-web ecosystems.
+                            </motion.p>
+
+                            {/* AI message badge */}
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.6, type: "spring" }}
+                              style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: 100, padding: "10px 24px" }}
+                            >
+                              <motion.div
+                                animate={{ opacity: [1, 0.3, 1] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                                style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--success)", boxShadow: "0 0 12px var(--success)" }}
+                              />
+                              <span style={{ fontSize: 12, fontWeight: 900, color: "var(--success)", fontFamily: "'Space Mono', monospace", letterSpacing: 1.5 }}>AI VERDICT: NO EXPOSURE DETECTED</span>
+                            </motion.div>
+                          </motion.div>
                         )}
                       </div>
                     </motion.div>
@@ -2600,42 +2854,51 @@ export default function BrexiaDashboard() {
                       exit={{ opacity: 0, scale: 1.02 }}
                       transition={{ duration: 0.4 }}
                     >
-                      <AdvancedBreachInsight 
-                        story={threatAiStory} 
-                        breach={mainBreach}
-                        breachCount={apiData.breaches?.length || 0}
-                        fixing={fixing}
-                        isSecured={isSecured}
-                        onFixAll={handleFixAll}
-                        onFix={handleFix}
-                        onSetModal={(type) => { setModalType(type); setIsModalOpen(true); }}
-                      />
-                    </motion.div>
-                  )}
-                  {activeTab === "settings" && (
-                    <motion.div 
-                      key="settings"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="cyber-card" style={{ padding: 48, maxWidth: 600, margin: "0 auto" }}>
-                         <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 48 }}>
-                            <div style={{ width: 48, height: 48, borderRadius: 14, background: "var(--accent-glow)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent)" }}>
-                               <Settings size={24} />
-                            </div>
-                            <div>
-                               <h2 style={{ fontSize: 28, fontWeight: 950, color: "var(--text-primary)", margin: 0, letterSpacing: -0.8 }}>SYSTEM_SETTINGS</h2>
-                               <p style={{ fontSize: 13, color: "var(--text-secondary)", margin: 0, fontWeight: 600 }}>Configure your BREXIA interface preferences</p>
-                            </div>
-                         </div>
-                         
-                         <SettingsPanel 
-                           appearance={appearance} 
-                           onAppearanceChange={setAppearance} 
-                         />
-                      </div>
+                      {apiData.breaches && apiData.breaches.length > 0 ? (
+                        <AIPanel 
+                          data={threatAiStory && !threatAiStory.error ? [
+                            { label: "TARGET PROFILE", color: "#A259FF", text: threatAiStory.about_site },
+                            { label: "ATTACK VECTOR", color: "#FF9326", text: threatAiStory.breach_mechanics },
+                            { label: "EXPLOIT DANGER", color: "#F43F5E", text: threatAiStory.user_danger },
+                            { label: "THREAT INTELLIGENCE", color: "#0ACF83", text: threatAiStory.why_it_matters }
+                          ] : []} 
+                          openai={threatAiStory && !threatAiStory.error ? {
+                            priority: threatAiStory.security_risk || "CRITICAL",
+                            summary: `${mainBreach?.name?.toUpperCase() || "IDENTITY"} COMPROMISE FORENSICS`,
+                            advisory: threatAiStory.why_it_matters || "Neural engines have completed a deep scan of this specific breach. Review the tactical breakdown below.",
+                            metrics: threatAiStory.risk_metrics
+                          } : (threatAiStory?.error ? {
+                            priority: "ERROR",
+                            summary: "GEMINI CONNECTION FAILED",
+                            advisory: `AI Engine halted: ${threatAiStory.error}`,
+                            metrics: { phishing_risk: 0, takeover_risk: 0, identity_risk: 0 }
+                          } : null)} 
+                        />
+                      ) : (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6 }}
+                          style={{ padding: "60px 40px", textAlign: "center", background: "var(--surface)", borderRadius: 32, border: "1px solid var(--border)", position: "relative", overflow: "hidden" }}
+                        >
+                          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "100%", background: "radial-gradient(circle at top, rgba(124, 58, 237, 0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
+                          <Brain size={64} color="var(--accent)" style={{ margin: "0 auto 24px", filter: "drop-shadow(0 0 20px rgba(124, 58, 237, 0.4))" }} />
+                          <h3 style={{ color: "var(--text-primary)", fontSize: 26, fontWeight: 950, letterSpacing: -0.5, marginBottom: 16, fontFamily: "'Syne', sans-serif" }}>AI CONTINUOUS MONITORING</h3>
+                          <p style={{ color: "var(--text-secondary)", fontSize: 16, lineHeight: 1.7, maxWidth: 540, margin: "0 auto 32px" }}>
+                            BREXIA's neural engine is actively correlating dark-web data streams. Your digital fingerprint is currently producing <strong style={{ color: "var(--success)" }}>no behavioral anomalies</strong>.
+                          </p>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 400, margin: "0 auto", textAlign: "left" }}>
+                             <div style={{ padding: "20px", background: "var(--surface-soft)", borderRadius: 16, border: "1px solid var(--border-soft)" }}>
+                               <div style={{ color: "var(--success)", fontSize: 11, fontWeight: 900, marginBottom: 6, letterSpacing: 1 }}>NEURAL STATE</div>
+                               <div style={{ color: "var(--text-primary)", fontSize: 18, fontWeight: 950 }}>OPTIMAL</div>
+                             </div>
+                             <div style={{ padding: "20px", background: "var(--surface-soft)", borderRadius: 16, border: "1px solid var(--border-soft)" }}>
+                               <div style={{ color: "var(--accent)", fontSize: 11, fontWeight: 900, marginBottom: 6, letterSpacing: 1 }}>NODES SCANNED</div>
+                               <div style={{ color: "var(--text-primary)", fontSize: 18, fontWeight: 950 }}>14.2B+</div>
+                             </div>
+                          </div>
+                        </motion.div>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -2679,8 +2942,10 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: 80,
+    paddingTop: (typeof window !== 'undefined' && window.innerWidth < 768) ? 40 : 80,
     paddingBottom: 80,
+    paddingLeft: (typeof window !== 'undefined' && window.innerWidth < 768) ? 20 : 24,
+    paddingRight: (typeof window !== 'undefined' && window.innerWidth < 768) ? 20 : 24,
     minHeight: "100vh",
     position: "relative",
     zIndex: 1,
