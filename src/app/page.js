@@ -525,7 +525,7 @@ function HeroInput({ email, setEmail, focused, setFocused, handleScan, scanning,
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              style={{ width: "100%", maxWidth: 1050, margin: "0 auto", position: "relative" }}
+              style={{ width: "100%", maxWidth: 1200, margin: "0 auto", position: "relative" }}
             >
               <div className="hero-input-container" style={{ 
                 position: "relative", display: "flex",
@@ -2331,7 +2331,7 @@ export default function BrexiaDashboard() {
         </p>
       </div>
 
-      <div style={{ width: 400, maxWidth: "85%", height: 6, background: "var(--surface-soft)", borderRadius: 100, overflow: "hidden", marginTop: 12, border: "1px solid var(--border-soft)", position: "relative" }}>
+      <div style={{ width: 600, maxWidth: "90%", height: 6, background: "var(--surface-soft)", borderRadius: 100, overflow: "hidden", marginTop: 12, border: "1px solid var(--border-soft)", position: "relative" }}>
         <motion.div 
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
@@ -2542,7 +2542,8 @@ export default function BrexiaDashboard() {
               style={{
                 position: "relative",
                 width: "100%",
-                maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? 380 : 550,
+                maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? 360 : 550,
+                bottom: (typeof window !== 'undefined' && window.innerWidth < 768) ? 0 : "auto",
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 borderRadius: (typeof window !== 'undefined' && window.innerWidth < 768) ? "28px 28px 0 0" : "28px",
@@ -2679,7 +2680,7 @@ export default function BrexiaDashboard() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                     >
-                      <div style={{ maxWidth: 900, margin: "0 auto", width: "100%" }}>
+                      <div style={{ maxWidth: 800, margin: "0 auto", width: "100%" }}>
                         <div className="cyber-grid" style={{ marginBottom: 24, overflow: "visible" }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
