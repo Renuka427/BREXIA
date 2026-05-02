@@ -370,21 +370,21 @@ function GlobalStyles() {
 // ── Shared UI Components ─────────────────────────────────────────────────────
 function TopNav() {
   return (
-    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "8px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "var(--glass-bg)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--border)", transition: "all 0.3s" }}>
+    <nav className="top-nav" style={{ position: "fixed", top: 0, left: 0, width: "100%", padding: "8px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 1000, background: "var(--surface)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--border)", transition: "all 0.3s" }}>
       <button 
         onClick={() => { window.location.reload(); }}
         style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none", cursor: "pointer", padding: 0 }}
       >
-        <img src="/bx-logo-light.png" alt="BX" style={{ width: 34, height: 34, borderRadius: 8, boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)" }} />
+        <img src="/bx-logo-light.png" alt="BX" style={{ width: 34, height: 34, borderRadius: 8, boxShadow: "0 0 15px var(--accent-glow)" }} />
         <div style={{ textAlign: "left" }}>
-          <h1 className="brand-text" style={{ fontSize: 20, letterSpacing: 2, display: "flex", gap: "6px", alignItems: "center" }}>BREXIA <span style={{ color: "#7C3AED" }}>// INTEL</span></h1>
+          <h1 className="brand-text" style={{ fontSize: 20, letterSpacing: 2, display: "flex", gap: "6px", alignItems: "center" }}>BREXIA <span style={{ color: "var(--accent)" }}>// INTEL</span></h1>
           <div className="tagline hud-telemetry-desktop" style={{ fontSize: 7, marginTop: 0 }}>Breach Risk &amp; Exposure Intelligence Analyzer</div>
         </div>
       </button>
       {/* Telemetry pill — hidden on mobile via CSS */}
       <div className="hud-telemetry-desktop" style={{ display: "flex", gap: 24, alignItems: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "6px 16px", fontSize: 10, color: "rgba(16, 185, 129, 0.8)", fontFamily: "'Space Mono', monospace", fontWeight: 700 }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10B981", boxShadow: "0 0 10px #10B981" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 8, background: "var(--surface-soft)", border: "1px solid var(--border)", borderRadius: 20, padding: "6px 16px", fontSize: 10, color: "var(--success)", fontFamily: "'Space Mono', monospace", fontWeight: 700 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--success)", boxShadow: "0 0 10px var(--success)" }} />
           SYSTEM: ONLINE
         </div>
       </div>

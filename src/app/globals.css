@@ -218,10 +218,10 @@ html, body {
     justify-content: center !important;
   }
   .mobile-scroll-tabs {
-    background: rgba(15, 23, 42, 0.95) !important;
+    background: var(--surface) !important;
     border-radius: 12px !important;
     padding: 6px 8px !important;
-    border: 1px solid rgba(124, 58, 237, 0.3) !important;
+    border: 1px solid var(--border) !important;
     display: flex !important;
     justify-content: space-around !important;
     overflow: hidden !important;
@@ -229,7 +229,7 @@ html, body {
     width: 100% !important;
     max-width: 400px !important;
     margin: 0 auto !important;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+    box-shadow: var(--shadow-medium) !important;
   }
   .mobile-scroll-tabs button {
     display: flex !important;
