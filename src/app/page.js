@@ -2397,108 +2397,6 @@ export default function BrexiaDashboard() {
           .top-nav { padding: 8px 16px !important; }
           .tactical-hud-mobile { display: none !important; }
         }
-
-        /* ADVANCED THEME SYSTEM (SEMANTIC TOKENS) */
-        :root {
-          /* DARK THEME (CORE) */
-          --bg: #05070A;
-          --surface: #0B0F1A;
-          --surface-soft: rgba(255, 255, 255, 0.03);
-          --card: rgba(15, 23, 42, 0.4);
-          --text-primary: #F8FAFC;
-          --text-secondary: #94A3B8;
-          --text-muted: rgba(255, 255, 255, 0.3);
-          --border: rgba(255, 255, 255, 0.08);
-          --border-soft: rgba(255, 255, 255, 0.04);
-          --accent: #7C3AED;
-          --accent-glow: rgba(124, 58, 237, 0.15);
-          --danger: #F43F5E;
-          --warning: #FB923C;
-          --success: #10B981;
-          --shadow-soft: 0 10px 40px rgba(0,0,0,0.5);
-          --glass-blur: blur(20px);
-        }
-
-        .light-mode {
-          /* LIGHT THEME (CRISP & CLEAN) */
-          --bg: #F6F8FB;
-          --surface: #FFFFFF;
-          --surface-soft: #F1F5F9;
-          --card: #FFFFFF;
-          --text-primary: #000000;
-          --text-secondary: #111827;
-          --text-muted: #334155;
-          --border: #94A3B8;
-          --border-soft: #CBD5E1;
-          --accent: #6366F1;
-          --accent-glow: rgba(99, 102, 241, 0.1);
-          --danger: #EF4444;
-          --warning: #F59E0B;
-          --success: #22C55E;
-          --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
-          --shadow-medium: 0 14px 40px rgba(0, 0, 0, 0.08);
-          --glass-blur: none !important;
-        }
-
-        * {
-          transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                      color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                      border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        body { background-color: var(--bg); color: var(--text-primary); }
-        .main-container { background: var(--bg); }
-        .cyber-card { background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-soft); backdrop-filter: var(--glass-blur); }
-        .light-mode .cyber-card { background: #FFFFFF !important; box-shadow: var(--shadow-soft) !important; border-color: var(--border) !important; backdrop-filter: none !important; }
-        .light-mode .cyber-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-medium) !important; }
-
-        .light-mode .hud-grid { opacity: 0.02; filter: none; background-image: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px); }
-        .light-mode .particle-canvas { opacity: 0; display: none !important; }
-        .light-mode .scanning-beam { opacity: 0 !important; display: none !important; }
-        .light-mode .scan-line { opacity: 0 !important; display: none !important; }
-        
-        .light-mode .tabs-wrapper > div { background: #FFFFFF !important; border-color: var(--border) !important; }
-        .light-mode .tab-active { background: #EEF2FF !important; color: var(--accent) !important; border-color: rgba(99, 102, 241, 0.2) !important; }
-
-        /* LIQUID MORPH ANIMATION */
-        #theme-transition-overlay {
-          position: fixed;
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 9999;
-          transform: scale(0);
-          background: var(--bg);
-          box-shadow: 0 0 100px rgba(124, 58, 237, 0.2);
-        }
-
-        .animate-morph {
-          animation: themeMorph 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes themeMorph {
-          0% { transform: scale(0); opacity: 1; }
-          60% { transform: scale(40); opacity: 1; }
-          100% { transform: scale(50); opacity: 0; }
-        }
-        
-        /* iOS Bottom Sheet Radio Overrides */
-        .theme-option input[type="radio"] {
-          appearance: none;
-          width: 20px;
-          height: 20px;
-          border: 2px solid var(--text-muted);
-          border-radius: 50%;
-          cursor: pointer;
-          position: relative;
-          transition: all 0.2s;
-        }
-        .theme-option input[type="radio"]:checked {
-          border-color: var(--accent);
-          background: var(--accent);
-          box-shadow: inset 0 0 0 3px var(--bg);
-        }
       `}</style>
 
       <AnimatePresence>
@@ -2542,12 +2440,12 @@ export default function BrexiaDashboard() {
               style={{
                 position: "relative",
                 width: "100%",
-                maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? 360 : 550,
+                maxWidth: (typeof window !== 'undefined' && window.innerWidth < 768) ? 420 : 550,
                 bottom: (typeof window !== 'undefined' && window.innerWidth < 768) ? 0 : "auto",
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 borderRadius: (typeof window !== 'undefined' && window.innerWidth < 768) ? "28px 28px 0 0" : "28px",
-                padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "20px 20px env(safe-area-inset-bottom, 20px) 20px" : "20px 32px 32px 32px",
+                padding: (typeof window !== 'undefined' && window.innerWidth < 768) ? "20px 20px calc(20px + env(safe-area-inset-bottom, 20px)) 20px" : "20px 32px 32px 32px",
                 boxShadow: "0 25px 60px rgba(0,0,0,0.5)",
                 zIndex: 1,
                 overflow: "hidden"
@@ -2680,7 +2578,7 @@ export default function BrexiaDashboard() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                     >
-                      <div style={{ maxWidth: 800, margin: "0 auto", width: "100%" }}>
+                      <div style={{ maxWidth: 1000, margin: "0 auto", width: "100%" }}>
                         <div className="cyber-grid" style={{ marginBottom: 24, overflow: "visible" }}>
                         {/* LEFT COLUMN: AI BRAIN */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -2857,25 +2755,40 @@ export default function BrexiaDashboard() {
                       transition={{ duration: 0.4 }}
                     >
                       {apiData.breaches && apiData.breaches.length > 0 ? (
-                        <AIPanel 
-                          data={threatAiStory && !threatAiStory.error ? [
-                            { label: "TARGET PROFILE", color: "#A259FF", text: threatAiStory.about_site },
-                            { label: "ATTACK VECTOR", color: "#FF9326", text: threatAiStory.breach_mechanics },
-                            { label: "EXPLOIT DANGER", color: "#F43F5E", text: threatAiStory.user_danger },
-                            { label: "THREAT INTELLIGENCE", color: "#0ACF83", text: threatAiStory.why_it_matters }
-                          ] : []} 
-                          openai={threatAiStory && !threatAiStory.error ? {
-                            priority: threatAiStory.security_risk || "CRITICAL",
-                            summary: `${mainBreach?.name?.toUpperCase() || "IDENTITY"} COMPROMISE FORENSICS`,
-                            advisory: threatAiStory.why_it_matters || "Neural engines have completed a deep scan of this specific breach. Review the tactical breakdown below.",
-                            metrics: threatAiStory.risk_metrics
-                          } : (threatAiStory?.error ? {
-                            priority: "ERROR",
-                            summary: "GEMINI CONNECTION FAILED",
-                            advisory: `AI Engine halted: ${threatAiStory.error}`,
-                            metrics: { phishing_risk: 0, takeover_risk: 0, identity_risk: 0 }
-                          } : null)} 
-                        />
+                        threatAiStory ? (
+                          <AIPanel 
+                            data={!threatAiStory.error ? [
+                              { label: "TARGET PROFILE", color: "#A259FF", text: threatAiStory.about_site },
+                              { label: "ATTACK VECTOR", color: "#FF9326", text: threatAiStory.breach_mechanics },
+                              { label: "EXPLOIT DANGER", color: "#F43F5E", text: threatAiStory.user_danger },
+                              { label: "THREAT INTELLIGENCE", color: "#0ACF83", text: threatAiStory.why_it_matters }
+                            ] : []} 
+                            openai={!threatAiStory.error ? {
+                              priority: threatAiStory.security_risk || "CRITICAL",
+                              summary: `${mainBreach?.name?.toUpperCase() || "IDENTITY"} COMPROMISE FORENSICS`,
+                              advisory: threatAiStory.why_it_matters || "Neural engines have completed a deep scan of this specific breach. Review the tactical breakdown below.",
+                              metrics: threatAiStory.risk_metrics
+                            } : {
+                              priority: "ERROR",
+                              summary: "GEMINI CONNECTION FAILED",
+                              advisory: `AI Engine halted: ${threatAiStory.error}`,
+                              metrics: { phishing_risk: 0, takeover_risk: 0, identity_risk: 0 }
+                            }} 
+                          />
+                        ) : (
+                          <div style={{ padding: "100px 40px", textAlign: "center", background: "var(--surface)", borderRadius: 32, border: "1px solid var(--border)", position: "relative", overflow: "hidden" }}>
+                            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "100%", background: "radial-gradient(circle at top, rgba(124, 58, 237, 0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                              style={{ width: 64, height: 64, margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                            >
+                              <Brain size={48} color="var(--accent)" style={{ filter: "drop-shadow(0 0 20px rgba(124, 58, 237, 0.4))" }} />
+                            </motion.div>
+                            <h3 style={{ color: "var(--text-primary)", fontSize: 22, fontWeight: 950, letterSpacing: 2, marginBottom: 12, fontFamily: "'Syne', sans-serif" }}>PROCESSING INTELLIGENCE</h3>
+                            <p style={{ color: "var(--text-secondary)", fontSize: 13, fontFamily: "'Space Mono', monospace", letterSpacing: 1 }}>Correlating dark-web data streams...</p>
+                          </div>
+                        )
                       ) : (
                         <motion.div
                           initial={{ opacity: 0, scale: 0.95 }}
